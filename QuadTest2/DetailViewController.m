@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#import "NSString+HTML.h"
 
 @interface DetailViewController ()
 
@@ -30,7 +31,8 @@
     // Update the user interface for the detail item.
     
     if (self.detailItem) {
-        self.detailTextView.text = [self flattenHTML:[self.detailItem content]];
+        NSString *content = [self flattenHTML:[self.detailItem content]];
+        self.detailTextView.text = [content stringByDecodingHTMLEntities];
     }
 }
 
