@@ -48,9 +48,10 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
+                    <navigationItem key="navigationItem" title="Quad" id="mOI-FS-AaM"/>
                     <connections>
                         <outlet property="detailTextView" destination="9m6-R0-hKp" id="MQd-Tm-UGc"/>
+                        <outlet property="detailTitle" destination="mOI-FS-AaM" id="Wm0-OS-uva"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>

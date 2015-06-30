@@ -30,6 +30,8 @@
 - (void)configureView {
     // Update the user interface for the detail item.
     
+    self.detailTitle.title = [self.detailItem title];
+    
     if (self.detailItem) {
         NSString *content = [self flattenHTML:[self.detailItem content]];
         self.detailTextView.text = [content stringByDecodingHTMLEntities];

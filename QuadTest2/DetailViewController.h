@@ -15,6 +15,7 @@
 //@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 //@property (weak, nonatomic) IBOutlet UILabel *makeSelectionLabel;
 @property (weak, nonatomic) IBOutlet UITextView *detailTextView;
+@property (weak, nonatomic) IBOutlet UINavigationItem *detailTitle;
 
 @end
 
