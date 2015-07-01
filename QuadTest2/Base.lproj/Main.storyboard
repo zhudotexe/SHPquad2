@@ -31,27 +31,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" text="Please make a selection." translatesAutoresizingMaskIntoConstraints="NO" id="9m6-R0-hKp">
-                                <rect key="frame" x="16" y="64" width="568" height="528"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1FT-fw-5Ko" customClass="CTView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                            </textView>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="9m6-R0-hKp" secondAttribute="centerY" id="GC2-fI-kbV"/>
-                            <constraint firstAttribute="centerX" secondItem="9m6-R0-hKp" secondAttribute="centerX" id="NE5-Jm-Qpr"/>
-                            <constraint firstItem="9m6-R0-hKp" firstAttribute="width" secondItem="svH-Pt-448" secondAttribute="width" id="XLH-lD-f94"/>
-                            <constraint firstItem="9m6-R0-hKp" firstAttribute="height" secondItem="svH-Pt-448" secondAttribute="height" id="ZZq-4D-cIu"/>
+                            <constraint firstAttribute="centerX" secondItem="1FT-fw-5Ko" secondAttribute="centerX" id="PMi-QO-TrN"/>
+                            <constraint firstAttribute="centerY" secondItem="1FT-fw-5Ko" secondAttribute="centerY" id="Xms-UQ-Niu"/>
+                            <constraint firstItem="1FT-fw-5Ko" firstAttribute="height" secondItem="svH-Pt-448" secondAttribute="height" id="hIh-AQ-Mea"/>
+                            <constraint firstItem="1FT-fw-5Ko" firstAttribute="width" secondItem="svH-Pt-448" secondAttribute="width" id="pdm-Xe-QKe"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Quad" id="mOI-FS-AaM"/>
                     <connections>
-                        <outlet property="detailTextView" destination="9m6-R0-hKp" id="MQd-Tm-UGc"/>
                         <outlet property="detailTitle" destination="mOI-FS-AaM" id="Wm0-OS-uva"/>
+                        <outlet property="detailView" destination="1FT-fw-5Ko" id="9EH-N6-V3p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>

@@ -8,12 +8,15 @@
 
 #import "DetailViewController.h"
 #import "NSString+HTML.h"
+#import "CTView.h"
+#import "MarkupParser.h"
 
 @interface DetailViewController ()
 
 @end
 
 @implementation DetailViewController
+
 
 
 #pragma mark - Managing the detail item
@@ -30,20 +33,17 @@
 - (void)configureView {
     // Update the user interface for the detail item.
     
-    self.detailTitle.title = [self.detailItem title];
-    
-    if (self.detailItem) {
-        NSString *content = [self flattenHTML:[self.detailItem content]];
-        self.detailTextView.text = [content stringByDecodingHTMLEntities];
-    }
+    //NSString *path = [[NSBundle mainBundle] pathForResource:@"zombies" ofType:@"txt"];
+    NSString* text = [self.detailItem content];//[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
+    MarkupParser* p = [[MarkupParser alloc] init];
+    NSAttributedString* attString = [p attrStringFromMarkup: text];
+    [self.detailView setAttString:attString];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self configureView];
-    self.detailTextView.editable = FALSE;
-    self.detailTextView.scrollEnabled = TRUE;
 }
 
 - (void)didReceiveMemoryWarning {
