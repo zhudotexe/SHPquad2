@@ -34,13 +34,9 @@
     
     if (self.detailItem) {
         NSString *content = [self flattenHTML:[self.detailItem content]];
-        NSArray *imageArray = [self.detailItem images];
-        NSLog(@"Image Array: %@", imageArray);
-        NSURL *imageURL = imageArray.firstObject;
-        UIImage *image = [[UIImage alloc]initWithData:[[NSData alloc]initWithContentsOfURL:imageURL]];
-        image = [self resizeImage:image withSize:CGSizeMake(600.0f, 400.0f)];
+        
         self.detailTextView.text = [content stringByDecodingHTMLEntities];
-        self.detailImageView.image = image;
+        [self imageDownloadStart];
     }
 }
 
@@ -85,7 +81,27 @@
 }
 
 
-#pragma mark Image Resize
+#pragma mark Image Handlin'
+
+-(void)imageDownloadStart
+{
+    [self performSelectorInBackground:@selector(downloadImage) withObject:nil];
+}
+
+- (void)downloadImage
+{
+    NSArray *imageArray = [self.detailItem images];
+    NSLog(@"Image Array: %@", imageArray);
+    NSURL *imageURL = imageArray.firstObject;
+    UIImage *image = [[UIImage alloc]initWithData:[[NSData alloc]initWithContentsOfURL:imageURL]];
+    image = [self resizeImage:image withSize:CGSizeMake(600.0f, 400.0f)];
+    [self setImage:image];
+}
+
+- (void)setImage:(UIImage *)image
+{
+    self.detailImageView.image = image;
+}
 
 - (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)newSize
 {

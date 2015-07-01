@@ -39,7 +39,7 @@
     FeedItem *feedItem = [[FeedItem alloc] init];
     feedItem.title = item.title ? item.title : @"Untitled";
     feedItem.author = item.author ? item.author : @"Unknown Author";
-    feedItem.content = item.content ? item.content : @"This article cannot be displayed in the Quad's mobile app. Sorry!";
+    feedItem.content = item.content ? item.content : @"This article does not contain any text.";
     feedItem.date = item.date;
     feedItem.link = item.link ? item.link : @"http://shpquad.org/404";
     feedItem.images = [self parseImages:item.content];
