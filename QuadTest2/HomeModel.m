@@ -42,7 +42,7 @@
     feedItem.content = item.content ? item.content : @"This article cannot be displayed in the Quad's mobile app. Sorry!";
     feedItem.date = item.date;
     feedItem.link = item.link ? item.link : @"http://shpquad.org/404";
-    feedItem.images = [self parseImages:feedItem.content];
+    feedItem.images = [self parseImages:item.content];
     
     [self.feedItems addObject:feedItem];
     
@@ -90,12 +90,16 @@
                     
                     //find image url
                     [scanner scanUpToString:@"src=" intoString:NULL];
-                    [scanner scanString:@"\"" intoString:NULL];
+                    [scanner scanString:@"src=\"" intoString:NULL];
                     //get the actual url
                     [scanner scanUpToString:@"\"" intoString:&url];
                         
                     //add the url to the image array
                     [images addObject:[[NSURL alloc]initWithString:url]];
+                    
+                    //NSLog(@"Added URL: %@",[images lastObject]);
+                    
+                    url = nil;
                     
                     // Scan past tag
                     [scanner scanUpToString:@">" intoString:NULL];
