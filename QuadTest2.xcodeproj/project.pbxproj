@@ -27,6 +27,8 @@
 		495182BC1B423D2600B1509C /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 495182B01B423D2600B1509C /* NSString+HTML.m */; };
 		495182BD1B423D2600B1509C /* NSString+XMLEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = 495182B21B423D2600B1509C /* NSString+XMLEntities.m */; };
 		495182BE1B423D2600B1509C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495182B41B423D2600B1509C /* RootViewController.m */; };
+		4971E47A1B435F5600482419 /* SimpleTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4971E4791B435F5600482419 /* SimpleTableCell.xib */; };
+		4971E47D1B43669D00482419 /* SimpleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4971E47C1B43669D00482419 /* SimpleTableCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,9 @@
 		495182B21B423D2600B1509C /* NSString+XMLEntities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+XMLEntities.m"; sourceTree = "<group>"; };
 		495182B31B423D2600B1509C /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		495182B41B423D2600B1509C /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		4971E4791B435F5600482419 /* SimpleTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleTableCell.xib; sourceTree = "<group>"; };
+		4971E47B1B43669D00482419 /* SimpleTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableCell.h; sourceTree = "<group>"; };
+		4971E47C1B43669D00482419 /* SimpleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTableCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +141,9 @@
 				495182971B423A2600B1509C /* HomeModel.m */,
 				495182991B423B8A00B1509C /* FeedItem.h */,
 				4951829A1B423B8A00B1509C /* FeedItem.m */,
+				4971E4791B435F5600482419 /* SimpleTableCell.xib */,
+				4971E47B1B43669D00482419 /* SimpleTableCell.h */,
+				4971E47C1B43669D00482419 /* SimpleTableCell.m */,
 			);
 			path = QuadTest2;
 			sourceTree = "<group>";
@@ -284,6 +292,7 @@
 			files = (
 				4951827C1B4238EA00B1509C /* Main.storyboard in Resources */,
 				495182811B4238EA00B1509C /* LaunchScreen.xib in Resources */,
+				4971E47A1B435F5600482419 /* SimpleTableCell.xib in Resources */,
 				4951827E1B4238EA00B1509C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,6 +319,7 @@
 				495182B71B423D2600B1509C /* MWFeedInfo.m in Sources */,
 				495182B51B423D2600B1509C /* DetailTableViewController.m in Sources */,
 				495182761B4238EA00B1509C /* MasterViewController.m in Sources */,
+				4971E47D1B43669D00482419 /* SimpleTableCell.m in Sources */,
 				495182701B4238EA00B1509C /* main.m in Sources */,
 				495182B61B423D2600B1509C /* GTMNSString+HTML.m in Sources */,
 				4951829B1B423B8A00B1509C /* FeedItem.m in Sources */,
@@ -514,6 +524,7 @@
 				495182921B4238EA00B1509C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		495182931B4238EA00B1509C /* Build configuration list for PBXNativeTarget "QuadTest2Tests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +533,7 @@
 				495182951B4238EA00B1509C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

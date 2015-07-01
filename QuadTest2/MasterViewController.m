@@ -8,6 +8,7 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
+#import "SimpleTableCell.h"
 
 @interface MasterViewController (){
     HomeModel *_homeModel;
@@ -106,14 +107,23 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Retrieve cell
-    NSString *cellIdentifier = @"Cell";
-    UITableViewCell *myCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    NSString *cellIdentifier = @"SimpleTableCell";
+    SimpleTableCell *myCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (myCell == nil)
+    {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimpleTableCell" owner:self options:nil];
+        myCell = [nib objectAtIndex:0];
+    }
     
     // Get the listing to be shown
     FeedItem *item = _feedItems[indexPath.row];
     
     // Get references to labels of cell
-    myCell.textLabel.text = item.title;
+    myCell.titleLabel.text = item.title;
+    myCell.authorLabel.text = item.author;
+    myCell.dateLabel.text = [item.date descriptionWithLocale:[NSLocale currentLocale]];
+    // TODO: myCell.thumbnailImageView.image = item.
     
     return myCell;
 }
@@ -121,6 +131,11 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return NO;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 78;
 }
 
 /*- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
