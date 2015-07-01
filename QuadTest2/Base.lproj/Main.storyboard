@@ -31,26 +31,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" text="Please make a selection." translatesAutoresizingMaskIntoConstraints="NO" id="9m6-R0-hKp">
-                                <rect key="frame" x="16" y="64" width="568" height="528"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q5x-IV-YFT">
+                                <rect key="frame" x="0.0" y="64" width="600" height="400"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" text="Please make a selection." translatesAutoresizingMaskIntoConstraints="NO" id="OhC-yu-yfp">
+                                <rect key="frame" x="0.0" y="464" width="600" height="136"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="9m6-R0-hKp" secondAttribute="centerY" id="GC2-fI-kbV"/>
-                            <constraint firstAttribute="centerX" secondItem="9m6-R0-hKp" secondAttribute="centerX" id="NE5-Jm-Qpr"/>
-                            <constraint firstItem="9m6-R0-hKp" firstAttribute="width" secondItem="svH-Pt-448" secondAttribute="width" id="XLH-lD-f94"/>
-                            <constraint firstItem="9m6-R0-hKp" firstAttribute="height" secondItem="svH-Pt-448" secondAttribute="height" id="ZZq-4D-cIu"/>
+                            <constraint firstItem="Q5x-IV-YFT" firstAttribute="width" secondItem="svH-Pt-448" secondAttribute="width" id="4M7-48-Tgo"/>
+                            <constraint firstAttribute="centerX" secondItem="OhC-yu-yfp" secondAttribute="centerX" id="6pX-iN-ubG"/>
+                            <constraint firstAttribute="height" secondItem="OhC-yu-yfp" secondAttribute="height" constant="464" id="OGC-5v-2tm"/>
+                            <constraint firstItem="OhC-yu-yfp" firstAttribute="top" secondItem="Q5x-IV-YFT" secondAttribute="bottom" id="PnH-xq-wpt"/>
+                            <constraint firstItem="Q5x-IV-YFT" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="SHB-oH-ZJy"/>
+                            <constraint firstItem="Q5x-IV-YFT" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="mZ4-gh-Qaf"/>
+                            <constraint firstAttribute="width" secondItem="OhC-yu-yfp" secondAttribute="width" id="qgU-Iy-xIm"/>
+                            <constraint firstItem="Q5x-IV-YFT" firstAttribute="centerX" secondItem="OhC-yu-yfp" secondAttribute="centerX" id="rUW-rk-3jA"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Quad" id="mOI-FS-AaM"/>
                     <connections>
-                        <outlet property="detailTextView" destination="9m6-R0-hKp" id="MQd-Tm-UGc"/>
+                        <outlet property="detailImageView" destination="Q5x-IV-YFT" id="1r2-ML-rSh"/>
+                        <outlet property="detailTextView" destination="OhC-yu-yfp" id="C0F-g3-V3Q"/>
                         <outlet property="detailTitle" destination="mOI-FS-AaM" id="Wm0-OS-uva"/>
                     </connections>
                 </viewController>

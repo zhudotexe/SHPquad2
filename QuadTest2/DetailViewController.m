@@ -34,7 +34,9 @@
     
     if (self.detailItem) {
         NSString *content = [self flattenHTML:[self.detailItem content]];
+        
         self.detailTextView.text = [content stringByDecodingHTMLEntities];
+        [self imageDownloadStart];
     }
 }
 
@@ -42,8 +44,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self configureView];
-    self.detailTextView.editable = FALSE;
-    self.detailTextView.scrollEnabled = TRUE;
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,4 +81,54 @@
 }
 
 
+#pragma mark Image Handlin'
+
+-(void)imageDownloadStart
+{
+    [self performSelectorInBackground:@selector(downloadImage) withObject:nil];
+}
+
+- (void)downloadImage
+{
+    NSArray *imageArray = [self.detailItem images];
+    NSLog(@"Image Array: %@", imageArray);
+    NSURL *imageURL = imageArray.firstObject;
+    UIImage *image = [[UIImage alloc]initWithData:[[NSData alloc]initWithContentsOfURL:imageURL]];
+    image = [self resizeImage:image withSize:CGSizeMake(600.0f, 400.0f)];
+    [self setImage:image];
+}
+
+- (void)setImage:(UIImage *)image
+{
+    self.detailImageView.image = image;
+}
+
+- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)newSize
+{
+    float actualHeight = image.size.height;
+    float actualWidth = image.size.width;
+    float imgRatio = actualWidth/actualHeight;
+    float maxRatio = newSize.width/newSize.height;
+    
+    if(imgRatio!=maxRatio)
+    {
+        if(imgRatio < maxRatio){
+            imgRatio = newSize.width / actualHeight;
+            actualWidth = round(imgRatio * actualWidth);
+            actualHeight = newSize.width;
+        }
+        else{
+            imgRatio = newSize.height / actualWidth;
+            actualHeight = round(imgRatio * actualHeight);
+            actualWidth = newSize.height;
+        }
+    }
+    CGRect rect = CGRectMake(0.0, 0.0, actualWidth, actualHeight);
+    UIGraphicsBeginImageContext(rect.size);
+    [image drawInRect:rect];
+    UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    //[resizedImage release];
+    return resizedImage;
+}
 @end

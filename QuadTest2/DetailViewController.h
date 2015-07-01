@@ -9,13 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "FeedItem.h"
 
-@interface DetailViewController : UIViewController 
+@interface DetailViewController : UIViewController <UIScrollViewDelegate>
+
+//@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 
 @property (strong, nonatomic) id detailItem;
-//@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *makeSelectionLabel;
-@property (weak, nonatomic) IBOutlet UITextView *detailTextView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *detailImageView;
 @property (weak, nonatomic) IBOutlet UINavigationItem *detailTitle;
+@property (weak, nonatomic) IBOutlet UITextView *detailTextView;
 
 @end
 
