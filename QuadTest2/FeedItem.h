@@ -15,5 +15,6 @@
 @property (nonatomic,strong) NSString *content;
 @property (nonatomic,strong) NSDate *date;
 @property (nonatomic,strong) NSString *link;
+@property (nonatomic,strong) NSMutableArray *images;
 
 @end
