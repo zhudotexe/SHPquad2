@@ -45,6 +45,9 @@
     _homeModel.delegate = self;
     
     [_homeModel downloadItems];
+    
+    //[self.navigationController.navigationItem setTitleView:[[UIImageView alloc]initWithImage:[[UIImage alloc]init]]];
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor colorWithRed:0.6784 green:0.0588 blue:0.1137 alpha:1]];
 }
 
 - (void)didReceiveMemoryWarning {

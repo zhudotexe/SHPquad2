@@ -29,7 +29,8 @@
 
 - (void)configureView {
     // Update the user interface for the detail item.
-    
+    [self.navigationController.navigationBar setOpaque:YES];
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor colorWithRed:0.6784 green:0.0588 blue:0.1137 alpha:1]];
     self.detailTitle.title = [self.detailItem title];
     
     if (self.detailItem) {
