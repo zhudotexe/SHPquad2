@@ -14,6 +14,7 @@
 @end
 
 @implementation DetailViewController
+@synthesize containerView = _containerView;
 
 
 #pragma mark - Managing the detail item
@@ -35,12 +36,34 @@
 
     self.detailTitle.title = [self.detailItem title];
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
+
     
     if (self.detailItem) {
         NSString *content = [self flattenHTML:[self.detailItem content]];
+        content = [content stringByDecodingHTMLEntities];
         
-        self.detailTextView.text = [content stringByDecodingHTMLEntities];
-        [self imageDownloadStart];
+        if ([self.detailItem images]) { // if there is an image, init with an imageview
+            // Set up the container view to hold your custom view hierarchy
+            CGSize containerSize = self.view.frame.size;
+            self.containerView = [[UIView alloc] initWithFrame:(CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=containerSize}];
+            [self.view addSubview:self.containerView];
+            
+            // Set up your custom view hierarchy
+            
+            UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loading.png"]];
+            imageView.frame = CGRectMake((self.view.frame.size.width - 600)/2, 0.0f, 600.0f, 400.0f);
+            [self.containerView addSubview:imageView];
+            
+            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 640.0f, 80.0f)];
+            [self.containerView addSubview:textView];
+            
+            textView.text = content;
+            imageView.image = [self downloadImage];
+            
+        } else { // otherwise remove the imageview and init
+            
+        }
+        
     }
 }
 
@@ -55,6 +78,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark View Handlers
+
 
 #pragma mark HTML Flattener
 
@@ -92,19 +118,14 @@
     [self performSelectorInBackground:@selector(downloadImage) withObject:nil];
 }
 
-- (void)downloadImage
+- (UIImage *)downloadImage
 {
     NSArray *imageArray = [self.detailItem images];
     NSLog(@"Image Array: %@", imageArray);
     NSURL *imageURL = imageArray.firstObject;
     UIImage *image = [[UIImage alloc]initWithData:[[NSData alloc]initWithContentsOfURL:imageURL]];
     image = [self resizeImage:image withSize:CGSizeMake(600.0f, 400.0f)];
-    [self setImage:image];
-}
-
-- (void)setImage:(UIImage *)image
-{
-    self.detailImageView.image = image;
+    return image;
 }
 
 - (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)newSize
