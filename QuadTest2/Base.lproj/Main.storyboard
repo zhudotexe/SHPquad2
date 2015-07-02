@@ -46,7 +46,7 @@
                         <constraints>
                             <constraint firstItem="Q5x-IV-YFT" firstAttribute="width" secondItem="svH-Pt-448" secondAttribute="width" id="4M7-48-Tgo"/>
                             <constraint firstAttribute="centerX" secondItem="OhC-yu-yfp" secondAttribute="centerX" id="6pX-iN-ubG"/>
-                            <constraint firstAttribute="height" secondItem="OhC-yu-yfp" secondAttribute="height" constant="464" id="OGC-5v-2tm"/>
+                            <constraint firstAttribute="height" secondItem="OhC-yu-yfp" secondAttribute="height" constant="400" id="OGC-5v-2tm"/>
                             <constraint firstItem="OhC-yu-yfp" firstAttribute="top" secondItem="Q5x-IV-YFT" secondAttribute="bottom" id="PnH-xq-wpt"/>
                             <constraint firstItem="Q5x-IV-YFT" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="SHB-oH-ZJy"/>
                             <constraint firstItem="Q5x-IV-YFT" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="mZ4-gh-Qaf"/>
@@ -109,7 +109,7 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="SHP Quad" id="Zdf-7t-Un8"/>
+                    <navigationItem key="navigationItem" id="Zdf-7t-Un8"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>

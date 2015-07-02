@@ -30,6 +30,7 @@
 		4971E47A1B435F5600482419 /* SimpleTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4971E4791B435F5600482419 /* SimpleTableCell.xib */; };
 		4971E47D1B43669D00482419 /* SimpleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4971E47C1B43669D00482419 /* SimpleTableCell.m */; };
 		4971E4961B440DDA00482419 /* QuadLogoSlogan1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4971E4951B440DDA00482419 /* QuadLogoSlogan1.png */; };
+		4971E4A41B44D65F00482419 /* QuadLogoSlogan1_appv@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4971E4A31B44D65F00482419 /* QuadLogoSlogan1_appv@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		4971E47B1B43669D00482419 /* SimpleTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableCell.h; sourceTree = "<group>"; };
 		4971E47C1B43669D00482419 /* SimpleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTableCell.m; sourceTree = "<group>"; };
 		4971E4951B440DDA00482419 /* QuadLogoSlogan1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QuadLogoSlogan1.png; sourceTree = "<group>"; };
+		4971E4A31B44D65F00482419 /* QuadLogoSlogan1_appv@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QuadLogoSlogan1_appv@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				4971E4951B440DDA00482419 /* QuadLogoSlogan1.png */,
+				4971E4A31B44D65F00482419 /* QuadLogoSlogan1_appv@2x.png */,
 			);
 			name = Icons/Images;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				4951827C1B4238EA00B1509C /* Main.storyboard in Resources */,
 				495182811B4238EA00B1509C /* LaunchScreen.xib in Resources */,
 				4971E4961B440DDA00482419 /* QuadLogoSlogan1.png in Resources */,
+				4971E4A41B44D65F00482419 /* QuadLogoSlogan1_appv@2x.png in Resources */,
 				4971E47A1B435F5600482419 /* SimpleTableCell.xib in Resources */,
 				4951827E1B4238EA00B1509C /* Images.xcassets in Resources */,
 			);

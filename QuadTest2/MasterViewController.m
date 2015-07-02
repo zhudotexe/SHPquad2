@@ -46,8 +46,16 @@
     
     [_homeModel downloadItems];
     
-    //[self.navigationController.navigationItem setTitleView:[[UIImageView alloc]initWithImage:[[UIImage alloc]init]]];
-    [self.navigationController.navigationBar setBackgroundColor:[UIColor colorWithRed:0.6784 green:0.0588 blue:0.1137 alpha:1]];
+    self.navigationController.navigationBar.translucent= NO;
+    
+    UIImage *image = [UIImage imageNamed:@"QuadLogoSlogan1_appv.png"];
+    UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
+    
+    myImageView.contentMode = UIViewContentModeTop;
+    
+    self.navigationController.navigationItem.title = nil;
+    self.navigationItem.titleView = myImageView;
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.6784 green:0.0588 blue:0.1137 alpha:1]];
 }
 
 - (void)didReceiveMemoryWarning {
