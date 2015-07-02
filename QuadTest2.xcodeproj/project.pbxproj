@@ -32,6 +32,7 @@
 		4971E4961B440DDA00482419 /* QuadLogoSlogan1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4971E4951B440DDA00482419 /* QuadLogoSlogan1.png */; };
 		4971E4A41B44D65F00482419 /* QuadLogoSlogan1_appv@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4971E4A31B44D65F00482419 /* QuadLogoSlogan1_appv@2x.png */; };
 		4971E4A81B45171900482419 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4971E4A71B45171900482419 /* ImageDownloader.m */; };
+		4971E4AA1B45286D00482419 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 4971E4A91B45286D00482419 /* loading.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		4971E4A31B44D65F00482419 /* QuadLogoSlogan1_appv@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QuadLogoSlogan1_appv@2x.png"; sourceTree = "<group>"; };
 		4971E4A61B45171900482419 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDownloader.h; sourceTree = "<group>"; };
 		4971E4A71B45171900482419 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDownloader.m; sourceTree = "<group>"; };
+		4971E4A91B45286D00482419 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 			children = (
 				4971E4951B440DDA00482419 /* QuadLogoSlogan1.png */,
 				4971E4A31B44D65F00482419 /* QuadLogoSlogan1_appv@2x.png */,
+				4971E4A91B45286D00482419 /* loading.png */,
 			);
 			name = Icons/Images;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				4971E4A41B44D65F00482419 /* QuadLogoSlogan1_appv@2x.png in Resources */,
 				4971E47A1B435F5600482419 /* SimpleTableCell.xib in Resources */,
 				4951827E1B4238EA00B1509C /* Images.xcassets in Resources */,
+				4971E4AA1B45286D00482419 /* loading.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
