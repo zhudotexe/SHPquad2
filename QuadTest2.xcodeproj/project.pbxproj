@@ -31,6 +31,7 @@
 		4971E47D1B43669D00482419 /* SimpleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4971E47C1B43669D00482419 /* SimpleTableCell.m */; };
 		4971E4961B440DDA00482419 /* QuadLogoSlogan1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4971E4951B440DDA00482419 /* QuadLogoSlogan1.png */; };
 		4971E4A41B44D65F00482419 /* QuadLogoSlogan1_appv@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4971E4A31B44D65F00482419 /* QuadLogoSlogan1_appv@2x.png */; };
+		4971E4A81B45171900482419 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4971E4A71B45171900482419 /* ImageDownloader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,8 @@
 		4971E47C1B43669D00482419 /* SimpleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTableCell.m; sourceTree = "<group>"; };
 		4971E4951B440DDA00482419 /* QuadLogoSlogan1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QuadLogoSlogan1.png; sourceTree = "<group>"; };
 		4971E4A31B44D65F00482419 /* QuadLogoSlogan1_appv@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QuadLogoSlogan1_appv@2x.png"; sourceTree = "<group>"; };
+		4971E4A61B45171900482419 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDownloader.h; sourceTree = "<group>"; };
+		4971E4A71B45171900482419 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDownloader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +152,8 @@
 				4971E4791B435F5600482419 /* SimpleTableCell.xib */,
 				4971E47B1B43669D00482419 /* SimpleTableCell.h */,
 				4971E47C1B43669D00482419 /* SimpleTableCell.m */,
+				4971E4A61B45171900482419 /* ImageDownloader.h */,
+				4971E4A71B45171900482419 /* ImageDownloader.m */,
 			);
 			path = QuadTest2;
 			sourceTree = "<group>";
@@ -339,6 +344,7 @@
 				495182701B4238EA00B1509C /* main.m in Sources */,
 				495182B61B423D2600B1509C /* GTMNSString+HTML.m in Sources */,
 				4951829B1B423B8A00B1509C /* FeedItem.m in Sources */,
+				4971E4A81B45171900482419 /* ImageDownloader.m in Sources */,
 				495182BC1B423D2600B1509C /* NSString+HTML.m in Sources */,
 				495182791B4238EA00B1509C /* DetailViewController.m in Sources */,
 				495182BD1B423D2600B1509C /* NSString+XMLEntities.m in Sources */,

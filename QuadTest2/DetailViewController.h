@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "FeedItem.h"
+#import "ImageDownloader.h"
 
-@interface DetailViewController : UIViewController <UIScrollViewDelegate>
+@interface DetailViewController : UIViewController <UIScrollViewDelegate, ImageDownloaderProtocol>
 
 //@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 
