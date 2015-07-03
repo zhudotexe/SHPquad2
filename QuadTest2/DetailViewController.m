@@ -60,7 +60,7 @@
             [self.view addSubview:imageView];
             
             //let people start reading article
-            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 400.0f, 750.0f, 350 - 64)];
+            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 400.0f, 700.0f, 350 - 44)];
             [self.view addSubview:textView];
             
             [textView setEditable:NO];
@@ -72,7 +72,7 @@
             
         } else { // otherwise init without images
             
-            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 750, 750 - 64)];
+            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 700.0f, 750 - 44)];
             [self.view addSubview:textView];
             
             [textView setEditable:NO];
@@ -100,12 +100,15 @@
         self.containerView = [[UIView alloc] initWithFrame:(CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=containerSize}];
         [scrollView addSubview:self.containerView];
         
-        for (int i = 0; i < [images count]; i++) {
-            UIImageView *tempImageView = [[UIImageView alloc]initWithImage:[images objectAtIndex:i]];
-            tempImageView.frame = CGRectMake(75 + i * 675, 0.0f, 600.0f, 400.0f);
+        for (int i = 0; i < [images count]; i++) { // set up an image view for each image at multiples of the image resolution
+            UIImageView *tempImageView = [[UIImageView alloc]initWithFrame:CGRectMake(25 + i * 625, 0.0f, 600.0f, 400.0f)];
+            tempImageView.image = [images objectAtIndex:i];
             [self.containerView addSubview:tempImageView];
         }
+        // set attributes of the scrollview
         scrollView.contentSize = containerSize;
+        [scrollView setShowsHorizontalScrollIndicator:NO];
+        [scrollView setBackgroundColor:[UIColor whiteColor]];
     }
 }
 
