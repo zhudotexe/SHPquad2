@@ -15,6 +15,7 @@
 //@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 
 @property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) id webItem;
 
 @property (weak, nonatomic) IBOutlet UINavigationItem *detailTitle;
 @property (weak, nonatomic) IBOutlet UIView *detailView;

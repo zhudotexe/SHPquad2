@@ -25,6 +25,17 @@
 - (void)setDetailItem:(id)newDetailItem {
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
+        _webItem = nil;
+        
+        // Update the view.
+        [self configureView];
+    }
+}
+
+- (void)setWebItem:(id)newWebItem {
+    if (_webItem != newWebItem) {
+        _webItem = newWebItem;
+        _detailItem = nil;
         
         // Update the view.
         [self configureView];
@@ -33,15 +44,10 @@
 
 - (void)configureView {
     // Update the user interface for the detail item.
-    
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.6784 green:0.0588 blue:0.1137 alpha:1]];
-    [self.navigationController.navigationBar setTranslucent:NO];
-
-    self.detailTitle.title = [self.detailItem title];
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
 
     
     if (self.detailItem) {
+        self.detailTitle.title = [self.detailItem title];
         NSString *content = [self flattenHTML:[self.detailItem content]];
         content = [content stringByDecodingHTMLEntities];
         
@@ -89,6 +95,8 @@
             textView.text = content;
         }
         
+    } else if (self.webItem) { // load webview for selected item
+        
     }
 }
 
@@ -110,6 +118,11 @@
     _imageDownloader = [[ImageDownloader alloc] init];
     
     _imageDownloader.delegate = self;
+    
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.6784 green:0.0588 blue:0.1137 alpha:1]];
+    [self.navigationController.navigationBar setTranslucent:NO];
+    
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     
 }
 
