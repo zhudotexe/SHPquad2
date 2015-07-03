@@ -18,7 +18,7 @@
 @property (strong, nonatomic) id webItem;
 
 @property (weak, nonatomic) IBOutlet UINavigationItem *detailTitle;
-@property (weak, nonatomic) IBOutlet UIView *detailView;
+@property (weak, nonatomic) IBOutlet UIView *detailView; // DO NOT DELETE!!!
 @property (strong, nonatomic) UIView *containerView;
 
 @end

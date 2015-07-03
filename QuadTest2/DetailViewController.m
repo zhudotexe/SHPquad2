@@ -64,7 +64,7 @@
             imageView.frame = CGRectMake(75.0f, 0.0f, 600.0f, 400.0f);
             [self.containerView addSubview:imageView];
             
-            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, imageView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - imageView.frame.size.height - 64)];
+            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, imageView.frame.size.height, 750, self.view.frame.size.height - imageView.frame.size.height - 64)];
             [self.containerView addSubview:textView];
             
             [textView setEditable:NO];
@@ -86,7 +86,7 @@
             self.containerView = [[UIView alloc] initWithFrame:(CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=containerSize}];
             [self.view addSubview:self.containerView];
             
-            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height)];
+            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 750, self.view.frame.size.height - 64)];
             [self.containerView addSubview:textView];
             
             [textView setEditable:NO];
