@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UINavigationItem *detailTitle;
 @property (weak, nonatomic) IBOutlet UIView *detailView; // DO NOT DELETE!!!
 @property (strong, nonatomic) UIView *containerView;
+@property (strong, nonatomic) UIProgressView *imageProgress;
 
 @end
 

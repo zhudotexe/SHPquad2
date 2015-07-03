@@ -18,6 +18,7 @@
 
 @implementation DetailViewController
 @synthesize containerView = _containerView;
+@synthesize imageProgress = _imageProgress;
 
 
 #pragma mark - Managing the detail item
@@ -59,6 +60,13 @@
             imageView.frame = CGRectMake(75.0f, 0.0f, 600.0f, 400.0f);
             [self.view addSubview:imageView];
             
+            // progress view
+            self.imageProgress = [[UIProgressView alloc]initWithProgressViewStyle:UIProgressViewStyleDefault];
+            [self.imageProgress setFrame:CGRectMake(0.0f, 350.0f, 700.0f, 2.0f)];
+            self.imageProgress.center = CGPointMake(352.0f, 375.0f);
+            [self.imageProgress setProgressTintColor:[UIColor blueColor]];
+            [self.view addSubview:self.imageProgress];
+            
             //let people start reading article
             UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 400.0f, 700.0f, 350 - 44)];
             [self.view addSubview:textView];
@@ -96,7 +104,7 @@
         [self.view bringSubviewToFront:scrollView];
         
         // Set up the container view to hold your custom view hierarchy
-        CGSize containerSize = CGSizeMake(75 + [images count] * 675, 400.0f);
+        CGSize containerSize = CGSizeMake(25 + [images count] * 625, 400.0f);
         self.containerView = [[UIView alloc] initWithFrame:(CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=containerSize}];
         [scrollView addSubview:self.containerView];
         
@@ -133,9 +141,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark Orientation Handlers
+#pragma mark Progress Handlers
 
+- (void)updateProgressforImages:(NSNumber *)progress
+{
+    [self performSelectorOnMainThread: @selector(moveProgressBar:) withObject: progress waitUntilDone: NO];
+}
 
+- (void)moveProgressBar:(NSNumber *)progress
+{
+    [self.imageProgress setProgress:[progress floatValue] animated:YES];
+}
 
 #pragma mark HTML Flattener
 
