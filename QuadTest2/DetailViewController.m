@@ -104,12 +104,13 @@
         [self.view bringSubviewToFront:scrollView];
         
         // Set up the container view to hold your custom view hierarchy
-        CGSize containerSize = CGSizeMake(25 + [images count] * 625, 400.0f);
+        CGSize containerSize = CGSizeMake(75 + [images count] * 625, 400.0f);
         self.containerView = [[UIView alloc] initWithFrame:(CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=containerSize}];
         [scrollView addSubview:self.containerView];
         
         for (int i = 0; i < [images count]; i++) { // set up an image view for each image at multiples of the image resolution
             UIImageView *tempImageView = [[UIImageView alloc]initWithFrame:CGRectMake(25 + i * 625, 0.0f, 600.0f, 400.0f)];
+            tempImageView.contentMode = UIViewContentModeScaleAspectFit;
             tempImageView.image = [images objectAtIndex:i];
             [self.containerView addSubview:tempImageView];
         }
