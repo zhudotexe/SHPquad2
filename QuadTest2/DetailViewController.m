@@ -53,41 +53,27 @@
         
         
         if ([[self.detailItem images]count]) { // if there is an image, init with an imageview
-            // Set up the container view to hold your custom view hierarchy
-            CGSize containerSize = self.view.frame.size;
-            self.containerView = [[UIView alloc] initWithFrame:(CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=containerSize}];
-            [self.view addSubview:self.containerView];
             
-            // Set up your custom view hierarchy
-            
+            // placeholder loading image while images load
             UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loading.png"]];
             imageView.frame = CGRectMake(75.0f, 0.0f, 600.0f, 400.0f);
-            [self.containerView addSubview:imageView];
+            [self.view addSubview:imageView];
             
-            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, imageView.frame.size.height, 750, self.view.frame.size.height - imageView.frame.size.height - 64)];
-            [self.containerView addSubview:textView];
+            //let people start reading article
+            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 400.0f, 750.0f, 350 - 64)];
+            [self.view addSubview:textView];
             
             [textView setEditable:NO];
             [textView setFont:[UIFont systemFontOfSize:18]];
             
             textView.text = content;
             
-            NSLog(@"Blah");
-            
             [_imageDownloader performSelectorInBackground:@selector(downloadImagesinArray:) withObject:[self.detailItem images]];
             
-            //[_imageDownloader downloadImagesinArray:[self.detailItem images]];
+        } else { // otherwise init without images
             
-            NSLog(@"Blah2");
-            
-        } else { // otherwise remove the imageview and init
-            // Set up the container view to hold your custom view hierarchy
-            CGSize containerSize = self.view.frame.size;
-            self.containerView = [[UIView alloc] initWithFrame:(CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=containerSize}];
-            [self.view addSubview:self.containerView];
-            
-            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 750, self.view.frame.size.height - 64)];
-            [self.containerView addSubview:textView];
+            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 750, 750 - 64)];
+            [self.view addSubview:textView];
             
             [textView setEditable:NO];
             [textView setFont:[UIFont systemFontOfSize:18]];
@@ -103,10 +89,23 @@
 - (void)imagesDownloaded:(NSArray *)images
 {
     if ([images count]) {
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loading.png"]];
-        imageView.frame = CGRectMake(75.0f, 0.0f, 600.0f, 400.0f);
-        [self.containerView addSubview:imageView];
-        imageView.image = [images firstObject];
+        // set up the scroll view
+        UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 750.0f, 400.0f)];
+        [self.view addSubview:scrollView];
+        
+        [self.view bringSubviewToFront:scrollView];
+        
+        // Set up the container view to hold your custom view hierarchy
+        CGSize containerSize = CGSizeMake(75 + [images count] * 675, 400.0f);
+        self.containerView = [[UIView alloc] initWithFrame:(CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=containerSize}];
+        [scrollView addSubview:self.containerView];
+        
+        for (int i = 0; i < [images count]; i++) {
+            UIImageView *tempImageView = [[UIImageView alloc]initWithImage:[images objectAtIndex:i]];
+            tempImageView.frame = CGRectMake(75 + i * 675, 0.0f, 600.0f, 400.0f);
+            [self.containerView addSubview:tempImageView];
+        }
+        scrollView.contentSize = containerSize;
     }
 }
 
