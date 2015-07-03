@@ -8,16 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "FeedItem.h"
+#import "ImageDownloader.h"
 
-@interface DetailViewController : UIViewController <UIScrollViewDelegate>
+@interface DetailViewController : UIViewController <UIScrollViewDelegate, ImageDownloaderProtocol>
 
 //@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 
 @property (strong, nonatomic) id detailItem;
 
-@property (weak, nonatomic) IBOutlet UIImageView *detailImageView;
 @property (weak, nonatomic) IBOutlet UINavigationItem *detailTitle;
-@property (weak, nonatomic) IBOutlet UITextView *detailTextView;
+@property (weak, nonatomic) IBOutlet UIView *detailView;
+@property (strong, nonatomic) UIView *containerView;
 
 @end
 

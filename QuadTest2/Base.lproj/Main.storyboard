@@ -30,36 +30,13 @@
                     <view key="view" contentMode="scaleToFill" id="svH-Pt-448">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q5x-IV-YFT">
-                                <rect key="frame" x="0.0" y="64" width="600" height="400"/>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" text="Please make a selection." translatesAutoresizingMaskIntoConstraints="NO" id="OhC-yu-yfp">
-                                <rect key="frame" x="0.0" y="464" width="600" height="136"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                            </textView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Q5x-IV-YFT" firstAttribute="width" secondItem="svH-Pt-448" secondAttribute="width" id="4M7-48-Tgo"/>
-                            <constraint firstAttribute="centerX" secondItem="OhC-yu-yfp" secondAttribute="centerX" id="6pX-iN-ubG"/>
-                            <constraint firstAttribute="height" secondItem="OhC-yu-yfp" secondAttribute="height" constant="464" id="OGC-5v-2tm"/>
-                            <constraint firstItem="OhC-yu-yfp" firstAttribute="top" secondItem="Q5x-IV-YFT" secondAttribute="bottom" id="PnH-xq-wpt"/>
-                            <constraint firstItem="Q5x-IV-YFT" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="SHB-oH-ZJy"/>
-                            <constraint firstItem="Q5x-IV-YFT" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="mZ4-gh-Qaf"/>
-                            <constraint firstAttribute="width" secondItem="OhC-yu-yfp" secondAttribute="width" id="qgU-Iy-xIm"/>
-                            <constraint firstItem="Q5x-IV-YFT" firstAttribute="centerX" secondItem="OhC-yu-yfp" secondAttribute="centerX" id="rUW-rk-3jA"/>
-                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Quad" id="mOI-FS-AaM"/>
                     <connections>
-                        <outlet property="detailImageView" destination="Q5x-IV-YFT" id="1r2-ML-rSh"/>
-                        <outlet property="detailTextView" destination="OhC-yu-yfp" id="C0F-g3-V3Q"/>
                         <outlet property="detailTitle" destination="mOI-FS-AaM" id="Wm0-OS-uva"/>
+                        <outlet property="detailView" destination="svH-Pt-448" id="k4d-hB-wtG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
@@ -109,7 +86,7 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="SHP Quad" id="Zdf-7t-Un8"/>
+                    <navigationItem key="navigationItem" id="Zdf-7t-Un8"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
