@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4927D15A1B47850700FF6661 /* QuadTabButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4927D1591B47850700FF6661 /* QuadTabButton@2x.png */; };
+		4927D15D1B478DE500FF6661 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927D15C1B478DE500FF6661 /* TabViewController.m */; };
+		4927D1601B47920300FF6661 /* WebItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927D15F1B47920300FF6661 /* WebItem.m */; };
 		495182701B4238EA00B1509C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4951826F1B4238EA00B1509C /* main.m */; };
 		495182731B4238EA00B1509C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 495182721B4238EA00B1509C /* AppDelegate.m */; };
 		495182761B4238EA00B1509C /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495182751B4238EA00B1509C /* MasterViewController.m */; };
@@ -48,6 +50,10 @@
 
 /* Begin PBXFileReference section */
 		4927D1591B47850700FF6661 /* QuadTabButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QuadTabButton@2x.png"; sourceTree = "<group>"; };
+		4927D15B1B478DE500FF6661 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
+		4927D15C1B478DE500FF6661 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
+		4927D15E1B47920300FF6661 /* WebItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebItem.h; sourceTree = "<group>"; };
+		4927D15F1B47920300FF6661 /* WebItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebItem.m; sourceTree = "<group>"; };
 		4951826A1B4238EA00B1509C /* QuadTest2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuadTest2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4951826E1B4238EA00B1509C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4951826F1B4238EA00B1509C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -158,6 +164,10 @@
 				4971E47C1B43669D00482419 /* SimpleTableCell.m */,
 				4971E4A61B45171900482419 /* ImageDownloader.h */,
 				4971E4A71B45171900482419 /* ImageDownloader.m */,
+				4927D15B1B478DE500FF6661 /* TabViewController.h */,
+				4927D15C1B478DE500FF6661 /* TabViewController.m */,
+				4927D15E1B47920300FF6661 /* WebItem.h */,
+				4927D15F1B47920300FF6661 /* WebItem.m */,
 			);
 			path = QuadTest2;
 			sourceTree = "<group>";
@@ -345,7 +355,9 @@
 				495182BE1B423D2600B1509C /* RootViewController.m in Sources */,
 				495182731B4238EA00B1509C /* AppDelegate.m in Sources */,
 				495182B81B423D2600B1509C /* MWFeedItem.m in Sources */,
+				4927D1601B47920300FF6661 /* WebItem.m in Sources */,
 				495182B71B423D2600B1509C /* MWFeedInfo.m in Sources */,
+				4927D15D1B478DE500FF6661 /* TabViewController.m in Sources */,
 				495182B51B423D2600B1509C /* DetailTableViewController.m in Sources */,
 				495182761B4238EA00B1509C /* MasterViewController.m in Sources */,
 				4971E47D1B43669D00482419 /* SimpleTableCell.m in Sources */,
