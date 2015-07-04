@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4927D15A1B47850700FF6661 /* QuadTabButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4927D1591B47850700FF6661 /* QuadTabButton@2x.png */; };
 		495182701B4238EA00B1509C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4951826F1B4238EA00B1509C /* main.m */; };
 		495182731B4238EA00B1509C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 495182721B4238EA00B1509C /* AppDelegate.m */; };
 		495182761B4238EA00B1509C /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495182751B4238EA00B1509C /* MasterViewController.m */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4927D1591B47850700FF6661 /* QuadTabButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QuadTabButton@2x.png"; sourceTree = "<group>"; };
 		4951826A1B4238EA00B1509C /* QuadTest2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuadTest2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4951826E1B4238EA00B1509C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4951826F1B4238EA00B1509C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				4971E4951B440DDA00482419 /* QuadLogoSlogan1.png */,
 				4971E4A31B44D65F00482419 /* QuadLogoSlogan1_appv@2x.png */,
 				4971E4A91B45286D00482419 /* loading@2x.png */,
+				4927D1591B47850700FF6661 /* QuadTabButton@2x.png */,
 			);
 			name = Icons/Images;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				4971E47A1B435F5600482419 /* SimpleTableCell.xib in Resources */,
 				4951827E1B4238EA00B1509C /* Images.xcassets in Resources */,
 				4971E4AA1B45286D00482419 /* loading@2x.png in Resources */,
+				4927D15A1B47850700FF6661 /* QuadTabButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
