@@ -11,6 +11,6 @@
 @interface WebItem : NSObject
 
 @property (nonatomic,strong) NSString *title;
-@property (nonatomic,strong) NSURL *url;
+@property (nonatomic,strong) NSURL *contentURL;
 
 @end

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FeedItem.h"
+#import "WebItem.h"
 #import "ImageDownloader.h"
 
 @interface DetailViewController : UIViewController <UIScrollViewDelegate, ImageDownloaderProtocol>

@@ -39,13 +39,13 @@
     WebItem *about = [[WebItem alloc]init];
     
     kshs.title = @"KSHS";
-    kshs.url = [NSURL URLWithString:@"http://shpquad.org/kshs"];
+    kshs.contentURL = [NSURL URLWithString:@"http://shpquad.org/kshs"];
     
     shptv.title = @"SHP TV";
-    shptv.url = [NSURL URLWithString:@"http://shpquad.org/shptv"];
+    shptv.contentURL = [NSURL URLWithString:@"http://shpquad.org/shptv"];
     
     about.title = @"About";
-    about.url = [NSURL URLWithString:@"http://shpquad.org/about"];
+    about.contentURL = [NSURL URLWithString:@"http://shpquad.org/about"];
     
     _webItems = [[NSArray alloc]initWithObjects: kshs, shptv, about, nil];
 }

@@ -90,7 +90,13 @@
         }
         
     } else if (self.webItem) { // load webview for selected item
-        //do stuff
+        if (self.webItem) {
+            self.detailTitle.title = [self.webItem title];
+            
+            UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 700.0f, 706.0f)];
+            NSURLRequest *content = [[NSURLRequest alloc]initWithURL:[self.webItem contentURL]];
+            [webView loadRequest:content];
+        }
     }
 }
 
