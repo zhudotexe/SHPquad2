@@ -33,19 +33,21 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    self.tableView.backgroundColor = [UIColor darkGrayColor];
+    
 #warning Inefficient, consider using a txt file instead
     WebItem *kshs = [[WebItem alloc]init];
     WebItem *shptv = [[WebItem alloc]init];
     WebItem *about = [[WebItem alloc]init];
     
     kshs.title = @"KSHS";
-    kshs.contentURL = [NSURL URLWithString:@"http://shpquad.org/kshs"];
+    kshs.contentURL = [NSURL URLWithString:@"http://www.shpquad.org/?page_id=3024"];
     
     shptv.title = @"SHP TV";
-    shptv.contentURL = [NSURL URLWithString:@"http://shpquad.org/shptv"];
+    shptv.contentURL = [NSURL URLWithString:@"http://www.shpquad.org/?cat=294"];
     
     about.title = @"About";
-    about.contentURL = [NSURL URLWithString:@"http://shpquad.org/about"];
+    about.contentURL = [NSURL URLWithString:@"http://www.shpquad.org/?page_id=847"];
     
     _webItems = [[NSArray alloc]initWithObjects: kshs, shptv, about, nil];
 }
