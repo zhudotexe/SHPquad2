@@ -12,6 +12,7 @@
 @protocol ImageDownloaderProtocol <NSObject>
 
 - (void)imagesDownloaded:(NSArray*)images;
+- (void)updateProgressforImages:(NSNumber *)progress;
 
 @end
 

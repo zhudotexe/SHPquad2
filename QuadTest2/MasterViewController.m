@@ -51,10 +51,14 @@
     UIImage *image = [UIImage imageNamed:@"QuadLogoSlogan1_appv.png"];
     UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
     
+    UIBarButtonItem *tabButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"QuadTabButton.png"] style:UIBarButtonItemStylePlain target:self action:@selector(showTabView)];
+    
     myImageView.contentMode = UIViewContentModeTop;
     
     self.navigationController.navigationItem.title = nil;
     self.navigationItem.titleView = myImageView;
+    self.navigationItem.leftBarButtonItem = tabButton;
+    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor colorWithRed:0.3765 green:0 blue:0 alpha:1]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.6784 green:0.0588 blue:0.1137 alpha:1]];
 }
 
@@ -92,6 +96,13 @@
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }*/
 
+#pragma mark - Tab View
+
+- (void)showTabView
+{
+    [self performSegueWithIdentifier:@"showTabView" sender:self];
+}
+
 #pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -100,6 +111,10 @@
         [controller setDetailItem:_selectedFeedItem];
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
         controller.navigationItem.leftItemsSupplementBackButton = YES;
+    }
+    
+    if ([[segue identifier] isEqualToString:@"showTabView"]) {
+        //do stuff
     }
 }
 

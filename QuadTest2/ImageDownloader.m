@@ -14,6 +14,7 @@
 {
     self.images = [[NSMutableArray alloc]init];
     NSArray *imageArray = array;
+    float length = [imageArray count];
     NSLog(@"Image Array: %@", imageArray);
     for (int i = 0; i < [imageArray count]; i++) {
         NSLog(@"Downloading Image: %d", i);
@@ -23,6 +24,10 @@
         NSLog(@"Downloaded Image");
         if (image) {
             [self.images addObject:image];
+            if(self.delegate){
+                NSNumber *progress = [[NSNumber alloc]initWithFloat:(i + 1) / length];
+                [self.delegate updateProgressforImages:progress];
+            }
         } else {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Error connecting to server, check internet connection and try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];

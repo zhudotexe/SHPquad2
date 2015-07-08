@@ -18,6 +18,7 @@
 
 @implementation DetailViewController
 @synthesize containerView = _containerView;
+@synthesize imageProgress = _imageProgress;
 
 
 #pragma mark - Managing the detail item
@@ -25,6 +26,17 @@
 - (void)setDetailItem:(id)newDetailItem {
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
+        _webItem = nil;
+        
+        // Update the view.
+        [self configureView];
+    }
+}
+
+- (void)setWebItem:(id)newWebItem {
+    if (_webItem != newWebItem) {
+        _webItem = newWebItem;
+        _detailItem = nil;
         
         // Update the view.
         [self configureView];
@@ -33,55 +45,43 @@
 
 - (void)configureView {
     // Update the user interface for the detail item.
-    
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.6784 green:0.0588 blue:0.1137 alpha:1]];
-    [self.navigationController.navigationBar setTranslucent:NO];
-
-    self.detailTitle.title = [self.detailItem title];
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
 
     
     if (self.detailItem) {
+        self.detailTitle.title = [self.detailItem title];
         NSString *content = [self flattenHTML:[self.detailItem content]];
         content = [content stringByDecodingHTMLEntities];
         
         
         if ([[self.detailItem images]count]) { // if there is an image, init with an imageview
-            // Set up the container view to hold your custom view hierarchy
-            CGSize containerSize = self.view.frame.size;
-            self.containerView = [[UIView alloc] initWithFrame:(CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=containerSize}];
-            [self.view addSubview:self.containerView];
             
-            // Set up your custom view hierarchy
-            
+            // placeholder loading image while images load
             UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loading.png"]];
             imageView.frame = CGRectMake(75.0f, 0.0f, 600.0f, 400.0f);
-            [self.containerView addSubview:imageView];
+            [self.view addSubview:imageView];
             
-            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, imageView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - imageView.frame.size.height - 64)];
-            [self.containerView addSubview:textView];
+            // progress view
+            self.imageProgress = [[UIProgressView alloc]initWithProgressViewStyle:UIProgressViewStyleDefault];
+            [self.imageProgress setFrame:CGRectMake(0.0f, 350.0f, 700.0f, 2.0f)];
+            self.imageProgress.center = CGPointMake(352.0f, 375.0f);
+            [self.imageProgress setProgressTintColor:[UIColor blueColor]];
+            [self.view addSubview:self.imageProgress];
+            
+            //let people start reading article
+            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 400.0f, 700.0f, 350 - 44)];
+            [self.view addSubview:textView];
             
             [textView setEditable:NO];
             [textView setFont:[UIFont systemFontOfSize:18]];
             
             textView.text = content;
             
-            NSLog(@"Blah");
-            
             [_imageDownloader performSelectorInBackground:@selector(downloadImagesinArray:) withObject:[self.detailItem images]];
             
-            //[_imageDownloader downloadImagesinArray:[self.detailItem images]];
+        } else { // otherwise init without images
             
-            NSLog(@"Blah2");
-            
-        } else { // otherwise remove the imageview and init
-            // Set up the container view to hold your custom view hierarchy
-            CGSize containerSize = self.view.frame.size;
-            self.containerView = [[UIView alloc] initWithFrame:(CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=containerSize}];
-            [self.view addSubview:self.containerView];
-            
-            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height)];
-            [self.containerView addSubview:textView];
+            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 700.0f, 750 - 44)];
+            [self.view addSubview:textView];
             
             [textView setEditable:NO];
             [textView setFont:[UIFont systemFontOfSize:18]];
@@ -89,16 +89,42 @@
             textView.text = content;
         }
         
+    } else if (self.webItem) { // load webview for selected item
+        if (self.webItem) {
+            self.detailTitle.title = [self.webItem title];
+            
+            UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 700.0f, 706.0f)];
+            NSURLRequest *content = [[NSURLRequest alloc]initWithURL:[self.webItem contentURL]];
+            [webView loadRequest:content];
+            [self.view addSubview:webView];
+        }
     }
 }
 
 - (void)imagesDownloaded:(NSArray *)images
 {
     if ([images count]) {
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loading.png"]];
-        imageView.frame = CGRectMake(75.0f, 0.0f, 600.0f, 400.0f);
-        [self.containerView addSubview:imageView];
-        imageView.image = [images firstObject];
+        // set up the scroll view
+        UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 750.0f, 400.0f)];
+        [self.view addSubview:scrollView];
+        
+        [self.view bringSubviewToFront:scrollView];
+        
+        // Set up the container view to hold your custom view hierarchy
+        CGSize containerSize = CGSizeMake(75 + [images count] * 625, 400.0f);
+        self.containerView = [[UIView alloc] initWithFrame:(CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=containerSize}];
+        [scrollView addSubview:self.containerView];
+        
+        for (int i = 0; i < [images count]; i++) { // set up an image view for each image at multiples of the image resolution
+            UIImageView *tempImageView = [[UIImageView alloc]initWithFrame:CGRectMake(25 + i * 625, 0.0f, 600.0f, 400.0f)];
+            tempImageView.contentMode = UIViewContentModeScaleAspectFit;
+            tempImageView.image = [images objectAtIndex:i];
+            [self.containerView addSubview:tempImageView];
+        }
+        // set attributes of the scrollview
+        scrollView.contentSize = containerSize;
+        [scrollView setShowsHorizontalScrollIndicator:NO];
+        [scrollView setBackgroundColor:[UIColor whiteColor]];
     }
 }
 
@@ -111,6 +137,11 @@
     
     _imageDownloader.delegate = self;
     
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.6784 green:0.0588 blue:0.1137 alpha:1]];
+    [self.navigationController.navigationBar setTranslucent:NO];
+    
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -118,9 +149,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark Orientation Handlers
+#pragma mark Progress Handlers
 
+- (void)updateProgressforImages:(NSNumber *)progress
+{
+    [self performSelectorOnMainThread: @selector(moveProgressBar:) withObject: progress waitUntilDone: NO];
+}
 
+- (void)moveProgressBar:(NSNumber *)progress
+{
+    [self.imageProgress setProgress:[progress floatValue] animated:YES];
+}
 
 #pragma mark HTML Flattener
 
