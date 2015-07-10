@@ -13,4 +13,6 @@
 @property (nonatomic,strong) NSString *title;
 @property (nonatomic,strong) NSURL *contentURL;
 
++ (id)webItemWithTitle:(NSString *)title andURL:(NSURL *)url;
+
 @end

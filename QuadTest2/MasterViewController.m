@@ -13,6 +13,7 @@
 @interface MasterViewController (){
     HomeModel *_homeModel;
     NSArray *_feedItems;
+    NSMutableArray *_filteredItems;
     FeedItem *_selectedFeedItem;
 }
 
@@ -38,6 +39,8 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    self.searchBar.delegate = self;
     
     _feedItems = [[NSArray alloc] init];
     _homeModel = [[HomeModel alloc] init];
@@ -71,8 +74,9 @@
 {
     // This delegate method will get called when the items are finished downloading
     
-    // Set the downloaded items to the array
+    // Set the downloaded items to the array by resetting it and appending new data
     _feedItems = items;
+    _filteredItems = [NSMutableArray arrayWithCapacity:[_feedItems count]];
     
     [self.tableView reloadData];
 }
@@ -81,6 +85,15 @@
 {
     // Set selected feeditem to var
     _selectedFeedItem = _feedItems[indexPath.row];
+    
+    if(tableView == self.searchDisplayController.searchResultsTableView) {
+        NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+        _selectedFeedItem = _filteredItems[indexPath.row];
+    }
+    else {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        _selectedFeedItem = _feedItems[indexPath.row];
+    }
     
     // Manually call segue to detail view controller
     [self performSegueWithIdentifier:@"showDetail" sender:self];
@@ -95,6 +108,7 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }*/
+
 
 #pragma mark - Tab View
 
@@ -127,7 +141,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of feed items (initially 0)
-    return _feedItems.count;
+    if (tableView == self.searchDisplayController.searchResultsTableView){
+        return _filteredItems.count;
+    } else {
+        return _feedItems.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -142,8 +160,13 @@
         myCell = [nib objectAtIndex:0];
     }
     
-    // Get the listing to be shown
-    FeedItem *item = _feedItems[indexPath.row];
+    FeedItem *item;
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        item = _filteredItems[indexPath.row];
+    } else {
+        item = _feedItems[indexPath.row];
+    }
     
     // Get references to labels of cell
     myCell.titleLabel.text = item.title;
@@ -172,5 +195,32 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
 }*/
+
+#pragma mark Content Filtering
+-(void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
+    // Update the filtered array based on the search text and scope.
+    // Remove all objects from the filtered search array
+    [_filteredItems removeAllObjects];
+    // Filter the array using NSPredicate
+    NSMutableArray *tempArray = [[NSMutableArray alloc]init];
+    [tempArray removeAllObjects];
+    // check if title contains search
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.title contains[c] %@",searchText];
+    _filteredItems = [NSMutableArray arrayWithArray:[_feedItems filteredArrayUsingPredicate:predicate]];
+    // check for search in content
+    NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"SELF.content contains[c] %@",searchText];
+    tempArray = [NSMutableArray arrayWithArray:[_feedItems filteredArrayUsingPredicate:predicate2]];
+    [_filteredItems arrayByAddingObjectsFromArray:tempArray];
+}
+
+#pragma mark - UISearchDisplayController Delegate Methods
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    // Tells the table data source to reload when text changes
+    [self filterContentForSearchText:searchString scope:
+     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
 
 @end
