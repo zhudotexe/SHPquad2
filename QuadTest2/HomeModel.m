@@ -43,6 +43,10 @@
     feedItem.content = item.content ? item.content : @"This article does not contain any text.";
     feedItem.date = item.date;
     feedItem.link = item.link ? item.link : @"http://shpquad.org/404";
+    feedItem.summary = item.summary ? item.summary : @"No summary.";
+    feedItem.enclosures = item.enclosures;
+    
+    NSLog(@"%@", item.content);
     
     
     [self.feedItems addObject:feedItem];

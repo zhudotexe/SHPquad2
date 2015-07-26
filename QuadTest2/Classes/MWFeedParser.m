@@ -812,7 +812,7 @@
 	if (item) {
 
 		// Process before hand
-		if (!item.summary) { item.summary = item.content; item.content = nil; }
+		if (!item.summary) { item.summary = item.content; /*item.content = nil;*/ }
 		if (!item.date && item.updated) { item.date = item.updated; }
 
 		// Debug log

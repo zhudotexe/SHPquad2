@@ -35,19 +35,9 @@
     
     self.tableView.backgroundColor = [UIColor darkGrayColor];
     
-#warning Inefficient, consider using a txt file instead
-    WebItem *kshs = [[WebItem alloc]init];
-    WebItem *shptv = [[WebItem alloc]init];
-    WebItem *about = [[WebItem alloc]init];
-    
-    kshs.title = @"KSHS";
-    kshs.contentURL = [NSURL URLWithString:@"http://www.shpquad.org/?page_id=3024"];
-    
-    shptv.title = @"SHP TV";
-    shptv.contentURL = [NSURL URLWithString:@"http://www.shpquad.org/?cat=294"];
-    
-    about.title = @"About";
-    about.contentURL = [NSURL URLWithString:@"http://www.shpquad.org/?page_id=847"];
+    WebItem *kshs = [WebItem webItemWithTitle:@"KSHS" andURL:[NSURL URLWithString:@"http://www.shpquad.org/?page_id=3024"]];
+    WebItem *shptv = [WebItem webItemWithTitle:@"SHP TV" andURL:[NSURL URLWithString:@"http://www.shpquad.org/?cat=294"]];
+    WebItem *about = [WebItem webItemWithTitle:@"About" andURL:[NSURL URLWithString:@"http://www.shpquad.org/?page_id=847"]];
     
     _webItems = [[NSArray alloc]initWithObjects: kshs, shptv, about, nil];
 }
