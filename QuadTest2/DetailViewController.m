@@ -52,8 +52,46 @@
         NSString *content = [self flattenHTML:[self.detailItem content]];
         content = [content stringByDecodingHTMLEntities];
         
-        
-        if ([[self.detailItem images]count]) { // if there is an image, init with an imageview
+        if ([[self.detailItem videos]count]) {
+            //let people start reading article
+            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 400.0f, 700.0f, 350 - 44)];
+            [self.view addSubview:textView];
+            
+            [textView setEditable:NO];
+            [textView setFont:[UIFont systemFontOfSize:18]];
+            
+            textView.text = content;
+            
+            UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(50.0f, 0.0f, 600.0f, 400.0f)];
+            NSURLRequest *webContent = [[NSURLRequest alloc]initWithURL:[[self.detailItem videos]firstObject]];
+            [webView loadRequest:webContent];
+            //[webView setUserInteractionEnabled:NO];
+            
+            [self.view addSubview:webView];
+                
+            /*// set up the scroll view
+            UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 750.0f, 400.0f)];
+            [self.view addSubview:scrollView];
+            
+            [self.view bringSubviewToFront:scrollView];
+            
+            // Set up the container view to hold your custom view hierarchy
+            CGSize containerSize = CGSizeMake(75 + [[self.detailItem videos]count] * 625, 400.0f);
+            self.containerView = [[UIView alloc] initWithFrame:(CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=containerSize}];
+            [scrollView addSubview:self.containerView];
+            
+            for (int i = 0; i < [[self.detailItem videos]count]; i++) { // set up an web view for each video at multiples of the video resolution
+                UIWebView *tempWebView = [[UIWebView alloc]initWithFrame:CGRectMake(25 + i * 625, 0.0f, 600.0f, 400.0f)];
+                NSURLRequest *content = [[NSURLRequest alloc]initWithURL:[[self.detailItem videos]objectAtIndex:i]];
+                [tempWebView loadRequest:content];
+                [self.containerView addSubview:tempWebView];
+            }
+            // set attributes of the scrollview
+            scrollView.contentSize = containerSize;
+            [scrollView setShowsHorizontalScrollIndicator:NO];
+            [scrollView setBackgroundColor:[UIColor whiteColor]];*/
+            
+        } else if ([[self.detailItem images]count]) { // if there is an image, init with an imageview
             
             // placeholder loading image while images load
             UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loading.png"]];
