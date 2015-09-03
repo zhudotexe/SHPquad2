@@ -15,6 +15,8 @@
     NSArray *_feedItems;
     NSMutableArray *_filteredItems;
     FeedItem *_selectedFeedItem;
+    WebItem *_selectedWebItem;
+    NSUserDefaults *_defaults;
 }
 
 @property NSMutableArray *objects;
@@ -48,6 +50,13 @@
     _homeModel.delegate = self;
     
     [_homeModel downloadItems];
+    
+    _defaults = [NSUserDefaults standardUserDefaults];
+    if (![_defaults boolForKey:@"notFirstTime"]) {
+        [_defaults setBool:YES forKey:@"notFirstTime"];
+        [_defaults setBool:NO forKey:@"SpeedMode"];
+        NSLog(@"Did first time setup");
+    }
     
     self.navigationController.navigationBar.translucent= NO;
     
@@ -87,8 +96,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Set selected feeditem to var
-    _selectedFeedItem = _feedItems[indexPath.row];
-    
     if(tableView == self.searchDisplayController.searchResultsTableView) {
         NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
         _selectedFeedItem = _filteredItems[indexPath.row];
@@ -97,6 +104,9 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         _selectedFeedItem = _feedItems[indexPath.row];
     }
+    
+    // Set selected webitem to var
+    _selectedWebItem = [WebItem webItemWithTitle:_selectedFeedItem.title andURL:[NSURL URLWithString:_selectedFeedItem.link]];
     
     // Manually call segue to detail view controller
     [self performSegueWithIdentifier:@"showDetail" sender:self];
@@ -130,7 +140,13 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
-        [controller setDetailItem:_selectedFeedItem];
+        
+        if ([_defaults boolForKey:@"SpeedMode"]) {
+            [controller setDetailItem:_selectedFeedItem];
+        } else {
+            [controller setWebItem:_selectedWebItem];
+        }
+        
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
         controller.navigationItem.leftItemsSupplementBackButton = YES;
     }
