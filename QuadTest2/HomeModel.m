@@ -16,36 +16,29 @@
 {
     //URL
     NSURL *feedURL = [NSURL URLWithString:@"http://shpquad.org/?feed=rss2"];
-    self.feedParser = [[MWFeedParser alloc]initWithFeedURL:feedURL];
+    self.feedParser = [[FeedParser alloc]init];
     
     //delegate
     self.feedParser.delegate = self;
     
-    //parse type
-    self.feedParser.feedParseType = ParseTypeFull;
-    
-    //connection type
-    self.feedParser.connectionType = ConnectionTypeAsynchronously;
-    
     //do the thing!
-    [self.feedParser parse];
-}
-
--(void) feedParserDidStart:(MWFeedParser *)parser{
+    [self.feedParser parseURL:feedURL];
+    
     self.feedItems = [[NSMutableArray alloc] init];
 }
 
--(void) feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item{
+
+-(void)didParseItem:(NSDictionary *)item {
     FeedItem *feedItem = [[FeedItem alloc] init];
-    feedItem.title = item.title ? item.title : @"Untitled";
-    feedItem.author = item.author ? item.author : @"Unknown Author";
-    feedItem.images = [self parseImages:item.content];
-    feedItem.videos = [self parseVideos:item.content];
-    feedItem.content = item.content ? item.content : [NSString stringWithFormat:@"This article may not display correctly on the Quad App. Please view this article at %@", item.link];
-    feedItem.date = item.date;
-    feedItem.link = item.link ? item.link : @"http://shpquad.org/404";
-    feedItem.summary = item.summary ? item.summary : @"No summary.";
-    feedItem.enclosures = item.enclosures;
+    feedItem.title = [item valueForKey:@"title"] ? [item valueForKey:@"title"] : @"Untitled";
+    feedItem.author = [item valueForKey:@"dc:creator"] ? [item valueForKey:@"dc:creator"] : @"Unknown Author";
+    feedItem.images = [self parseImages:[item valueForKey:@"content:encoded"]];
+    feedItem.videos = [self parseVideos:[item valueForKey:@"content:encoded"]];
+    feedItem.content = [item valueForKey:@"content:encoded"] ? [item valueForKey:@"content:encoded"] : [NSString stringWithFormat:@"This article may not display correctly on the Quad App. Please view this article at %@", [item valueForKey:@"link"]];
+    feedItem.date = [item valueForKey:@"pubDate"];
+    feedItem.link = [item valueForKey:@"link"] ? [item valueForKey:@"link"] : @"http://shpquad.org/404";
+    feedItem.summary = [item valueForKey:@"description"] ? [item valueForKey:@"description"] : @"No summary.";
+    feedItem.enclosures = [item valueForKey:@"enclosure"];
     
     //NSLog(@"%@", item.content);
     
@@ -341,15 +334,11 @@
     return html;
 }
 
--(void) feedParserDidFinish:(MWFeedParser *)parser{
+-(void) didFinishParsing:(NSArray *)items{
     if(self.delegate){
         [self.delegate itemsDownloaded:self.feedItems];
     }
 }
 
--(void) feedParser:(MWFeedParser *)parser didFailWithError:(NSError *)error
-{
-    
-}
 
 @end
