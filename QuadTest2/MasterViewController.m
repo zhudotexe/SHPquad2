@@ -13,7 +13,10 @@
 @interface MasterViewController (){
     HomeModel *_homeModel;
     NSArray *_feedItems;
+    NSMutableArray *_filteredItems;
     FeedItem *_selectedFeedItem;
+    WebItem *_selectedWebItem;
+    NSUserDefaults *_defaults;
 }
 
 @property NSMutableArray *objects;
@@ -39,6 +42,8 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    self.searchBar.delegate = self;
+    
     _feedItems = [[NSArray alloc] init];
     _homeModel = [[HomeModel alloc] init];
     
@@ -46,19 +51,36 @@
     
     [_homeModel downloadItems];
     
+    _defaults = [NSUserDefaults standardUserDefaults];
+    if (![_defaults boolForKey:@"notFirstTime"]) {
+        [_defaults setBool:YES forKey:@"notFirstTime"];
+        [_defaults setBool:NO forKey:@"SpeedMode"];
+        NSLog(@"Did first time setup");
+    }
+    
+    
     self.navigationController.navigationBar.translucent= NO;
     
     UIImage *image = [UIImage imageNamed:@"QuadLogoSlogan1_appv.png"];
     UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
     
+    image = [UIImage imageNamed:@"loading.png"];
+    UIImageView *tableBackgroundView = [[UIImageView alloc]initWithImage:image];
+    tableBackgroundView.contentMode = UIViewContentModeScaleAspectFit;
+    
     UIBarButtonItem *tabButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"QuadTabButton.png"] style:UIBarButtonItemStylePlain target:self action:@selector(showTabView)];
+    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"settingsGear.png"] style:UIBarButtonItemStylePlain target:self action:@selector(showSettings)];
     
     myImageView.contentMode = UIViewContentModeTop;
+    
+    self.tableView.backgroundView = tableBackgroundView;
     
     self.navigationController.navigationItem.title = nil;
     self.navigationItem.titleView = myImageView;
     self.navigationItem.leftBarButtonItem = tabButton;
+    self.navigationItem.rightBarButtonItem = settingsButton;
     [self.navigationItem.leftBarButtonItem setTintColor:[UIColor colorWithRed:0.3765 green:0 blue:0 alpha:1]];
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:1]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.6784 green:0.0588 blue:0.1137 alpha:1]];
 }
 
@@ -71,8 +93,9 @@
 {
     // This delegate method will get called when the items are finished downloading
     
-    // Set the downloaded items to the array
+    // Set the downloaded items to the array by resetting it and appending new data
     _feedItems = items;
+    _filteredItems = [NSMutableArray arrayWithCapacity:[_feedItems count]];
     
     [self.tableView reloadData];
 }
@@ -80,7 +103,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Set selected feeditem to var
-    _selectedFeedItem = _feedItems[indexPath.row];
+    if(tableView == self.searchDisplayController.searchResultsTableView) {
+        NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+        _selectedFeedItem = _filteredItems[indexPath.row];
+    }
+    else {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        _selectedFeedItem = _feedItems[indexPath.row];
+    }
+    
+    // Set selected webitem to var
+    _selectedWebItem = [WebItem webItemWithTitle:_selectedFeedItem.title andURL:[NSURL URLWithString:_selectedFeedItem.link]];
     
     // Manually call segue to detail view controller
     [self performSegueWithIdentifier:@"showDetail" sender:self];
@@ -96,11 +129,17 @@
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }*/
 
-#pragma mark - Tab View
+
+#pragma mark - Transitions
 
 - (void)showTabView
 {
     [self performSegueWithIdentifier:@"showTabView" sender:self];
+}
+
+- (void)showSettings
+{
+    [self performSegueWithIdentifier:@"showSettings" sender:self];
 }
 
 #pragma mark - Segues
@@ -108,7 +147,13 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
-        [controller setDetailItem:_selectedFeedItem];
+        
+        if ([_defaults boolForKey:@"SpeedMode"]) {
+            [controller setDetailItem:_selectedFeedItem];
+        } else {
+            [controller setWebItem:_selectedWebItem];
+        }
+        
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
         controller.navigationItem.leftItemsSupplementBackButton = YES;
     }
@@ -127,7 +172,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of feed items (initially 0)
-    return _feedItems.count;
+    if (tableView == self.searchDisplayController.searchResultsTableView){
+        return _filteredItems.count;
+    } else {
+        return _feedItems.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -142,13 +191,18 @@
         myCell = [nib objectAtIndex:0];
     }
     
-    // Get the listing to be shown
-    FeedItem *item = _feedItems[indexPath.row];
+    FeedItem *item;
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        item = _filteredItems[indexPath.row];
+    } else {
+        item = _feedItems[indexPath.row];
+    }
     
     // Get references to labels of cell
     myCell.titleLabel.text = item.title;
     myCell.authorLabel.text = item.author;
-    myCell.dateLabel.text = [item.date descriptionWithLocale:[NSLocale currentLocale]];
+    myCell.dateLabel.text = item.date; //[item.date descriptionWithLocale:[NSLocale currentLocale]];
     // TODO: myCell.thumbnailImageView.image = item.
     
     return myCell;
@@ -172,5 +226,32 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
 }*/
+
+#pragma mark Content Filtering
+-(void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
+    // Update the filtered array based on the search text and scope.
+    // Remove all objects from the filtered search array
+    [_filteredItems removeAllObjects];
+    // Filter the array using NSPredicate
+    NSMutableArray *tempArray = [[NSMutableArray alloc]init];
+    [tempArray removeAllObjects];
+    // check if title contains search
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.title contains[c] %@",searchText];
+    _filteredItems = [NSMutableArray arrayWithArray:[_feedItems filteredArrayUsingPredicate:predicate]];
+    // check for search in content
+    NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"SELF.content contains[c] %@",searchText];
+    tempArray = [NSMutableArray arrayWithArray:[_feedItems filteredArrayUsingPredicate:predicate2]];
+    [_filteredItems arrayByAddingObjectsFromArray:tempArray];
+}
+
+#pragma mark - UISearchDisplayController Delegate Methods
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    // Tells the table data source to reload when text changes
+    [self filterContentForSearchText:searchString scope:
+     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
 
 @end

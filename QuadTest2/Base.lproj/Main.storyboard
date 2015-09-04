@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -66,6 +67,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" id="Yhy-et-Scm">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="7bK-jq-Zjz" id="vzJ-nS-a0c"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="WCw-Qf-5nD">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
@@ -88,12 +97,83 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="Zdf-7t-Un8"/>
                     <connections>
+                        <outlet property="searchBar" destination="Yhy-et-Scm" id="olB-zM-UzK"/>
+                        <outlet property="searchDisplayController" destination="RO2-hW-Sd9" id="sp6-dC-DmI"/>
                         <segue destination="rjB-t1-uYg" kind="show" identifier="showTabView" id="qwc-ct-5T8"/>
+                        <segue destination="p6V-oN-Qc4" kind="show" identifier="showSettings" id="SdN-Xr-KCC"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="RO2-hW-Sd9">
+                    <connections>
+                        <outlet property="delegate" destination="7bK-jq-Zjz" id="fv0-dC-BA8"/>
+                        <outlet property="searchBar" destination="Yhy-et-Scm" id="FnF-3c-Sf1"/>
+                        <outlet property="searchContentsController" destination="7bK-jq-Zjz" id="v57-8K-RuF"/>
+                        <outlet property="searchResultsDataSource" destination="7bK-jq-Zjz" id="qiA-yH-1XD"/>
+                        <outlet property="searchResultsDelegate" destination="7bK-jq-Zjz" id="tig-IG-HJP"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="694" y="-630"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="BIC-0b-qxg">
+            <objects>
+                <tableViewController title="Settings" id="p6V-oN-Qc4" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="wOI-4z-0FN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="Ej8-Mk-iNQ">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Cai-Kp-RWc">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cai-Kp-RWc" id="zuN-pk-DQX">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed Mode (BETA)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ha0-Ho-hRn">
+                                                    <rect key="frame" x="15" y="11" width="154" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ma2-u2-mHb">
+                                                    <rect key="frame" x="543" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="speedModeChanged:" destination="p6V-oN-Qc4" eventType="valueChanged" id="Sk6-Ic-AjN"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="Ma2-u2-mHb" secondAttribute="centerY" id="SoJ-ig-hN1"/>
+                                                <constraint firstItem="Ma2-u2-mHb" firstAttribute="trailing" secondItem="zuN-pk-DQX" secondAttribute="trailingMargin" id="bx8-3O-gwv"/>
+                                                <constraint firstItem="ha0-Ho-hRn" firstAttribute="leading" secondItem="zuN-pk-DQX" secondAttribute="leadingMargin" constant="7" id="j2b-7d-pz2"/>
+                                                <constraint firstItem="Ma2-u2-mHb" firstAttribute="leading" secondItem="zuN-pk-DQX" secondAttribute="leadingMargin" constant="506" id="lLK-dc-oED"/>
+                                                <constraint firstAttribute="centerY" secondItem="ha0-Ho-hRn" secondAttribute="centerY" id="w9C-fJ-39d"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="lLK-dc-oED"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="p6V-oN-Qc4" id="mEZ-Ux-iAC"/>
+                            <outlet property="delegate" destination="p6V-oN-Qc4" id="jy2-gj-lTg"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="speedModeSwitch" destination="Ma2-u2-mHb" id="fqS-bZ-zLH"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wuz-0J-PpY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1365" y="-1318"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="iAx-cA-4aj">
@@ -152,6 +232,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jAN-o3-WEn"/>
+        <segue reference="GIo-R1-koI"/>
     </inferredMetricsTieBreakers>
 </document>

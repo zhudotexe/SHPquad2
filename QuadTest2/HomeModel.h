@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MWFeedParser.h"
+#import "FeedParser.h"
 #import "FeedItem.h"
 
 @protocol HomeModelProtocol <NSObject>
@@ -17,10 +17,10 @@
 @end
 
 
-@interface HomeModel : NSObject<MWFeedParserDelegate>
+@interface HomeModel : NSObject<FeedParserProtocol>
 
 @property (nonatomic,weak) id<HomeModelProtocol> delegate;
-@property (nonatomic,strong) MWFeedParser *feedParser;
+@property (nonatomic,strong) FeedParser *feedParser;
 @property (nonatomic,strong) NSMutableArray *feedItems;
 
 - (void) downloadItems;

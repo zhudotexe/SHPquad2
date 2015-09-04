@@ -10,4 +10,12 @@
 
 @implementation WebItem
 
++ (id)webItemWithTitle:(NSString *)title andURL:(NSURL *)url
+{
+    WebItem *newWebItem = [[self alloc]init];
+    newWebItem.title = title;
+    newWebItem.contentURL = url;
+    return newWebItem;
+}
+
 @end
