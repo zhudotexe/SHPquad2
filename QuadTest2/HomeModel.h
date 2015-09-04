@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MWFeedParser.h"
+#import <BNRSSFeedParser/BNRSSFeedParser.h>
 #import "FeedItem.h"
 
 @protocol HomeModelProtocol <NSObject>

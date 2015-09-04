@@ -52,7 +52,25 @@
         NSString *content = [self flattenHTML:[self.detailItem content]];
         content = [content stringByDecodingHTMLEntities];
         
-        if ([[self.detailItem videos]count]) {
+        if ([[self.detailItem enclosures]count]) {
+            //let people start reading article
+            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 400.0f, 700.0f, 350 - 44)];
+            [self.view addSubview:textView];
+            
+            [textView setEditable:NO];
+            [textView setFont:[UIFont systemFontOfSize:18]];
+            
+            textView.text = content;
+            
+            //NSLog(@"%@", [self.detailItem enclosures]);
+            
+            UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(50.0f, 0.0f, 600.0f, 400.0f)];
+            NSURLRequest *webContent = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:[[[self.detailItem enclosures]firstObject]valueForKey:@"url"]]];
+            [webView loadRequest:webContent];
+            //[webView setUserInteractionEnabled:NO];
+            
+            [self.view addSubview:webView];
+        } else if ([[self.detailItem videos]count]) {
             //let people start reading article
             UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 400.0f, 700.0f, 350 - 44)];
             [self.view addSubview:textView];
