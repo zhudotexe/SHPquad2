@@ -32,6 +32,7 @@
 		495182BE1B423D2600B1509C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495182B41B423D2600B1509C /* RootViewController.m */; };
 		4953E5CB1B97BD1F00EBB42B /* settingsGear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4953E5CA1B97BD1F00EBB42B /* settingsGear@2x.png */; };
 		4953E5CE1B97C07B00EBB42B /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4953E5CD1B97C07B00EBB42B /* SettingsViewController.m */; };
+		4953E62F1B9A4AFD00EBB42B /* FeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4953E62E1B9A4AFD00EBB42B /* FeedParser.m */; };
 		4971E47A1B435F5600482419 /* SimpleTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4971E4791B435F5600482419 /* SimpleTableCell.xib */; };
 		4971E47D1B43669D00482419 /* SimpleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4971E47C1B43669D00482419 /* SimpleTableCell.m */; };
 		4971E4961B440DDA00482419 /* QuadLogoSlogan1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4971E4951B440DDA00482419 /* QuadLogoSlogan1.png */; };
@@ -99,6 +100,8 @@
 		4953E5CA1B97BD1F00EBB42B /* settingsGear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingsGear@2x.png"; sourceTree = "<group>"; };
 		4953E5CC1B97C07B00EBB42B /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		4953E5CD1B97C07B00EBB42B /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		4953E62D1B9A4AFD00EBB42B /* FeedParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedParser.h; sourceTree = "<group>"; };
+		4953E62E1B9A4AFD00EBB42B /* FeedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedParser.m; sourceTree = "<group>"; };
 		4971E4791B435F5600482419 /* SimpleTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleTableCell.xib; sourceTree = "<group>"; };
 		4971E47B1B43669D00482419 /* SimpleTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableCell.h; sourceTree = "<group>"; };
 		4971E47C1B43669D00482419 /* SimpleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTableCell.m; sourceTree = "<group>"; };
@@ -175,6 +178,8 @@
 				4927D15F1B47920300FF6661 /* WebItem.m */,
 				4953E5CC1B97C07B00EBB42B /* SettingsViewController.h */,
 				4953E5CD1B97C07B00EBB42B /* SettingsViewController.m */,
+				4953E62D1B9A4AFD00EBB42B /* FeedParser.h */,
+				4953E62E1B9A4AFD00EBB42B /* FeedParser.m */,
 			);
 			path = QuadTest2;
 			sourceTree = "<group>";
@@ -361,6 +366,7 @@
 			files = (
 				495182981B423A2600B1509C /* HomeModel.m in Sources */,
 				495182BA1B423D2600B1509C /* MWFeedParserAppDelegate.m in Sources */,
+				4953E62F1B9A4AFD00EBB42B /* FeedParser.m in Sources */,
 				495182BE1B423D2600B1509C /* RootViewController.m in Sources */,
 				495182731B4238EA00B1509C /* AppDelegate.m in Sources */,
 				495182B81B423D2600B1509C /* MWFeedItem.m in Sources */,
