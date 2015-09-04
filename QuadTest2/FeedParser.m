@@ -89,7 +89,7 @@
 
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
-    NSLog(@"Items: %@", _items);
+    //NSLog(@"Items: %@", _items);
     if (self.delegate) {
         [self.delegate didFinishParsing:_items];
     }

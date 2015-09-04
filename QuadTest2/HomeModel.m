@@ -19,17 +19,18 @@
     self.feedParser = [[FeedParser alloc]init];
     
     //delegate
-    self.feedParser.delegate = self;
+    [self.feedParser setDelegate:self];
     
     //do the thing!
-    [self.feedParser parseURL:feedURL];
+    [self.feedParser performSelectorInBackground:@selector(parseURL:) withObject:feedURL];
+    //[self.feedParser parseURL:feedURL];
     
     self.feedItems = [[NSMutableArray alloc] init];
 }
 
 
 -(void)didParseItem:(NSDictionary *)item {
-    FeedItem *feedItem = [[FeedItem alloc] init];
+    /*FeedItem *feedItem = [[FeedItem alloc] init];
     feedItem.title = [item valueForKey:@"title"] ? [item valueForKey:@"title"] : @"Untitled";
     feedItem.author = [item valueForKey:@"dc:creator"] ? [item valueForKey:@"dc:creator"] : @"Unknown Author";
     feedItem.images = [self parseImages:[item valueForKey:@"content:encoded"]];
@@ -43,7 +44,7 @@
     //NSLog(@"%@", item.content);
     
     
-    [self.feedItems addObject:feedItem];
+    [self.feedItems addObject:feedItem];*/
     
 }
 
@@ -335,6 +336,24 @@
 }
 
 -(void) didFinishParsing:(NSArray *)items{
+    NSLog(@"Done Parsing: %@", items);
+    
+    for (NSDictionary* item in items) {
+        FeedItem *feedItem = [[FeedItem alloc] init];
+        feedItem.title = [item valueForKey:@"title"] ? [item valueForKey:@"title"] : @"Untitled";
+        feedItem.author = [item valueForKey:@"dc:creator"] ? [item valueForKey:@"dc:creator"] : @"Unknown Author";
+        feedItem.images = [self parseImages:[item valueForKey:@"content:encoded"]];
+        feedItem.videos = [self parseVideos:[item valueForKey:@"content:encoded"]];
+        feedItem.content = [item valueForKey:@"content:encoded"] ? [item valueForKey:@"content:encoded"] : [NSString stringWithFormat:@"This article may not display correctly on the Quad App. Please view this article at %@", [item valueForKey:@"link"]];
+        feedItem.date = [item valueForKey:@"pubDate"];
+        feedItem.link = [item valueForKey:@"link"] ? [item valueForKey:@"link"] : @"http://shpquad.org/404";
+        feedItem.summary = [item valueForKey:@"description"] ? [item valueForKey:@"description"] : @"No summary.";
+        feedItem.enclosures = [item valueForKey:@"enclosure"];
+        [self.feedItems addObject:feedItem];
+    }
+    
+    
+    
     if(self.delegate){
         [self.delegate itemsDownloaded:self.feedItems];
     }
