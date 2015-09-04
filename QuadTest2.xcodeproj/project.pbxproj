@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		06C594675F244FEE3FCE83E0 /* libPods-QuadTest2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9901C73D00D35FE06849DA94 /* libPods-QuadTest2.a */; };
 		4927D15A1B47850700FF6661 /* QuadTabButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4927D1591B47850700FF6661 /* QuadTabButton@2x.png */; };
 		4927D15D1B478DE500FF6661 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927D15C1B478DE500FF6661 /* TabViewController.m */; };
 		4927D1601B47920300FF6661 /* WebItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927D15F1B47920300FF6661 /* WebItem.m */; };
@@ -108,9 +107,6 @@
 		4971E4A61B45171900482419 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDownloader.h; sourceTree = "<group>"; };
 		4971E4A71B45171900482419 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDownloader.m; sourceTree = "<group>"; };
 		4971E4A91B45286D00482419 /* loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading@2x.png"; sourceTree = "<group>"; };
-		9901C73D00D35FE06849DA94 /* libPods-QuadTest2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-QuadTest2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3F18DAFCFACE2BCDE9813AA /* Pods-QuadTest2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuadTest2.release.xcconfig"; path = "Pods/Target Support Files/Pods-QuadTest2/Pods-QuadTest2.release.xcconfig"; sourceTree = "<group>"; };
-		B6AC3195FDF58357E982D56F /* Pods-QuadTest2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuadTest2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuadTest2/Pods-QuadTest2.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +114,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06C594675F244FEE3FCE83E0 /* libPods-QuadTest2.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,22 +127,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		33DE10B3D57ED197C18709BA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				9901C73D00D35FE06849DA94 /* libPods-QuadTest2.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		495182611B4238EA00B1509C = {
 			isa = PBXGroup;
 			children = (
 				4951826C1B4238EA00B1509C /* QuadTest2 */,
 				495182891B4238EA00B1509C /* QuadTest2Tests */,
 				4951826B1B4238EA00B1509C /* Products */,
-				5449B5E820C6CAA3788F9EB6 /* Pods */,
-				33DE10B3D57ED197C18709BA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -268,15 +253,6 @@
 			name = Icons/Images;
 			sourceTree = "<group>";
 		};
-		5449B5E820C6CAA3788F9EB6 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B6AC3195FDF58357E982D56F /* Pods-QuadTest2.debug.xcconfig */,
-				B3F18DAFCFACE2BCDE9813AA /* Pods-QuadTest2.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -284,11 +260,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 495182901B4238EA00B1509C /* Build configuration list for PBXNativeTarget "QuadTest2" */;
 			buildPhases = (
-				CA8856A5F495647DCE980BC7 /* Check Pods Manifest.lock */,
 				495182661B4238EA00B1509C /* Sources */,
 				495182671B4238EA00B1509C /* Frameworks */,
 				495182681B4238EA00B1509C /* Resources */,
-				F4FFE348C7B2AD4D713F213C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -379,39 +353,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		CA8856A5F495647DCE980BC7 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		F4FFE348C7B2AD4D713F213C /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QuadTest2/Pods-QuadTest2-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		495182661B4238EA00B1509C /* Sources */ = {
@@ -564,7 +505,6 @@
 		};
 		495182911B4238EA00B1509C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B6AC3195FDF58357E982D56F /* Pods-QuadTest2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -576,7 +516,6 @@
 		};
 		495182921B4238EA00B1509C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B3F18DAFCFACE2BCDE9813AA /* Pods-QuadTest2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

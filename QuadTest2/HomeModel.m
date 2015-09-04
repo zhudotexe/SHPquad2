@@ -94,7 +94,6 @@
                     // Comment
                     [scanner scanUpToString:@"-->" intoString:NULL];
                     [scanner scanString:@"-->" intoString:NULL];
-                    NSLog(@"Found comment");
                         
                 } else if ([scanner scanString:@"img" intoString:NULL]){
                     
@@ -133,28 +132,6 @@
                     // Scan past tag
                     [scanner scanUpToString:@">" intoString:NULL];
                     [scanner scanString:@">" intoString:NULL];
-                    
-                } else if ([scanner scanString:@"video" intoString:NULL]){
-                    
-                    //find image url
-                    [scanner scanUpToString:@"<source" intoString:NULL];
-                    [scanner scanString:@"<source" intoString:NULL];
-                    
-                    [scanner scanUpToString:@"src=" intoString:NULL];
-                    [scanner scanString:@"src=\"" intoString:NULL];
-                    //get the actual url
-                    [scanner scanUpToString:@"\"" intoString:&url];
-                    
-                    //add the url to the image array
-                    [videos addObject:[[NSURL alloc]initWithString:url]];
-                    
-                    //NSLog(@"Added URL: %@",[images lastObject]);
-                    
-                    url = nil;
-                    
-                    // Scan past tag
-                    [scanner scanUpToString:@"</video>" intoString:NULL];
-                    [scanner scanString:@"</video>" intoString:NULL];
                     
                 } else if ([scanner scanString:@"script" intoString:NULL]) {
                         
@@ -286,28 +263,6 @@
                     // Scan past tag
                     [scanner scanUpToString:@">" intoString:NULL];
                     [scanner scanString:@">" intoString:NULL];
-                    
-                } else if ([scanner scanString:@"video" intoString:NULL]){
-                    
-                    //find image url
-                    [scanner scanUpToString:@"<source" intoString:NULL];
-                    [scanner scanString:@"<source" intoString:NULL];
-                    
-                    [scanner scanUpToString:@"src=" intoString:NULL];
-                    [scanner scanString:@"src=\"" intoString:NULL];
-                    //get the actual url
-                    [scanner scanUpToString:@"\"" intoString:&url];
-                    
-                    //add the url to the image array
-                    [videos addObject:[[NSURL alloc]initWithString:url]];
-                    
-                    //NSLog(@"Added URL: %@",[videos lastObject]);
-                    
-                    url = nil;
-                    
-                    // Scan past tag
-                    [scanner scanUpToString:@"</video>" intoString:NULL];
-                    [scanner scanString:@"</video>" intoString:NULL];
                     
                 } else if ([scanner scanString:@"script" intoString:NULL]) {
                     
