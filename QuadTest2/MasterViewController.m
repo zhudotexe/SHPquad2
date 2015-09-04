@@ -58,15 +58,22 @@
         NSLog(@"Did first time setup");
     }
     
+    
     self.navigationController.navigationBar.translucent= NO;
     
     UIImage *image = [UIImage imageNamed:@"QuadLogoSlogan1_appv.png"];
     UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
     
+    image = [UIImage imageNamed:@"loading.png"];
+    UIImageView *tableBackgroundView = [[UIImageView alloc]initWithImage:image];
+    tableBackgroundView.contentMode = UIViewContentModeScaleAspectFit;
+    
     UIBarButtonItem *tabButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"QuadTabButton.png"] style:UIBarButtonItemStylePlain target:self action:@selector(showTabView)];
     UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"settingsGear.png"] style:UIBarButtonItemStylePlain target:self action:@selector(showSettings)];
     
     myImageView.contentMode = UIViewContentModeTop;
+    
+    self.tableView.backgroundView = tableBackgroundView;
     
     self.navigationController.navigationItem.title = nil;
     self.navigationItem.titleView = myImageView;

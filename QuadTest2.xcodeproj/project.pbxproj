@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49225F5A1B9A52020029E8D0 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 49225F441B9A52020029E8D0 /* NSString+HTML.m */; };
+		49225F601B9A523F0029E8D0 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 49225F5F1B9A523F0029E8D0 /* GTMNSString+HTML.m */; };
 		4927D15A1B47850700FF6661 /* QuadTabButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4927D1591B47850700FF6661 /* QuadTabButton@2x.png */; };
 		4927D15D1B478DE500FF6661 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927D15C1B478DE500FF6661 /* TabViewController.m */; };
 		4927D1601B47920300FF6661 /* WebItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927D15F1B47920300FF6661 /* WebItem.m */; };
@@ -42,6 +44,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		49225F431B9A52020029E8D0 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
+		49225F441B9A52020029E8D0 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
+		49225F5E1B9A523F0029E8D0 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
+		49225F5F1B9A523F0029E8D0 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
 		4927D1591B47850700FF6661 /* QuadTabButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QuadTabButton@2x.png"; sourceTree = "<group>"; };
 		4927D15B1B478DE500FF6661 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
 		4927D15C1B478DE500FF6661 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
@@ -99,6 +105,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		49225F1C1B9A51F50029E8D0 /* HTML */ = {
+			isa = PBXGroup;
+			children = (
+				49225F431B9A52020029E8D0 /* NSString+HTML.h */,
+				49225F5E1B9A523F0029E8D0 /* GTMNSString+HTML.h */,
+				49225F5F1B9A523F0029E8D0 /* GTMNSString+HTML.m */,
+				49225F441B9A52020029E8D0 /* NSString+HTML.m */,
+			);
+			name = HTML;
+			sourceTree = "<group>";
+		};
 		495182611B4238EA00B1509C = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +137,7 @@
 		4951826C1B4238EA00B1509C /* QuadTest2 */ = {
 			isa = PBXGroup;
 			children = (
+				49225F1C1B9A51F50029E8D0 /* HTML */,
 				4971E4941B440DC400482419 /* Icons/Images */,
 				495182711B4238EA00B1509C /* AppDelegate.h */,
 				495182721B4238EA00B1509C /* AppDelegate.m */,
@@ -299,6 +317,7 @@
 				495182981B423A2600B1509C /* HomeModel.m in Sources */,
 				4953E62F1B9A4AFD00EBB42B /* FeedParser.m in Sources */,
 				495182731B4238EA00B1509C /* AppDelegate.m in Sources */,
+				49225F5A1B9A52020029E8D0 /* NSString+HTML.m in Sources */,
 				4927D1601B47920300FF6661 /* WebItem.m in Sources */,
 				4953E5CE1B97C07B00EBB42B /* SettingsViewController.m in Sources */,
 				4927D15D1B478DE500FF6661 /* TabViewController.m in Sources */,
@@ -308,6 +327,7 @@
 				4951829B1B423B8A00B1509C /* FeedItem.m in Sources */,
 				4971E4A81B45171900482419 /* ImageDownloader.m in Sources */,
 				495182791B4238EA00B1509C /* DetailViewController.m in Sources */,
+				49225F601B9A523F0029E8D0 /* GTMNSString+HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
