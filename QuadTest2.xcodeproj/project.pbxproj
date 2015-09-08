@@ -9,6 +9,17 @@
 /* Begin PBXBuildFile section */
 		49225F5A1B9A52020029E8D0 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 49225F441B9A52020029E8D0 /* NSString+HTML.m */; };
 		49225F601B9A523F0029E8D0 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 49225F5F1B9A523F0029E8D0 /* GTMNSString+HTML.m */; };
+		49225F621B9F88340029E8D0 /* loading@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49225F611B9F88340029E8D0 /* loading@1x.png */; };
+		49225F641B9F883B0029E8D0 /* loading@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49225F631B9F883B0029E8D0 /* loading@3x.png */; };
+		49225F661B9F88470029E8D0 /* QuadLogoSlogan1_appv@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49225F651B9F88470029E8D0 /* QuadLogoSlogan1_appv@1x.png */; };
+		49225F681B9F88520029E8D0 /* QuadLogoSlogan1_appv@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49225F671B9F88520029E8D0 /* QuadLogoSlogan1_appv@3x.png */; };
+		49225F6A1B9F885F0029E8D0 /* QuadTabButton@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49225F691B9F885F0029E8D0 /* QuadTabButton@1x.png */; };
+		49225F6C1B9F886A0029E8D0 /* QuadTabButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49225F6B1B9F886A0029E8D0 /* QuadTabButton@3x.png */; };
+		49225F6E1B9F88DE0029E8D0 /* settingsGear@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49225F6D1B9F88DE0029E8D0 /* settingsGear@1x.png */; };
+		49225F701B9F88E60029E8D0 /* settingsGear@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49225F6F1B9F88E60029E8D0 /* settingsGear@3x.png */; };
+		49225F741B9F89FC0029E8D0 /* loading2@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49225F711B9F89FC0029E8D0 /* loading2@1x.png */; };
+		49225F751B9F89FC0029E8D0 /* loading2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49225F721B9F89FC0029E8D0 /* loading2@2x.png */; };
+		49225F761B9F89FC0029E8D0 /* loading2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49225F731B9F89FC0029E8D0 /* loading2@3x.png */; };
 		4927D15A1B47850700FF6661 /* QuadTabButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4927D1591B47850700FF6661 /* QuadTabButton@2x.png */; };
 		4927D15D1B478DE500FF6661 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927D15C1B478DE500FF6661 /* TabViewController.m */; };
 		4927D1601B47920300FF6661 /* WebItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927D15F1B47920300FF6661 /* WebItem.m */; };
@@ -48,6 +59,17 @@
 		49225F441B9A52020029E8D0 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		49225F5E1B9A523F0029E8D0 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
 		49225F5F1B9A523F0029E8D0 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
+		49225F611B9F88340029E8D0 /* loading@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading@1x.png"; sourceTree = "<group>"; };
+		49225F631B9F883B0029E8D0 /* loading@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading@3x.png"; sourceTree = "<group>"; };
+		49225F651B9F88470029E8D0 /* QuadLogoSlogan1_appv@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QuadLogoSlogan1_appv@1x.png"; sourceTree = "<group>"; };
+		49225F671B9F88520029E8D0 /* QuadLogoSlogan1_appv@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QuadLogoSlogan1_appv@3x.png"; sourceTree = "<group>"; };
+		49225F691B9F885F0029E8D0 /* QuadTabButton@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QuadTabButton@1x.png"; sourceTree = "<group>"; };
+		49225F6B1B9F886A0029E8D0 /* QuadTabButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QuadTabButton@3x.png"; sourceTree = "<group>"; };
+		49225F6D1B9F88DE0029E8D0 /* settingsGear@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingsGear@1x.png"; sourceTree = "<group>"; };
+		49225F6F1B9F88E60029E8D0 /* settingsGear@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingsGear@3x.png"; sourceTree = "<group>"; };
+		49225F711B9F89FC0029E8D0 /* loading2@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading2@1x.png"; sourceTree = "<group>"; };
+		49225F721B9F89FC0029E8D0 /* loading2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading2@2x.png"; sourceTree = "<group>"; };
+		49225F731B9F89FC0029E8D0 /* loading2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading2@3x.png"; sourceTree = "<group>"; };
 		4927D1591B47850700FF6661 /* QuadTabButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QuadTabButton@2x.png"; sourceTree = "<group>"; };
 		4927D15B1B478DE500FF6661 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
 		4927D15C1B478DE500FF6661 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
@@ -109,9 +131,9 @@
 			isa = PBXGroup;
 			children = (
 				49225F431B9A52020029E8D0 /* NSString+HTML.h */,
+				49225F441B9A52020029E8D0 /* NSString+HTML.m */,
 				49225F5E1B9A523F0029E8D0 /* GTMNSString+HTML.h */,
 				49225F5F1B9A523F0029E8D0 /* GTMNSString+HTML.m */,
-				49225F441B9A52020029E8D0 /* NSString+HTML.m */,
 			);
 			name = HTML;
 			sourceTree = "<group>";
@@ -200,10 +222,21 @@
 			isa = PBXGroup;
 			children = (
 				4971E4951B440DDA00482419 /* QuadLogoSlogan1.png */,
+				49225F651B9F88470029E8D0 /* QuadLogoSlogan1_appv@1x.png */,
 				4971E4A31B44D65F00482419 /* QuadLogoSlogan1_appv@2x.png */,
+				49225F671B9F88520029E8D0 /* QuadLogoSlogan1_appv@3x.png */,
+				49225F611B9F88340029E8D0 /* loading@1x.png */,
 				4971E4A91B45286D00482419 /* loading@2x.png */,
+				49225F631B9F883B0029E8D0 /* loading@3x.png */,
+				49225F691B9F885F0029E8D0 /* QuadTabButton@1x.png */,
 				4927D1591B47850700FF6661 /* QuadTabButton@2x.png */,
+				49225F6B1B9F886A0029E8D0 /* QuadTabButton@3x.png */,
+				49225F6D1B9F88DE0029E8D0 /* settingsGear@1x.png */,
 				4953E5CA1B97BD1F00EBB42B /* settingsGear@2x.png */,
+				49225F6F1B9F88E60029E8D0 /* settingsGear@3x.png */,
+				49225F711B9F89FC0029E8D0 /* loading2@1x.png */,
+				49225F721B9F89FC0029E8D0 /* loading2@2x.png */,
+				49225F731B9F89FC0029E8D0 /* loading2@3x.png */,
 			);
 			name = Icons/Images;
 			sourceTree = "<group>";
@@ -257,6 +290,7 @@
 				TargetAttributes = {
 					495182691B4238EA00B1509C = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = 2G8GTT36H9;
 					};
 					495182851B4238EA00B1509C = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -288,15 +322,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49225F6C1B9F886A0029E8D0 /* QuadTabButton@3x.png in Resources */,
 				4951827C1B4238EA00B1509C /* Main.storyboard in Resources */,
 				495182811B4238EA00B1509C /* LaunchScreen.xib in Resources */,
+				49225F751B9F89FC0029E8D0 /* loading2@2x.png in Resources */,
+				49225F661B9F88470029E8D0 /* QuadLogoSlogan1_appv@1x.png in Resources */,
+				49225F701B9F88E60029E8D0 /* settingsGear@3x.png in Resources */,
 				4953E5CB1B97BD1F00EBB42B /* settingsGear@2x.png in Resources */,
 				4971E4961B440DDA00482419 /* QuadLogoSlogan1.png in Resources */,
 				4971E4A41B44D65F00482419 /* QuadLogoSlogan1_appv@2x.png in Resources */,
+				49225F681B9F88520029E8D0 /* QuadLogoSlogan1_appv@3x.png in Resources */,
+				49225F641B9F883B0029E8D0 /* loading@3x.png in Resources */,
 				4971E47A1B435F5600482419 /* SimpleTableCell.xib in Resources */,
 				4951827E1B4238EA00B1509C /* Images.xcassets in Resources */,
+				49225F6A1B9F885F0029E8D0 /* QuadTabButton@1x.png in Resources */,
 				4971E4AA1B45286D00482419 /* loading@2x.png in Resources */,
+				49225F621B9F88340029E8D0 /* loading@1x.png in Resources */,
 				4927D15A1B47850700FF6661 /* QuadTabButton@2x.png in Resources */,
+				49225F761B9F89FC0029E8D0 /* loading2@3x.png in Resources */,
+				49225F6E1B9F88DE0029E8D0 /* settingsGear@1x.png in Resources */,
+				49225F741B9F89FC0029E8D0 /* loading2@1x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,10 +501,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = QuadTest2/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -468,10 +515,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = QuadTest2/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
