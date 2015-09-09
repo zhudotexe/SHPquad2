@@ -75,7 +75,7 @@
 		4927D15C1B478DE500FF6661 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
 		4927D15E1B47920300FF6661 /* WebItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebItem.h; sourceTree = "<group>"; };
 		4927D15F1B47920300FF6661 /* WebItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebItem.m; sourceTree = "<group>"; };
-		4951826A1B4238EA00B1509C /* QuadTest2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuadTest2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4951826A1B4238EA00B1509C /* SHPQuad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SHPQuad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4951826E1B4238EA00B1509C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4951826F1B4238EA00B1509C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		495182711B4238EA00B1509C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -87,7 +87,7 @@
 		4951827B1B4238EA00B1509C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4951827D1B4238EA00B1509C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		495182801B4238EA00B1509C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		495182861B4238EA00B1509C /* QuadTest2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuadTest2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		495182861B4238EA00B1509C /* SHPQuadTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SHPQuadTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4951828B1B4238EA00B1509C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4951828C1B4238EA00B1509C /* QuadTest2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuadTest2Tests.m; sourceTree = "<group>"; };
 		495182961B423A2600B1509C /* HomeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeModel.h; sourceTree = "<group>"; };
@@ -150,8 +150,8 @@
 		4951826B1B4238EA00B1509C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4951826A1B4238EA00B1509C /* QuadTest2.app */,
-				495182861B4238EA00B1509C /* QuadTest2Tests.xctest */,
+				4951826A1B4238EA00B1509C /* SHPQuad.app */,
+				495182861B4238EA00B1509C /* SHPQuadTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -244,9 +244,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		495182691B4238EA00B1509C /* QuadTest2 */ = {
+		495182691B4238EA00B1509C /* SHPQuad */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 495182901B4238EA00B1509C /* Build configuration list for PBXNativeTarget "QuadTest2" */;
+			buildConfigurationList = 495182901B4238EA00B1509C /* Build configuration list for PBXNativeTarget "SHPQuad" */;
 			buildPhases = (
 				495182661B4238EA00B1509C /* Sources */,
 				495182671B4238EA00B1509C /* Frameworks */,
@@ -256,14 +256,14 @@
 			);
 			dependencies = (
 			);
-			name = QuadTest2;
+			name = SHPQuad;
 			productName = QuadTest2;
-			productReference = 4951826A1B4238EA00B1509C /* QuadTest2.app */;
+			productReference = 4951826A1B4238EA00B1509C /* SHPQuad.app */;
 			productType = "com.apple.product-type.application";
 		};
-		495182851B4238EA00B1509C /* QuadTest2Tests */ = {
+		495182851B4238EA00B1509C /* SHPQuadTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 495182931B4238EA00B1509C /* Build configuration list for PBXNativeTarget "QuadTest2Tests" */;
+			buildConfigurationList = 495182931B4238EA00B1509C /* Build configuration list for PBXNativeTarget "SHPQuadTests" */;
 			buildPhases = (
 				495182821B4238EA00B1509C /* Sources */,
 				495182831B4238EA00B1509C /* Frameworks */,
@@ -274,9 +274,9 @@
 			dependencies = (
 				495182881B4238EA00B1509C /* PBXTargetDependency */,
 			);
-			name = QuadTest2Tests;
+			name = SHPQuadTests;
 			productName = QuadTest2Tests;
-			productReference = 495182861B4238EA00B1509C /* QuadTest2Tests.xctest */;
+			productReference = 495182861B4238EA00B1509C /* SHPQuadTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -298,7 +298,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 495182651B4238EA00B1509C /* Build configuration list for PBXProject "QuadTest2" */;
+			buildConfigurationList = 495182651B4238EA00B1509C /* Build configuration list for PBXProject "SHPQuad" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -311,8 +311,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				495182691B4238EA00B1509C /* QuadTest2 */,
-				495182851B4238EA00B1509C /* QuadTest2Tests */,
+				495182691B4238EA00B1509C /* SHPQuad */,
+				495182851B4238EA00B1509C /* SHPQuadTests */,
 			);
 		};
 /* End PBXProject section */
@@ -389,7 +389,7 @@
 /* Begin PBXTargetDependency section */
 		495182881B4238EA00B1509C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 495182691B4238EA00B1509C /* QuadTest2 */;
+			target = 495182691B4238EA00B1509C /* SHPQuad */;
 			targetProxy = 495182871B4238EA00B1509C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -450,7 +450,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -488,7 +488,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -505,7 +505,7 @@
 				INFOPLIST_FILE = QuadTest2/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SHPQuad;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -519,7 +519,7 @@
 				INFOPLIST_FILE = QuadTest2/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SHPQuad;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -538,7 +538,7 @@
 				);
 				INFOPLIST_FILE = QuadTest2Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SHPQuadTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuadTest2.app/QuadTest2";
 			};
 			name = Debug;
@@ -553,7 +553,7 @@
 				);
 				INFOPLIST_FILE = QuadTest2Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SHPQuadTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuadTest2.app/QuadTest2";
 			};
 			name = Release;
@@ -561,7 +561,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		495182651B4238EA00B1509C /* Build configuration list for PBXProject "QuadTest2" */ = {
+		495182651B4238EA00B1509C /* Build configuration list for PBXProject "SHPQuad" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4951828E1B4238EA00B1509C /* Debug */,
@@ -570,7 +570,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		495182901B4238EA00B1509C /* Build configuration list for PBXNativeTarget "QuadTest2" */ = {
+		495182901B4238EA00B1509C /* Build configuration list for PBXNativeTarget "SHPQuad" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				495182911B4238EA00B1509C /* Debug */,
@@ -579,7 +579,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		495182931B4238EA00B1509C /* Build configuration list for PBXNativeTarget "QuadTest2Tests" */ = {
+		495182931B4238EA00B1509C /* Build configuration list for PBXNativeTarget "SHPQuadTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				495182941B4238EA00B1509C /* Debug */,
