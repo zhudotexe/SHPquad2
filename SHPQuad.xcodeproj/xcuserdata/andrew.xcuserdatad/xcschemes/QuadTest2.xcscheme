@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "495182691B4238EA00B1509C"
-               BuildableName = "QuadTest2.app"
-               BlueprintName = "QuadTest2"
-               ReferencedContainer = "container:QuadTest2.xcodeproj">
+               BuildableName = "SHPQuad.app"
+               BlueprintName = "SHPQuad"
+               ReferencedContainer = "container:SHPQuad.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "495182851B4238EA00B1509C"
-               BuildableName = "QuadTest2Tests.xctest"
-               BlueprintName = "QuadTest2Tests"
-               ReferencedContainer = "container:QuadTest2.xcodeproj">
+               BuildableName = "SHPQuadTests.xctest"
+               BlueprintName = "SHPQuadTests"
+               ReferencedContainer = "container:SHPQuad.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "495182851B4238EA00B1509C"
-               BuildableName = "QuadTest2Tests.xctest"
-               BlueprintName = "QuadTest2Tests"
-               ReferencedContainer = "container:QuadTest2.xcodeproj">
+               BuildableName = "SHPQuadTests.xctest"
+               BlueprintName = "SHPQuadTests"
+               ReferencedContainer = "container:SHPQuad.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "495182691B4238EA00B1509C"
-            BuildableName = "QuadTest2.app"
-            BlueprintName = "QuadTest2"
-            ReferencedContainer = "container:QuadTest2.xcodeproj">
+            BuildableName = "SHPQuad.app"
+            BlueprintName = "SHPQuad"
+            ReferencedContainer = "container:SHPQuad.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -77,9 +77,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "495182691B4238EA00B1509C"
-            BuildableName = "QuadTest2.app"
-            BlueprintName = "QuadTest2"
-            ReferencedContainer = "container:QuadTest2.xcodeproj">
+            BuildableName = "SHPQuad.app"
+            BlueprintName = "SHPQuad"
+            ReferencedContainer = "container:SHPQuad.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -96,9 +96,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "495182691B4238EA00B1509C"
-            BuildableName = "QuadTest2.app"
-            BlueprintName = "QuadTest2"
-            ReferencedContainer = "container:QuadTest2.xcodeproj">
+            BuildableName = "SHPQuad.app"
+            BlueprintName = "SHPQuad"
+            ReferencedContainer = "container:SHPQuad.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
