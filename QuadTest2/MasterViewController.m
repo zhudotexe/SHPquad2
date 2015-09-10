@@ -64,7 +64,7 @@
     UIImage *image = [UIImage imageNamed:@"QuadLogoSlogan1_appv.png"];
     UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
     
-    image = [UIImage imageNamed:@"loading.png"];
+    image = [UIImage imageNamed:@"loading2.png"];
     UIImageView *tableBackgroundView = [[UIImageView alloc]initWithImage:image];
     tableBackgroundView.contentMode = UIViewContentModeScaleAspectFit;
     
