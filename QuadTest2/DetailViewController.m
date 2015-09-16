@@ -12,6 +12,7 @@
 @interface DetailViewController (){
     ImageDownloader *_imageDownloader;
     NSArray *_images;
+    CGRect _viewRect;
 }
 
 @end
@@ -45,7 +46,16 @@
 
 - (void)configureView {
     // Update the user interface for the detail item.
-
+    
+    // Orientation
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    
+    if (UIInterfaceOrientationIsLandscape(orientation)) {
+        _viewRect = CGRectMake(0, 0, self.view.frame.size.width - 320, self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - 12);
+    } else {
+        _viewRect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - 12);
+    }
+    
     
     if (self.detailItem) {
         self.detailTitle.title = [self.detailItem title];
@@ -54,7 +64,7 @@
         
         if ([[self.detailItem videos]count]) {
             //let people start reading article
-            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 400.0f, 700.0f, 350 - 44)];
+            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, _viewRect.size.height/2, _viewRect.size.width, _viewRect.size.height/2)];
             [self.view addSubview:textView];
             
             [textView setEditable:NO];
@@ -62,7 +72,7 @@
             
             textView.text = content;
             
-            UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(50.0f, 0.0f, 600.0f, 400.0f)];
+            UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _viewRect.size.width, _viewRect.size.height/2)];
             NSURLRequest *webContent = [[NSURLRequest alloc]initWithURL:[[self.detailItem videos]firstObject]];
             [webView loadRequest:webContent];
             //[webView setUserInteractionEnabled:NO];
@@ -95,18 +105,19 @@
             
             // placeholder loading image while images load
             UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loading.png"]];
-            imageView.frame = CGRectMake(75.0f, 0.0f, 600.0f, 400.0f);
+            imageView.frame = CGRectMake(0.0f, 0.0f, _viewRect.size.width, _viewRect.size.height/2);
+            imageView.contentMode = UIViewContentModeScaleAspectFit;
             [self.view addSubview:imageView];
             
             // progress view
             self.imageProgress = [[UIProgressView alloc]initWithProgressViewStyle:UIProgressViewStyleDefault];
-            [self.imageProgress setFrame:CGRectMake(0.0f, 350.0f, 700.0f, 2.0f)];
-            self.imageProgress.center = CGPointMake(352.0f, 375.0f);
+            [self.imageProgress setFrame:CGRectMake(0.0f, 0.0f, _viewRect.size.width, 2.0f)];
+            self.imageProgress.center = CGPointMake(_viewRect.size.width/2, (_viewRect.size.height/2)-5);
             [self.imageProgress setProgressTintColor:[UIColor blueColor]];
             [self.view addSubview:self.imageProgress];
             
             //let people start reading article
-            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 400.0f, 700.0f, 350 - 44)];
+            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, _viewRect.size.height/2, _viewRect.size.width, _viewRect.size.height/2)];
             [self.view addSubview:textView];
             
             [textView setEditable:NO];
@@ -118,7 +129,7 @@
             
         } else { // otherwise init without images
             
-            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 700.0f, 750 - 44)];
+            UITextView *textView = [[UITextView alloc] initWithFrame:_viewRect];
             [self.view addSubview:textView];
             
             [textView setEditable:NO];
@@ -131,7 +142,7 @@
         if (self.webItem) {
             self.detailTitle.title = [self.webItem title];
             
-            UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 700.0f, 706.0f)];
+            UIWebView *webView = [[UIWebView alloc]initWithFrame:_viewRect];
             NSURLRequest *content = [[NSURLRequest alloc]initWithURL:[self.webItem contentURL]];
             [webView loadRequest:content];
             [self.view addSubview:webView];
@@ -143,18 +154,18 @@
 {
     if ([images count]) {
         // set up the scroll view
-        UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 750.0f, 400.0f)];
+        UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _viewRect.size.width, _viewRect.size.height/2)];
         [self.view addSubview:scrollView];
         
         [self.view bringSubviewToFront:scrollView];
         
         // Set up the container view to hold your custom view hierarchy
-        CGSize containerSize = CGSizeMake(75 + [images count] * 625, 400.0f);
+        CGSize containerSize = CGSizeMake(75 + [images count] * _viewRect.size.width + 25, _viewRect.size.height/2);
         self.containerView = [[UIView alloc] initWithFrame:(CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=containerSize}];
         [scrollView addSubview:self.containerView];
         
         for (int i = 0; i < [images count]; i++) { // set up an image view for each image at multiples of the image resolution
-            UIImageView *tempImageView = [[UIImageView alloc]initWithFrame:CGRectMake(25 + i * 625, 0.0f, 600.0f, 400.0f)];
+            UIImageView *tempImageView = [[UIImageView alloc]initWithFrame:CGRectMake(25 + i * _viewRect.size.width, 0.0f, _viewRect.size.width, _viewRect.size.height/2)];
             tempImageView.contentMode = UIViewContentModeScaleAspectFit;
             tempImageView.image = [images objectAtIndex:i];
             [self.containerView addSubview:tempImageView];
