@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>275661A9-859C-47FF-9CBA-95A66FC00731</string>
 	<key>IDESourceControlProjectName</key>
-	<string>SHPQuad</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>58317FF141B6C9862EB5D8202A3DC52FD57C402B</key>
 		<string>https://github.com/mommothazaz123/SHPquad2.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>SHPQuad.xcodeproj</string>
+	<string>SHPQuad.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>58317FF141B6C9862EB5D8202A3DC52FD57C402B</key>
