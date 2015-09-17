@@ -97,7 +97,10 @@
     _feedItems = items;
     _filteredItems = [NSMutableArray arrayWithCapacity:[_feedItems count]];
     
-    [self.tableView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        [self.tableView reloadData];
+    });
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -198,6 +201,7 @@
     } else {
         item = _feedItems[indexPath.row];
     }
+    
     
     // Get references to labels of cell
     myCell.titleLabel.text = item.title;

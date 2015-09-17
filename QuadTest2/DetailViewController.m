@@ -152,29 +152,31 @@
 
 - (void)imagesDownloaded:(NSArray *)images
 {
-    if ([images count]) {
-        // set up the scroll view
-        UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _viewRect.size.width, _viewRect.size.height/2)];
-        [self.view addSubview:scrollView];
-        
-        [self.view bringSubviewToFront:scrollView];
-        
-        // Set up the container view to hold your custom view hierarchy
-        CGSize containerSize = CGSizeMake(75 + [images count] * _viewRect.size.width + 25, _viewRect.size.height/2);
-        self.containerView = [[UIView alloc] initWithFrame:(CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=containerSize}];
-        [scrollView addSubview:self.containerView];
-        
-        for (int i = 0; i < [images count]; i++) { // set up an image view for each image at multiples of the image resolution
-            UIImageView *tempImageView = [[UIImageView alloc]initWithFrame:CGRectMake(25 + i * _viewRect.size.width, 0.0f, _viewRect.size.width, _viewRect.size.height/2)];
-            tempImageView.contentMode = UIViewContentModeScaleAspectFit;
-            tempImageView.image = [images objectAtIndex:i];
-            [self.containerView addSubview:tempImageView];
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        if ([images count]) {
+            // set up the scroll view
+            UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _viewRect.size.width, _viewRect.size.height/2)];
+            [self.view addSubview:scrollView];
+            
+            [self.view bringSubviewToFront:scrollView];
+            
+            // Set up the container view to hold your custom view hierarchy
+            CGSize containerSize = CGSizeMake(75 + [images count] * _viewRect.size.width + 25, _viewRect.size.height/2);
+            self.containerView = [[UIView alloc] initWithFrame:(CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=containerSize}];
+            [scrollView addSubview:self.containerView];
+            
+            for (int i = 0; i < [images count]; i++) { // set up an image view for each image at multiples of the image resolution
+                UIImageView *tempImageView = [[UIImageView alloc]initWithFrame:CGRectMake(25 + i * _viewRect.size.width, 0.0f, _viewRect.size.width, _viewRect.size.height/2)];
+                tempImageView.contentMode = UIViewContentModeScaleAspectFit;
+                tempImageView.image = [images objectAtIndex:i];
+                [self.containerView addSubview:tempImageView];
+            }
+            // set attributes of the scrollview
+            scrollView.contentSize = containerSize;
+            [scrollView setShowsHorizontalScrollIndicator:NO];
+            [scrollView setBackgroundColor:[UIColor whiteColor]];
         }
-        // set attributes of the scrollview
-        scrollView.contentSize = containerSize;
-        [scrollView setShowsHorizontalScrollIndicator:NO];
-        [scrollView setBackgroundColor:[UIColor whiteColor]];
-    }
+    });
 }
 
 - (void)viewDidLoad {
