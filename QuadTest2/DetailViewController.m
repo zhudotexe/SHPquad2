@@ -48,9 +48,9 @@
     // Update the user interface for the detail item.
     
     // Orientation
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
     
-    if (UIInterfaceOrientationIsLandscape(orientation)) {
+    if (UIDeviceOrientationIsLandscape(orientation)) {
         _viewRect = CGRectMake(0, 0, self.view.frame.size.width - 320, self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - 12);
     } else {
         _viewRect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - 12);
@@ -193,11 +193,23 @@
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationChanged:)
+                                                 name:UIDeviceOrientationDidChangeNotification object:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)deviceOrientationChanged:(NSNotification *)notification
+{
+    //NSArray *tempImages = [NSArray arrayWithArray:<#(nonnull NSArray *)#>]
+    [self configureView];
+    
 }
 
 #pragma mark Progress Handlers
