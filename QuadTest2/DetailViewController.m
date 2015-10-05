@@ -166,7 +166,7 @@
             [scrollView addSubview:self.containerView];
             
             for (int i = 0; i < [images count]; i++) { // set up an image view for each image at multiples of the image resolution
-                UIImageView *tempImageView = [[UIImageView alloc]initWithFrame:CGRectMake(25 + i * _viewRect.size.width, 0.0f, _viewRect.size.width, _viewRect.size.height/2)];
+                UIImageView *tempImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10 + i * _viewRect.size.width, 0.0f, _viewRect.size.width, _viewRect.size.height/2)];
                 tempImageView.contentMode = UIViewContentModeScaleAspectFit;
                 tempImageView.image = [images objectAtIndex:i];
                 [self.containerView addSubview:tempImageView];
@@ -230,12 +230,16 @@
     
     NSScanner *theScanner;
     NSString *text = nil;
-    theScanner = [NSScanner scannerWithString:html];
+    
     
     html = [html stringByReplacingOccurrencesOfString:@"</br>" withString:@"\n"];
     html = [html stringByReplacingOccurrencesOfString:@"<br>" withString:@"\n"];
     html = [html stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
-    html = [html stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n\n"];
+    html = [html stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n"];
+    html = [html stringByReplacingOccurrencesOfString:@"<script>" withString:@"<"];
+    html = [html stringByReplacingOccurrencesOfString:@"</script>" withString:@">"];
+    
+    theScanner = [NSScanner scannerWithString:html];
     
     while ([theScanner isAtEnd] == NO) {
         
