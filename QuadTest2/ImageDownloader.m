@@ -30,7 +30,7 @@
             }
         } else {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Error connecting to server, check internet connection and try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
+            dispatch_async(dispatch_get_main_queue(), ^(void){[alert show];});
             break;
         }
         
