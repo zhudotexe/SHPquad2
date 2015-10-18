@@ -71,9 +71,15 @@
 #pragma mark - Push notification delegate methods
 
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
-    const void *devTokenBytes = [devToken bytes];
-    // self.registered = YES;
-    [self sendProviderDeviceToken:devTokenBytes]; // custom method
+    //const void *devTokenBytes = [devToken bytes];
+    
+    NSLog(@"My token is: %@", devToken);
+    
+    NSString *strDeviceToken = [[NSString alloc]initWithFormat:@"%@",
+                                [[[devToken description]stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]]
+                                    stringByReplacingOccurrencesOfString:@" " withString:@""]];
+
+    [self sendProviderDeviceToken:strDeviceToken];
     NSLog(@"Did Register for Remote Notifications with Device Token (%@)", devToken);
 }
 
@@ -83,7 +89,7 @@
 
 #pragma mark - APNs Registration
 
-- (void)sendProviderDeviceToken:(const void *)data {
+- (void)sendProviderDeviceToken:(NSString *)data {
     NSString *post = [NSString stringWithFormat:@"token=%@&os=%@",data,@"iOS"];
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
