@@ -89,9 +89,12 @@
 
 #pragma mark - APNs Registration
 
+NSString *token;
+
 - (void)sendProviderDeviceToken:(NSString *)data {
-    NSString *time = [NSString stringWithFormat:@"%f", [[NSDate date]timeIntervalSince1970]];
+    /*NSString *time = [NSString stringWithFormat:@"%f", [[NSDate date]timeIntervalSince1970]];
     NSString *nonce = [NSString stringWithFormat:@"%@", [self randomStringWithLength:20]];
+    token = data;
     
     NSString *post = [NSString stringWithFormat:@"token=%@&os=%@&oauth_consumer_key=%@&oauth_timestamp=%@&oauth_nonce=%@&oauth_signature_method=%@&oauth_version=%@&oauth_signature=%@",
                       data,
@@ -109,8 +112,10 @@
                                                                @"HMAC-SHA1",
                                                                @"1.0",
                                                                @"iOS",
-                                                               data]]]];
+                                                               data]]]];*/
     
+    
+    NSString *post = [NSString stringWithFormat:@"token=%@&os=%@",data,@"iOS"];
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -145,7 +150,7 @@
     
 }
 
-#pragma mark - Random Generation Methods
+/*#pragma mark - Random Generation Methods
 
 NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
@@ -161,7 +166,7 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
 }
 
 -(NSString *)genOAuthSignatureWithString:(NSString *)string {
-    NSString *key = @"cs_633a2cd4a0f16f0f22eccceab3aced6e";
+    NSString *key = [NSString stringWithFormat:@"cs_633a2cd4a0f16f0f22eccceab3aced6e&%@", token];
     NSString *data = string;
     
     const char *cKey  = [key cStringUsingEncoding:NSASCIIStringEncoding];
@@ -189,6 +194,6 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
                                                                     (CFStringRef)baseString, NULL, CFSTR(":/?#[]@!$&’()*+,;="),
                                                                     kCFStringEncodingUTF8));
     return encoded; 
-}
+}*/
 
 @end
