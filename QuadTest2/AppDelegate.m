@@ -90,7 +90,27 @@
 #pragma mark - APNs Registration
 
 - (void)sendProviderDeviceToken:(NSString *)data {
-    NSString *post = [NSString stringWithFormat:@"token=%@&os=%@",data,@"iOS"];
+    NSString *time = [NSString stringWithFormat:@"%f", [[NSDate date]timeIntervalSince1970]];
+    NSString *nonce = [NSString stringWithFormat:@"%@", [self randomStringWithLength:20]];
+    
+    NSString *post = [NSString stringWithFormat:@"token=%@&os=%@&oauth_consumer_key=%@&oauth_timestamp=%@&oauth_nonce=%@&oauth_signature_method=%@&oauth_version=%@&oauth_signature=%@",
+                      data,
+                      @"iOS",
+                      @"ck_71d8939a436019ca3b169c65d192689c",
+                      time,
+                      nonce,
+                      @"HMAC-SHA1",
+                      @"1.0",
+                      [self genOAuthSignatureWithString:[NSString stringWithFormat:@"POST&http://www.shpquad.org/pnfw/register/&%@",
+                                                              [NSString stringWithFormat:@"oauth_consumer_key=%@&oauth_timestamp=%@&oauth_nonce=%@&oauth_signature_method=%@&oauth_version=%@&os=%@&token=%@",
+                                                               @"ck_71d8939a436019ca3b169c65d192689c",
+                                                               time,
+                                                               nonce,
+                                                               @"HMAC-SHA1",
+                                                               @"1.0",
+                                                               @"iOS",
+                                                               data]]]];
+    
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -111,7 +131,8 @@
 
 // This method is used to receive the data which we get using post method.
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data {
-    
+    NSString *conData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"%@", conData);
 }
 
 // This method receives the error report in case of connection is not made to server.
@@ -122,6 +143,52 @@
 // This method is used to process the data after connection has made successfully.
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     
+}
+
+#pragma mark - Random Generation Methods
+
+NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+-(NSString *)randomStringWithLength:(int)len {
+    
+    NSMutableString *randomString = [NSMutableString stringWithCapacity: len];
+    
+    for (int i=0; i<len; i++) {
+        [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random_uniform([letters length])]];
+    }
+    
+    return randomString;
+}
+
+-(NSString *)genOAuthSignatureWithString:(NSString *)string {
+    NSString *key = @"cs_633a2cd4a0f16f0f22eccceab3aced6e";
+    NSString *data = string;
+    
+    const char *cKey  = [key cStringUsingEncoding:NSASCIIStringEncoding];
+    const char *cData = [data cStringUsingEncoding:NSASCIIStringEncoding];
+    
+    unsigned char cHMAC[CC_SHA256_DIGEST_LENGTH];
+    
+    CCHmac(kCCHmacAlgSHA256, cKey, strlen(cKey), cData, strlen(cData),
+           cHMAC);
+    
+    NSData *HMAC = [[NSData alloc] initWithBytes:cHMAC
+                                          length:sizeof(cHMAC)];
+    
+    NSString *encodedString = [HMAC base64EncodedString];
+    
+    NSString *escapeEncoded = [self urlEncodedString: encodedString];
+    
+    return escapeEncoded;
+}
+
+-(NSString *)urlEncodedString: (NSString *) baseString
+{
+    NSString *encoded = (NSString
+                          *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                    (CFStringRef)baseString, NULL, CFSTR(":/?#[]@!$&’()*+,;="),
+                                                                    kCFStringEncodingUTF8));
+    return encoded; 
 }
 
 @end

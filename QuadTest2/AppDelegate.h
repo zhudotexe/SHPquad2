@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#include <CommonCrypto/CommonDigest.h>
+#include <CommonCrypto/CommonHMAC.h>
+#import "NSData+Base64.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,NSURLConnectionDataDelegate>
 
