@@ -32,6 +32,8 @@
     [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
     [[UIApplication sharedApplication] registerForRemoteNotifications];
     
+    application.applicationIconBadgeNumber = 0;
+    
     if (launchOptions != nil)
     {
         NSDictionary *dictionary = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
@@ -70,7 +72,7 @@
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo
 {
     NSLog(@"Received notification: %@", userInfo);
-    //[self addMessageFromRemoteNotification:userInfo updateUI:YES];
+    [self addPostFromRemoteNotification:userInfo updateUI:YES];
 }
 
 #pragma mark - Push notification reciever methods
