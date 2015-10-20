@@ -107,6 +107,7 @@
     
     if ([target isEqual:@"0"]) {
         NSLog(@"Recieved test notification");
+        target = @"5639";
     }
     
     _feedItems = items;
@@ -130,7 +131,9 @@
     _selectedWebItem = [WebItem webItemWithTitle:_selectedFeedItem.title andURL:[NSURL URLWithString:_selectedFeedItem.link]];
     
     // Manually call segue to detail view controller
-    [self performSegueWithIdentifier:@"showDetail" sender:self];
+    if (_selectedFeedItem) {
+        [self performSegueWithIdentifier:@"showDetail" sender:self];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
