@@ -13,6 +13,7 @@
 @protocol HomeModelProtocol <NSObject>
 
 - (void)itemsDownloaded:(NSArray*)items;
+- (void)itemsDownloaded:(NSArray *)items withTarget:(NSString *)target;
 
 @end
 
@@ -22,7 +23,10 @@
 @property (nonatomic,weak) id<HomeModelProtocol> delegate;
 @property (nonatomic,strong) FeedParser *feedParser;
 @property (nonatomic,strong) NSMutableArray *feedItems;
+@property (nonatomic,strong) NSString *target;
 
 - (void) downloadItems;
+
+- (void)downloadItemsWithTarget:(NSString *)target;
 
 @end

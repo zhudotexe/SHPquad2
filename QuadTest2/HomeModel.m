@@ -28,6 +28,23 @@
     self.feedItems = [[NSMutableArray alloc] init];
 }
 
+-(void) downloadItemsWithTarget:(NSString *)target
+{
+    //URL
+    NSURL *feedURL = [NSURL URLWithString:@"http://shpquad.org/?feed=rss2"];
+    self.feedParser = [[FeedParser alloc]init];
+    
+    //delegate
+    [self.feedParser setDelegate:self];
+    
+    //do the thing!
+    [self.feedParser performSelectorInBackground:@selector(parseURL:) withObject:feedURL];
+    //[self.feedParser parseURL:feedURL];
+    
+    self.feedItems = [[NSMutableArray alloc] init];
+    self.target = target;
+}
+
 
 -(void)didParseItem:(NSDictionary *)item {
     /*FeedItem *feedItem = [[FeedItem alloc] init];
@@ -355,7 +372,12 @@
     
     
     if(self.delegate){
-        [self.delegate itemsDownloaded:self.feedItems];
+        if (self.target) {
+            [self.delegate itemsDownloaded:self.feedItems withTarget:self.target];
+            self.target = nil;
+        } else {
+            [self.delegate itemsDownloaded:self.feedItems];
+        }
     }
 }
 

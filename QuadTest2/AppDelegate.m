@@ -32,6 +32,16 @@
     [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
     [[UIApplication sharedApplication] registerForRemoteNotifications];
     
+    if (launchOptions != nil)
+    {
+        NSDictionary *dictionary = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        if (dictionary != nil)
+        {
+            NSLog(@"Launched from push notification: %@", dictionary);
+            [self addPostFromRemoteNotification:dictionary updateUI:NO];
+        }
+    }
+    
     return YES;
 }
 
@@ -55,6 +65,21 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo
+{
+    NSLog(@"Received notification: %@", userInfo);
+    //[self addMessageFromRemoteNotification:userInfo updateUI:YES];
+}
+
+#pragma mark - Push notification reciever methods
+
+- (void)addPostFromRemoteNotification:(NSDictionary *)notification updateUI:(BOOL)update {
+    UISplitViewController *splitViewController = (UISplitViewController*)_window.rootViewController;
+    UINavigationController *navigationController = (UINavigationController*)[[splitViewController viewControllers]firstObject];
+    MasterViewController *masterViewController = (MasterViewController*)[[navigationController viewControllers]firstObject];
+    [masterViewController downloadItemsWithTarget:[notification valueForKey:@"id"]];
 }
 
 #pragma mark - Split view

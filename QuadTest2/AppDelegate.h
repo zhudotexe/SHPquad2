@@ -10,6 +10,7 @@
 #include <CommonCrypto/CommonDigest.h>
 #include <CommonCrypto/CommonHMAC.h>
 #import "NSData+Base64.h"
+#import "MasterViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,NSURLConnectionDataDelegate>
 

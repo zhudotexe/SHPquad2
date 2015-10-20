@@ -103,8 +103,39 @@
     
 }
 
+- (void)itemsDownloaded:(NSArray *)items withTarget:(NSString *)target {
+    
+    if ([target isEqual:@"0"]) {
+        NSLog(@"Recieved test notification");
+    }
+    
+    _feedItems = items;
+    _filteredItems = [NSMutableArray arrayWithCapacity:[_feedItems count]];
+    
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        [self.tableView reloadData];
+    });
+    
+    // Set selected feeditem to var
+    for (FeedItem* item in _feedItems) {
+        if ([item.link isEqual:[NSString stringWithFormat:@"http://www.shpquad.org/archives/%@", target]]) {
+            _selectedFeedItem = item;
+            break;
+        }
+    }
+    
+    
+    
+    // Set selected webitem to var
+    _selectedWebItem = [WebItem webItemWithTitle:_selectedFeedItem.title andURL:[NSURL URLWithString:_selectedFeedItem.link]];
+    
+    // Manually call segue to detail view controller
+    [self performSegueWithIdentifier:@"showDetail" sender:self];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     // Set selected feeditem to var
     if(tableView == self.searchDisplayController.searchResultsTableView) {
         NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
@@ -118,8 +149,10 @@
     // Set selected webitem to var
     _selectedWebItem = [WebItem webItemWithTitle:_selectedFeedItem.title andURL:[NSURL URLWithString:_selectedFeedItem.link]];
     
-    // Manually call segue to detail view controller
-    [self performSegueWithIdentifier:@"showDetail" sender:self];
+    if (_selectedFeedItem) {
+        // Manually call segue to detail view controller
+        [self performSegueWithIdentifier:@"showDetail" sender:self];
+    }
 }
 
 /*
@@ -143,6 +176,12 @@
 - (void)showSettings
 {
     [self performSegueWithIdentifier:@"showSettings" sender:self];
+}
+
+#pragma mark - AppDelegate stuff
+
+- (void)downloadItemsWithTarget:(NSString *)target {
+    [_homeModel downloadItemsWithTarget:target];
 }
 
 #pragma mark - Segues
