@@ -115,7 +115,7 @@ NSString *token;
                                                                data]]]];*/
     
     
-    NSString *post = [NSString stringWithFormat:@"token=%@&os=%@",data,@"iOS"];
+    NSString *post = [NSString stringWithFormat:@"token=%@&os=%@", data, @"iOS"];
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
