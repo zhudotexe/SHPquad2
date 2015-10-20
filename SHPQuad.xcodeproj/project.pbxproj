@@ -543,7 +543,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.shpquad.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SHPQuad;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7a616eb6-585e-4b3d-a2ea-c7316b4c5492";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -560,7 +560,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.shpquad.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SHPQuad;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7a616eb6-585e-4b3d-a2ea-c7316b4c5492";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
