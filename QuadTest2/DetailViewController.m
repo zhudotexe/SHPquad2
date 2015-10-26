@@ -50,12 +50,16 @@
     // Orientation
     UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
     
-    if (UIDeviceOrientationIsLandscape(orientation)) {
-        _viewRect = CGRectMake(0, 0, self.view.frame.size.width - 320, self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - 12);
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    {
+        if (UIDeviceOrientationIsLandscape(orientation)) {
+            _viewRect = CGRectMake(0, 0, self.view.frame.size.width - 320, self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - 12);
+        } else {
+            _viewRect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - 12);
+        }
     } else {
         _viewRect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - 12);
     }
-    
     
     if (self.detailItem) {
         self.detailTitle.title = [self.detailItem title];
@@ -207,9 +211,10 @@
 
 - (void)deviceOrientationChanged:(NSNotification *)notification
 {
-    //NSArray *tempImages = [NSArray arrayWithArray:<#(nonnull NSArray *)#>]
-    [self configureView];
-    
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    {
+        [self configureView];
+    }
 }
 
 #pragma mark Progress Handlers
