@@ -17,6 +17,7 @@
     FeedItem *_selectedFeedItem;
     WebItem *_selectedWebItem;
     NSUserDefaults *_defaults;
+    UIRefreshControl *_refreshControl;
 }
 
 @property NSMutableArray *objects;
@@ -58,6 +59,10 @@
         NSLog(@"Did first time setup");
     }
     
+    _refreshControl = [[UIRefreshControl alloc]init];
+    [self.tableView addSubview:_refreshControl];
+    [_refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+    
     
     self.navigationController.navigationBar.translucent= NO;
     
@@ -98,6 +103,7 @@
     _filteredItems = [NSMutableArray arrayWithCapacity:[_feedItems count]];
     
     dispatch_async(dispatch_get_main_queue(), ^(void){
+        [_refreshControl endRefreshing];
         [self.tableView reloadData];
     });
     
@@ -134,6 +140,12 @@
     if (_selectedFeedItem) {
         [self performSegueWithIdentifier:@"showDetail" sender:self];
     }
+}
+
+#pragma mark - Refresh
+
+- (void)refreshTable {
+    [_homeModel downloadItems];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
