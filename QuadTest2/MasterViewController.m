@@ -59,33 +59,10 @@
         NSLog(@"Did first time setup");
     }
     
-    _refreshControl = [[UIRefreshControl alloc]init];
-    [self.tableView addSubview:_refreshControl];
-    [_refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
-    [_refreshControl beginRefreshing];
-    [self refreshTable];
- 
-    _resultsTableController = [[ResultsTableController alloc] init];
-    _searchController = [[UISearchController alloc] initWithSearchResultsController:self.resultsTableController];
-    self.searchController.searchResultsUpdater = self;
-    //[self.searchController.searchBar sizeToFit];
-    self.tableView.tableHeaderView = self.searchController.searchBar;
+    self.navigationController.navigationBar.translucent = NO;
     
-    // we want to be the delegate for our filtered table so didSelectRowAtIndexPath is called for both tables
-    self.resultsTableController.tableView.delegate = self;
-    self.searchController.delegate = self;
-    self.searchController.dimsBackgroundDuringPresentation = NO; // default is YES
-    self.searchController.searchBar.delegate = self; // so we can monitor text changes + others
-    self.searchController.hidesNavigationBarDuringPresentation = NO;
-
-    
-    // Search is now just presenting a view controller. As such, normal view controller
-    // presentation semantics apply. Namely that presentation will walk up the view controller
-    // hierarchy until it finds the root view controller or one that defines a presentation context.
-    //
-    self.definesPresentationContext = YES;  // know where you want UISearchController to be displayed
-    
-    self.navigationController.navigationBar.translucent= NO;
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+        self.edgesForExtendedLayout = UIRectEdgeNone;
     
     UIImage *image = [UIImage imageNamed:@"QuadLogoSlogan1_appv.png"];
     UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
@@ -109,9 +86,34 @@
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:1]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.6784 green:0.0588 blue:0.1137 alpha:1]];
     
+    _refreshControl = [[UIRefreshControl alloc]init];
+    [self.view addSubview:_refreshControl];
+    [_refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+    [_refreshControl beginRefreshing];
+    [self refreshTable];
+    [self.tableView sendSubviewToBack:_refreshControl];
+    [self.tableView bringSubviewToFront:self.tableView.tableHeaderView];
+ 
+    _resultsTableController = [[ResultsTableController alloc] init];
+    _searchController = [[UISearchController alloc] initWithSearchResultsController:self.resultsTableController];
+    self.searchController.searchResultsUpdater = self;
+    //[self.searchController.searchBar sizeToFit];
+    self.tableView.tableHeaderView = self.searchController.searchBar;
     
+    // we want to be the delegate for our filtered table so didSelectRowAtIndexPath is called for both tables
+    self.resultsTableController.tableView.delegate = self;
+    self.searchController.delegate = self;
+    self.searchController.dimsBackgroundDuringPresentation = NO; // default is YES
+    self.searchController.searchBar.delegate = self; // so we can monitor text changes + others
+    self.searchController.hidesNavigationBarDuringPresentation = NO;
+
     
-    self.definesPresentationContext = YES;
+    // Search is now just presenting a view controller. As such, normal view controller
+    // presentation semantics apply. Namely that presentation will walk up the view controller
+    // hierarchy until it finds the root view controller or one that defines a presentation context.
+    //
+    self.definesPresentationContext = YES;  // know where you want UISearchController to be displayed
+    
     
 }
 
@@ -128,6 +130,13 @@
             _searchControllerSearchFieldWasFirstResponder = NO;
         }
     }
+}
+
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.tableView.tableHeaderView.frame =
+    CGRectMake(0, 0, self.tableView.tableHeaderView.frame.size.width, self.tableView.tableHeaderView.frame.size.height);
 }
 
 - (void)didReceiveMemoryWarning {
