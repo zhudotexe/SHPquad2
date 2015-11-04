@@ -23,7 +23,8 @@
 		4927D15A1B47850700FF6661 /* QuadTabButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4927D1591B47850700FF6661 /* QuadTabButton@2x.png */; };
 		4927D15D1B478DE500FF6661 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927D15C1B478DE500FF6661 /* TabViewController.m */; };
 		4927D1601B47920300FF6661 /* WebItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927D15F1B47920300FF6661 /* WebItem.m */; };
-		4933774A1BD576780071671A /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 493377491BD576780071671A /* NSData+Base64.m */; settings = {ASSET_TAGS = (); }; };
+		4933774A1BD576780071671A /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 493377491BD576780071671A /* NSData+Base64.m */; };
+		494E45361BE9C0C300318240 /* ResultsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 494E45351BE9C0C300318240 /* ResultsTableController.m */; };
 		495182701B4238EA00B1509C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4951826F1B4238EA00B1509C /* main.m */; };
 		495182731B4238EA00B1509C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 495182721B4238EA00B1509C /* AppDelegate.m */; };
 		495182761B4238EA00B1509C /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495182751B4238EA00B1509C /* MasterViewController.m */; };
@@ -43,7 +44,7 @@
 		4971E4A41B44D65F00482419 /* QuadLogoSlogan1_appv@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4971E4A31B44D65F00482419 /* QuadLogoSlogan1_appv@2x.png */; };
 		4971E4A81B45171900482419 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4971E4A71B45171900482419 /* ImageDownloader.m */; };
 		4971E4AA1B45286D00482419 /* loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4971E4A91B45286D00482419 /* loading@2x.png */; };
-		499457C41BAB6A8500EBC747 /* LeftToRightSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 499457C31BAB6A8500EBC747 /* LeftToRightSegue.m */; settings = {ASSET_TAGS = (); }; };
+		499457C41BAB6A8500EBC747 /* LeftToRightSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 499457C31BAB6A8500EBC747 /* LeftToRightSegue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,8 @@
 		4927D15F1B47920300FF6661 /* WebItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebItem.m; sourceTree = "<group>"; };
 		493377481BD576780071671A /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		493377491BD576780071671A /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		494E45341BE9C0C300318240 /* ResultsTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsTableController.h; sourceTree = "<group>"; };
+		494E45351BE9C0C300318240 /* ResultsTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsTableController.m; sourceTree = "<group>"; };
 		4951826A1B4238EA00B1509C /* SHPQuad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SHPQuad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4951826E1B4238EA00B1509C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4951826F1B4238EA00B1509C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -198,6 +201,8 @@
 				4953E62E1B9A4AFD00EBB42B /* FeedParser.m */,
 				499457C21BAB6A8500EBC747 /* LeftToRightSegue.h */,
 				499457C31BAB6A8500EBC747 /* LeftToRightSegue.m */,
+				494E45341BE9C0C300318240 /* ResultsTableController.h */,
+				494E45351BE9C0C300318240 /* ResultsTableController.m */,
 			);
 			path = QuadTest2;
 			sourceTree = "<group>";
@@ -395,6 +400,7 @@
 				495182981B423A2600B1509C /* HomeModel.m in Sources */,
 				4953E62F1B9A4AFD00EBB42B /* FeedParser.m in Sources */,
 				495182731B4238EA00B1509C /* AppDelegate.m in Sources */,
+				494E45361BE9C0C300318240 /* ResultsTableController.m in Sources */,
 				49225F5A1B9A52020029E8D0 /* NSString+HTML.m in Sources */,
 				4933774A1BD576780071671A /* NSData+Base64.m in Sources */,
 				4927D1601B47920300FF6661 /* WebItem.m in Sources */,
