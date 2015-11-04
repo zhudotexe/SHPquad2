@@ -68,7 +68,7 @@
     _resultsTableController = [[ResultsTableController alloc] init];
     _searchController = [[UISearchController alloc] initWithSearchResultsController:self.resultsTableController];
     self.searchController.searchResultsUpdater = self;
-    [self.searchController.searchBar sizeToFit];
+    //[self.searchController.searchBar sizeToFit];
     self.tableView.tableHeaderView = self.searchController.searchBar;
     
     // we want to be the delegate for our filtered table so didSelectRowAtIndexPath is called for both tables
@@ -76,6 +76,8 @@
     self.searchController.delegate = self;
     self.searchController.dimsBackgroundDuringPresentation = NO; // default is YES
     self.searchController.searchBar.delegate = self; // so we can monitor text changes + others
+    self.searchController.hidesNavigationBarDuringPresentation = NO;
+
     
     // Search is now just presenting a view controller. As such, normal view controller
     // presentation semantics apply. Namely that presentation will walk up the view controller
@@ -292,7 +294,7 @@
     // Get references to labels of cell
     myCell.titleLabel.text = item.title;
     myCell.authorLabel.text = item.author;
-    myCell.dateLabel.text = item.date; //[item.date descriptionWithLocale:[NSLocale currentLocale]];
+    myCell.dateLabel.text = (NSString *)item.date; //[item.date descriptionWithLocale:[NSLocale currentLocale]];
     // TODO: myCell.thumbnailImageView.image = item.
     
     return myCell;

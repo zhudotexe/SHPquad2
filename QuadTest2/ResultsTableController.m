@@ -39,7 +39,7 @@
     // Get references to labels of cell
     myCell.titleLabel.text = item.title;
     myCell.authorLabel.text = item.author;
-    myCell.dateLabel.text = item.date; //[item.date descriptionWithLocale:[NSLocale currentLocale]];
+    myCell.dateLabel.text = (NSString *)item.date; //[item.date descriptionWithLocale:[NSLocale currentLocale]];
     // TODO: myCell.thumbnailImageView.image = item.
     
     return myCell;
