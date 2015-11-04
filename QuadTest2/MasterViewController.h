@@ -11,11 +11,10 @@
 
 @class DetailViewController;
 
-@interface MasterViewController : UITableViewController <HomeModelProtocol, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface MasterViewController : UITableViewController <HomeModelProtocol, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 - (void)downloadItemsWithTarget:(NSString *)target;
 

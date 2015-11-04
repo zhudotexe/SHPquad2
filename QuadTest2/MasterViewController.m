@@ -43,14 +43,14 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    self.searchBar.delegate = self;
+
     
     _feedItems = [[NSArray alloc] init];
     _homeModel = [[HomeModel alloc] init];
     
     _homeModel.delegate = self;
     
-    [_homeModel downloadItems];
+    //[_homeModel downloadItems];
     
     _defaults = [NSUserDefaults standardUserDefaults];
     if (![_defaults boolForKey:@"notFirstTime"]) {
@@ -62,6 +62,9 @@
     _refreshControl = [[UIRefreshControl alloc]init];
     [self.tableView addSubview:_refreshControl];
     [_refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+    [_refreshControl beginRefreshing];
+    [self refreshTable];
+ 
     
     
     self.navigationController.navigationBar.translucent= NO;
@@ -87,6 +90,11 @@
     [self.navigationItem.leftBarButtonItem setTintColor:[UIColor colorWithRed:0.3765 green:0 blue:0 alpha:1]];
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:1]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.6784 green:0.0588 blue:0.1137 alpha:1]];
+    
+    
+    
+    self.definesPresentationContext = YES;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -152,14 +160,10 @@
 {
     
     // Set selected feeditem to var
-    if(tableView == self.searchDisplayController.searchResultsTableView) {
-        NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-        _selectedFeedItem = _filteredItems[indexPath.row];
-    }
-    else {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        _selectedFeedItem = _feedItems[indexPath.row];
-    }
+    
+    //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    _selectedFeedItem = _feedItems[indexPath.row];
+    
     
     // Set selected webitem to var
     _selectedWebItem = [WebItem webItemWithTitle:_selectedFeedItem.title andURL:[NSURL URLWithString:_selectedFeedItem.link]];
@@ -229,11 +233,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of feed items (initially 0)
-    if (tableView == self.searchDisplayController.searchResultsTableView){
-        return _filteredItems.count;
-    } else {
-        return _feedItems.count;
-    }
+    
+    return _feedItems.count;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -250,11 +252,9 @@
     
     FeedItem *item;
     
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        item = _filteredItems[indexPath.row];
-    } else {
-        item = _feedItems[indexPath.row];
-    }
+    
+    item = _feedItems[indexPath.row];
+    
     
     
     // Get references to labels of cell
@@ -286,6 +286,9 @@
 }*/
 
 #pragma mark Content Filtering
+
+
+
 -(void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
     // Update the filtered array based on the search text and scope.
     // Remove all objects from the filtered search array
@@ -300,16 +303,6 @@
     NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"SELF.content contains[c] %@",searchText];
     tempArray = [NSMutableArray arrayWithArray:[_feedItems filteredArrayUsingPredicate:predicate2]];
     [_filteredItems arrayByAddingObjectsFromArray:tempArray];
-}
-
-#pragma mark - UISearchDisplayController Delegate Methods
-
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-    // Tells the table data source to reload when text changes
-    [self filterContentForSearchText:searchString scope:
-     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
-    // Return YES to cause the search result table view to be reloaded.
-    return YES;
 }
 
 @end
