@@ -8,22 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "HomeModel.h"
-#import "ResultsTableController.h"
 
 @class DetailViewController;
 
-@interface MasterViewController : UITableViewController <HomeModelProtocol, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating>
+@interface MasterViewController : UITableViewController <HomeModelProtocol, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
-@property (nonatomic, strong) UISearchController *searchController;
 
-// our secondary search results table view
-@property (nonatomic, strong) ResultsTableController *resultsTableController;
-
-// for state restoration
-@property BOOL searchControllerWasActive;
-@property BOOL searchControllerSearchFieldWasFirstResponder;
-
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 - (void)downloadItemsWithTarget:(NSString *)target;
 

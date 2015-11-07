@@ -43,14 +43,14 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-
+    self.searchBar.delegate = self;
     
     _feedItems = [[NSArray alloc] init];
     _homeModel = [[HomeModel alloc] init];
     
     _homeModel.delegate = self;
     
-    //[_homeModel downloadItems];
+    [_homeModel downloadItems];
     
     _defaults = [NSUserDefaults standardUserDefaults];
     if (![_defaults boolForKey:@"notFirstTime"]) {
@@ -59,10 +59,12 @@
         NSLog(@"Did first time setup");
     }
     
-    self.navigationController.navigationBar.translucent = NO;
+    _refreshControl = [[UIRefreshControl alloc]init];
+    [self.tableView addSubview:_refreshControl];
+    [_refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     
-    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
-        self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    self.navigationController.navigationBar.translucent= NO;
     
     UIImage *image = [UIImage imageNamed:@"QuadLogoSlogan1_appv.png"];
     UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
@@ -85,57 +87,6 @@
     [self.navigationItem.leftBarButtonItem setTintColor:[UIColor colorWithRed:0.3765 green:0 blue:0 alpha:1]];
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:1]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.6784 green:0.0588 blue:0.1137 alpha:1]];
-    
-    _refreshControl = [[UIRefreshControl alloc]init];
-    [self.view addSubview:_refreshControl];
-    [_refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
-    [_refreshControl beginRefreshing];
-    [self refreshTable];
-    [self.tableView sendSubviewToBack:_refreshControl];
-    [self.tableView bringSubviewToFront:self.tableView.tableHeaderView];
- 
-    _resultsTableController = [[ResultsTableController alloc] init];
-    _searchController = [[UISearchController alloc] initWithSearchResultsController:self.resultsTableController];
-    self.searchController.searchResultsUpdater = self;
-    //[self.searchController.searchBar sizeToFit];
-    self.tableView.tableHeaderView = self.searchController.searchBar;
-    
-    // we want to be the delegate for our filtered table so didSelectRowAtIndexPath is called for both tables
-    self.resultsTableController.tableView.delegate = self;
-    self.searchController.delegate = self;
-    self.searchController.dimsBackgroundDuringPresentation = NO; // default is YES
-    self.searchController.searchBar.delegate = self; // so we can monitor text changes + others
-    self.searchController.hidesNavigationBarDuringPresentation = YES;
-
-    
-    // Search is now just presenting a view controller. As such, normal view controller
-    // presentation semantics apply. Namely that presentation will walk up the view controller
-    // hierarchy until it finds the root view controller or one that defines a presentation context.
-    //
-    self.definesPresentationContext = YES;  // know where you want UISearchController to be displayed
-    [self.view bringSubviewToFront:self.searchController.searchBar];
-    
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    /*// restore the searchController's active state
-    if (self.searchControllerWasActive) {
-        self.searchController.active = self.searchControllerWasActive;
-        _searchControllerWasActive = NO;
-        
-        if (self.searchControllerSearchFieldWasFirstResponder) {
-            [self.searchController.searchBar becomeFirstResponder];
-            _searchControllerSearchFieldWasFirstResponder = NO;
-        }
-    }*/
-}
-
--(void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -200,12 +151,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    FeedItem *selectedItem = (tableView == self.tableView) ?
-    _feedItems[indexPath.row] : self.resultsTableController.filteredItems[indexPath.row];
-    
-    //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    _selectedFeedItem = selectedItem;
-    
+    // Set selected feeditem to var
+    if(tableView == self.searchDisplayController.searchResultsTableView) {
+        NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+        _selectedFeedItem = _filteredItems[indexPath.row];
+    }
+    else {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        _selectedFeedItem = _feedItems[indexPath.row];
+    }
     
     // Set selected webitem to var
     _selectedWebItem = [WebItem webItemWithTitle:_selectedFeedItem.title andURL:[NSURL URLWithString:_selectedFeedItem.link]];
@@ -275,9 +229,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of feed items (initially 0)
-    
-    return _feedItems.count;
-    
+    if (tableView == self.searchDisplayController.searchResultsTableView){
+        return _filteredItems.count;
+    } else {
+        return _feedItems.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -294,15 +250,17 @@
     
     FeedItem *item;
     
-    
-    item = _feedItems[indexPath.row];
-    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        item = _filteredItems[indexPath.row];
+    } else {
+        item = _feedItems[indexPath.row];
+    }
     
     
     // Get references to labels of cell
     myCell.titleLabel.text = item.title;
     myCell.authorLabel.text = item.author;
-    myCell.dateLabel.text = (NSString *)item.date; //[item.date descriptionWithLocale:[NSLocale currentLocale]];
+    myCell.dateLabel.text = item.date; //[item.date descriptionWithLocale:[NSLocale currentLocale]];
     // TODO: myCell.thumbnailImageView.image = item.
     
     return myCell;
@@ -327,20 +285,8 @@
     }
 }*/
 
-#pragma mark - UISearchResultsUpdating
-
-- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-    NSString *searchText = searchController.searchBar.text;
-    
-    // strip out all the leading and trailing spaces
-    NSString *strippedString = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
-    // break up the search terms (separated by spaces)
-    NSArray *searchItems = nil;
-    if (strippedString.length > 0) {
-        searchItems = [strippedString componentsSeparatedByString:@" "];
-    }
-    
+#pragma mark Content Filtering
+-(void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
     // Update the filtered array based on the search text and scope.
     // Remove all objects from the filtered search array
     [_filteredItems removeAllObjects];
@@ -354,108 +300,16 @@
     NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"SELF.content contains[c] %@",searchText];
     tempArray = [NSMutableArray arrayWithArray:[_feedItems filteredArrayUsingPredicate:predicate2]];
     [_filteredItems arrayByAddingObjectsFromArray:tempArray];
-    
-    ResultsTableController *tableController = (ResultsTableController *)self.searchController.searchResultsController;
-    tableController.filteredItems = _filteredItems;
-    [tableController.tableView reloadData];
-    
 }
 
-#pragma mark - UISearchBarDelegate
+#pragma mark - UISearchDisplayController Delegate Methods
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [searchBar resignFirstResponder];
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    // Tells the table data source to reload when text changes
+    [self filterContentForSearchText:searchString scope:
+     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
 }
-
-
-#pragma mark - UISearchControllerDelegate
-
-// Called after the search controller's search bar has agreed to begin editing or when
-// 'active' is set to YES.
-// If you choose not to present the controller yourself or do not implement this method,
-// a default presentation is performed on your behalf.
-//
-// Implement this method if the default presentation is not adequate for your purposes.
-//
-- (void)presentSearchController:(UISearchController *)searchController {
-    
-}
-
-- (void)willPresentSearchController:(UISearchController *)searchController {
-    // do something before the search controller is presented
-}
-
-- (void)didPresentSearchController:(UISearchController *)searchController {
-    // do something after the search controller is presented
-}
-
-- (void)willDismissSearchController:(UISearchController *)searchController {
-    // do something before the search controller is dismissed
-}
-
-- (void)didDismissSearchController:(UISearchController *)searchController {
-    // do something after the search controller is dismissed
-}
-
-
-
-
-
-/*#pragma mark - UIStateRestoration
-
-// we restore several items for state restoration:
-//  1) Search controller's active state,
-//  2) search text,
-//  3) first responder
-
-NSString *const ViewControllerTitleKey = @"ViewControllerTitleKey";
-NSString *const SearchControllerIsActiveKey = @"SearchControllerIsActiveKey";
-NSString *const SearchBarTextKey = @"SearchBarTextKey";
-NSString *const SearchBarIsFirstResponderKey = @"SearchBarIsFirstResponderKey";
-
-- (void)encodeRestorableStateWithCoder:(NSCoder *)coder {
-    [super encodeRestorableStateWithCoder:coder];
-    
-    // encode the view state so it can be restored later
-    
-    // encode the title
-    [coder encodeObject:self.title forKey:ViewControllerTitleKey];
-    
-    UISearchController *searchController = self.searchController;
-    
-    // encode the search controller's active state
-    BOOL searchDisplayControllerIsActive = searchController.isActive;
-    [coder encodeBool:searchDisplayControllerIsActive forKey:SearchControllerIsActiveKey];
-    
-    // encode the first responser status
-    if (searchDisplayControllerIsActive) {
-        [coder encodeBool:[searchController.searchBar isFirstResponder] forKey:SearchBarIsFirstResponderKey];
-    }
-    
-    // encode the search bar text
-    [coder encodeObject:searchController.searchBar.text forKey:SearchBarTextKey];
-}
-
-- (void)decodeRestorableStateWithCoder:(NSCoder *)coder {
-    [super decodeRestorableStateWithCoder:coder];
-    
-    // restore the title
-    self.title = [coder decodeObjectForKey:ViewControllerTitleKey];
-    
-    // restore the active state:
-    // we can't make the searchController active here since it's not part of the view
-    // hierarchy yet, instead we do it in viewWillAppear
-    //
-    _searchControllerWasActive = [coder decodeBoolForKey:SearchControllerIsActiveKey];
-    
-    // restore the first responder status:
-    // we can't make the searchController first responder here since it's not part of the view
-    // hierarchy yet, instead we do it in viewWillAppear
-    //
-    _searchControllerSearchFieldWasFirstResponder = [coder decodeBoolForKey:SearchBarIsFirstResponderKey];
-    
-    // restore the text in the search field
-    self.searchController.searchBar.text = [coder decodeObjectForKey:SearchBarTextKey];
-}*/
 
 @end
