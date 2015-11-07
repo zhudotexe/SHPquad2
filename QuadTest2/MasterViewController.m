@@ -50,7 +50,7 @@
     
     _homeModel.delegate = self;
     
-    [_homeModel downloadItems];
+    // [_homeModel downloadItems];
     
     _defaults = [NSUserDefaults standardUserDefaults];
     if (![_defaults boolForKey:@"notFirstTime"]) {
@@ -63,6 +63,8 @@
     [self.tableView addSubview:_refreshControl];
     [_refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     
+    [self refreshTable];
+    [_refreshControl beginRefreshing];
     
     self.navigationController.navigationBar.translucent= NO;
     
