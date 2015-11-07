@@ -105,7 +105,7 @@
     self.searchController.delegate = self;
     self.searchController.dimsBackgroundDuringPresentation = NO; // default is YES
     self.searchController.searchBar.delegate = self; // so we can monitor text changes + others
-    self.searchController.hidesNavigationBarDuringPresentation = NO;
+    self.searchController.hidesNavigationBarDuringPresentation = YES;
 
     
     // Search is now just presenting a view controller. As such, normal view controller
@@ -113,14 +113,14 @@
     // hierarchy until it finds the root view controller or one that defines a presentation context.
     //
     self.definesPresentationContext = YES;  // know where you want UISearchController to be displayed
-    
+    [self.view bringSubviewToFront:self.searchController.searchBar];
     
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    // restore the searchController's active state
+    /*// restore the searchController's active state
     if (self.searchControllerWasActive) {
         self.searchController.active = self.searchControllerWasActive;
         _searchControllerWasActive = NO;
@@ -129,14 +129,13 @@
             [self.searchController.searchBar becomeFirstResponder];
             _searchControllerSearchFieldWasFirstResponder = NO;
         }
-    }
+    }*/
 }
 
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    self.tableView.tableHeaderView.frame =
-    CGRectMake(0, 0, self.tableView.tableHeaderView.frame.size.width, self.tableView.tableHeaderView.frame.size.height);
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -402,7 +401,7 @@
 
 
 
-#pragma mark - UIStateRestoration
+/*#pragma mark - UIStateRestoration
 
 // we restore several items for state restoration:
 //  1) Search controller's active state,
@@ -457,6 +456,6 @@ NSString *const SearchBarIsFirstResponderKey = @"SearchBarIsFirstResponderKey";
     
     // restore the text in the search field
     self.searchController.searchBar.text = [coder decodeObjectForKey:SearchBarTextKey];
-}
+}*/
 
 @end
