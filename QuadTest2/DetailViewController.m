@@ -47,19 +47,9 @@
 - (void)configureView {
     // Update the user interface for the detail item.
     
-    // Orientation
-    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
     
-    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
-    {
-        if (UIDeviceOrientationIsLandscape(orientation)) {
-            _viewRect = CGRectMake(0, 0, self.view.frame.size.width - 320, self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - 12);
-        } else {
-            _viewRect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - 12);
-        }
-    } else {
-        _viewRect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - 12);
-    }
+    _viewRect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    
     
     if (self.detailItem) {
         self.detailTitle.title = [self.detailItem title];
@@ -186,7 +176,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [self configureView];
+    //[self configureView];
 
     _imageDownloader = [[ImageDownloader alloc] init];
     
@@ -197,11 +187,15 @@
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    //[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationChanged:)
-                                                 name:UIDeviceOrientationDidChangeNotification object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
     
+}
+
+- (void)viewDidLayoutSubviews {
+    NSLog(@"Did layout subviews");
+    [self configureView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -211,10 +205,7 @@
 
 - (void)deviceOrientationChanged:(NSNotification *)notification
 {
-    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
-    {
-        [self configureView];
-    }
+    
 }
 
 #pragma mark Progress Handlers
