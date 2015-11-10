@@ -79,7 +79,7 @@
         
         NSMutableString *result = [[NSMutableString alloc]initWithString:@""];
         NSMutableString *vidhtml = [[NSMutableString alloc]initWithString:@""];
-        NSString *html = nil;
+        // NSString *html = nil;
         NSString *url = nil;
         
         // Scan and find all tags
