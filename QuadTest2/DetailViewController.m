@@ -30,7 +30,7 @@
         _webItem = nil;
         
         // Update the view.
-        [self configureView];
+        //[self ];
     }
 }
 
@@ -40,7 +40,7 @@
         _detailItem = nil;
         
         // Update the view.
-        [self configureView];
+        //[self configureView];
     }
 }
 
