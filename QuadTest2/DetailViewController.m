@@ -72,28 +72,28 @@
             //[webView setUserInteractionEnabled:NO];
             
             [self.view addSubview:webView];
-                
+            
             /*// set up the scroll view
-            UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 750.0f, 400.0f)];
-            [self.view addSubview:scrollView];
-            
-            [self.view bringSubviewToFront:scrollView];
-            
-            // Set up the container view to hold your custom view hierarchy
-            CGSize containerSize = CGSizeMake(75 + [[self.detailItem videos]count] * 625, 400.0f);
-            self.containerView = [[UIView alloc] initWithFrame:(CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=containerSize}];
-            [scrollView addSubview:self.containerView];
-            
-            for (int i = 0; i < [[self.detailItem videos]count]; i++) { // set up an web view for each video at multiples of the video resolution
-                UIWebView *tempWebView = [[UIWebView alloc]initWithFrame:CGRectMake(25 + i * 625, 0.0f, 600.0f, 400.0f)];
-                NSURLRequest *content = [[NSURLRequest alloc]initWithURL:[[self.detailItem videos]objectAtIndex:i]];
-                [tempWebView loadRequest:content];
-                [self.containerView addSubview:tempWebView];
-            }
-            // set attributes of the scrollview
-            scrollView.contentSize = containerSize;
-            [scrollView setShowsHorizontalScrollIndicator:NO];
-            [scrollView setBackgroundColor:[UIColor whiteColor]];*/
+             UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 750.0f, 400.0f)];
+             [self.view addSubview:scrollView];
+             
+             [self.view bringSubviewToFront:scrollView];
+             
+             // Set up the container view to hold your custom view hierarchy
+             CGSize containerSize = CGSizeMake(75 + [[self.detailItem videos]count] * 625, 400.0f);
+             self.containerView = [[UIView alloc] initWithFrame:(CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=containerSize}];
+             [scrollView addSubview:self.containerView];
+             
+             for (int i = 0; i < [[self.detailItem videos]count]; i++) { // set up an web view for each video at multiples of the video resolution
+             UIWebView *tempWebView = [[UIWebView alloc]initWithFrame:CGRectMake(25 + i * 625, 0.0f, 600.0f, 400.0f)];
+             NSURLRequest *content = [[NSURLRequest alloc]initWithURL:[[self.detailItem videos]objectAtIndex:i]];
+             [tempWebView loadRequest:content];
+             [self.containerView addSubview:tempWebView];
+             }
+             // set attributes of the scrollview
+             scrollView.contentSize = containerSize;
+             [scrollView setShowsHorizontalScrollIndicator:NO];
+             [scrollView setBackgroundColor:[UIColor whiteColor]];*/
             
         } else if ([[self.detailItem images]count]) { // if there is an image, init with an imageview
             
@@ -177,7 +177,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     //[self configureView];
-
+    
     _imageDownloader = [[ImageDownloader alloc] init];
     
     _imageDownloader.delegate = self;
@@ -246,7 +246,7 @@
         html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>", text] withString:@""];
     }
     //
-
+    
     html = [html stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     return html;
