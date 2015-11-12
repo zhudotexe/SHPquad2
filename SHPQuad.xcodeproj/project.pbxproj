@@ -211,16 +211,14 @@
 		4951826C1B4238EA00B1509C /* QuadTest2 */ = {
 			isa = PBXGroup;
 			children = (
+				4951827A1B4238EA00B1509C /* Main.storyboard */,
+				4951827F1B4238EA00B1509C /* LaunchScreen.xib */,
 				4915A7C11BF29CD6002FBE0B /* View Controllers */,
 				4915A7C21BF29D07002FBE0B /* Downloaders/Parsers */,
 				4915A7C31BF29D4F002FBE0B /* Custom Objects */,
 				49225F1C1B9A51F50029E8D0 /* HTML */,
 				4971E4941B440DC400482419 /* Icons/Images */,
-				495182711B4238EA00B1509C /* AppDelegate.h */,
-				495182721B4238EA00B1509C /* AppDelegate.m */,
-				4951827A1B4238EA00B1509C /* Main.storyboard */,
 				4951827D1B4238EA00B1509C /* Images.xcassets */,
-				4951827F1B4238EA00B1509C /* LaunchScreen.xib */,
 				4951826D1B4238EA00B1509C /* Supporting Files */,
 			);
 			path = QuadTest2;
@@ -229,6 +227,8 @@
 		4951826D1B4238EA00B1509C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				495182711B4238EA00B1509C /* AppDelegate.h */,
+				495182721B4238EA00B1509C /* AppDelegate.m */,
 				4951826E1B4238EA00B1509C /* Info.plist */,
 				4951826F1B4238EA00B1509C /* main.m */,
 			);

@@ -86,9 +86,9 @@
     self.navigationItem.titleView = myImageView;
     self.navigationItem.leftBarButtonItem = tabButton;
     self.navigationItem.rightBarButtonItem = settingsButton;
-    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor colorWithRed:0.3765 green:0 blue:0 alpha:1]];
-    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:1]];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.6784 green:0.0588 blue:0.1137 alpha:1]];
+    //[self.navigationItem.leftBarButtonItem setTintColor:[UIColor colorWithRed:0.3765 green:0 blue:0 alpha:1]];
+    //[self.navigationItem.rightBarButtonItem setTintColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:1]];
+    // [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.6784 green:0.0588 blue:0.1137 alpha:1]];
 }
 
 - (void)didReceiveMemoryWarning {
