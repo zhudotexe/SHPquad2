@@ -69,26 +69,14 @@
     self.navigationController.navigationBar.translucent= NO;
     
     UIImage *image = [UIImage imageNamed:@"QuadLogoSlogan1_appv.png"];
-    UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
     
     image = [UIImage imageNamed:@"loading2.png"];
     UIImageView *tableBackgroundView = [[UIImageView alloc]initWithImage:image];
     tableBackgroundView.contentMode = UIViewContentModeScaleAspectFit;
     
-    UIBarButtonItem *tabButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"QuadTabButton.png"] style:UIBarButtonItemStylePlain target:self action:@selector(showTabView)];
-    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"settingsGear.png"] style:UIBarButtonItemStylePlain target:self action:@selector(showSettings)];
-    
-    myImageView.contentMode = UIViewContentModeTop;
-    
     self.tableView.backgroundView = tableBackgroundView;
     
-    self.navigationController.navigationItem.title = nil;
-    self.navigationItem.titleView = myImageView;
-    self.navigationItem.leftBarButtonItem = tabButton;
-    self.navigationItem.rightBarButtonItem = settingsButton;
-    //[self.navigationItem.leftBarButtonItem setTintColor:[UIColor colorWithRed:0.3765 green:0 blue:0 alpha:1]];
-    //[self.navigationItem.rightBarButtonItem setTintColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:1]];
-    // [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.6784 green:0.0588 blue:0.1137 alpha:1]];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -183,18 +171,6 @@
  }*/
 
 
-#pragma mark - Transitions
-
-- (void)showTabView
-{
-    [self performSegueWithIdentifier:@"showTabView" sender:self];
-}
-
-- (void)showSettings
-{
-    [self performSegueWithIdentifier:@"showSettings" sender:self];
-}
-
 #pragma mark - AppDelegate stuff
 
 - (void)downloadItemsWithTarget:(NSString *)target {
@@ -261,11 +237,20 @@
     
     // Get references to labels of cell
     myCell.titleLabel.text = item.title;
+    // myCell.summaryLabel.text = item.description;
     myCell.authorLabel.text = item.author;
-    myCell.dateLabel.text = item.date; //[item.date descriptionWithLocale:[NSLocale currentLocale]];
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    myCell.dateLabel.text = item.date;
     // TODO: myCell.thumbnailImageView.image = item.
     
     return myCell;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSLog(@"done");
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -275,7 +260,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 78;
+    return 150;
 }
 
 /*- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {

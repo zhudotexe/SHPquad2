@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsViewController : UITableViewController
+@interface SettingsViewController : UITableViewController 
 @property (weak, nonatomic) IBOutlet UISwitch *speedModeSwitch;
 
 @end

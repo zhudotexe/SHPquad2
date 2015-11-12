@@ -12,7 +12,6 @@
 @synthesize titleLabel = _titleLabel;
 @synthesize authorLabel = _authorLabel;
 @synthesize dateLabel = _dateLabel;
-@synthesize thumbnailImageView = _thumbnailImageView;
 
 
 - (void)awakeFromNib {

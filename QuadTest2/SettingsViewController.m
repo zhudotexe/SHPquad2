@@ -7,11 +7,11 @@
 //
 
 #import "SettingsViewController.h"
+#import <MessageUI/MessageUI.h>
 
 @interface SettingsViewController () {
     NSUserDefaults *_defaults;
 }
-
 @end
 
 @implementation SettingsViewController
@@ -61,6 +61,17 @@
     }
 }
 
+- (IBAction)sendEmail:(UIButton *)sender {
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *mail = [[MFMailComposeViewController alloc] init];
+        // mail.mailComposeDelegate = self;
+        [mail setSubject:@"Quad Feedback"];
+        [mail setMessageBody:@"I have some feedback for the SHP Quad app." isHTML:NO];
+        [mail setToRecipients:@[@"shpquad@shschools.org"]];
+        
+        [self presentViewController:mail animated:YES completion:NULL];
+    }
+}
 #pragma mark - Table view data source
 
 /*- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
