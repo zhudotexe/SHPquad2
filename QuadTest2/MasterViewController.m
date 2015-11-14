@@ -237,10 +237,11 @@
     
     // Get references to labels of cell
     myCell.titleLabel.text = item.title;
-    // myCell.summaryLabel.text = item.description;
+    myCell.summaryLabel.text = item.summary;
     myCell.authorLabel.text = item.author;
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    NSLog(item.summary);
     myCell.dateLabel.text = item.date;
     // TODO: myCell.thumbnailImageView.image = item.
     
