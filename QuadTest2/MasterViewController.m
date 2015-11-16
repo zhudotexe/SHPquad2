@@ -56,7 +56,7 @@
     if (![_defaults boolForKey:@"notFirstTime"]) {
         [_defaults setBool:YES forKey:@"notFirstTime"];
         [_defaults setBool:NO forKey:@"SpeedMode"];
-        NSLog(@"Did first time setup");
+        //NSLog(@"Did first time setup");
     }
     
     _refreshControl = [[UIRefreshControl alloc]init];
@@ -102,7 +102,7 @@
 - (void)itemsDownloaded:(NSArray *)items withTarget:(NSString *)target {
     
     if ([target isEqual:@"0"]) {
-        NSLog(@"Recieved test notification");
+        //NSLog(@"Recieved test notification");
         target = @"5639";
     }
     
@@ -237,11 +237,10 @@
     
     // Get references to labels of cell
     myCell.titleLabel.text = item.title;
-    myCell.summaryLabel.text = item.summary;
+    myCell.summaryLabel.text = item.content;
     myCell.authorLabel.text = item.author;
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-    NSLog(item.summary);
     myCell.dateLabel.text = item.date;
     // TODO: myCell.thumbnailImageView.image = item.
     
@@ -250,7 +249,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSLog(@"done");
+        //NSLog(@"done");
     }
 }
 
