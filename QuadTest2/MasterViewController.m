@@ -234,10 +234,12 @@
         item = _feedItems[indexPath.row];
     }
     
+    NSString *summary = [self flattenHTML:item.content];
+    summary = [summary stringByDecodingHTMLEntities];
     
     // Get references to labels of cell
     myCell.titleLabel.text = item.title;
-    myCell.summaryLabel.text = item.summary;
+    myCell.summaryLabel.text = [summary substringToIndex:140];
     myCell.authorLabel.text = item.author;
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
@@ -272,6 +274,38 @@
  // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
  }
  }*/
+
+#pragma mark HTML Flattener
+
+- (NSString *)flattenHTML:(NSString *)html {
+    
+    NSScanner *theScanner;
+    NSString *text = nil;
+    
+    
+    html = [html stringByReplacingOccurrencesOfString:@"</br>" withString:@"\n"];
+    html = [html stringByReplacingOccurrencesOfString:@"<br>" withString:@"\n"];
+    html = [html stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
+    html = [html stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n"];
+    html = [html stringByReplacingOccurrencesOfString:@"<script>" withString:@"<"];
+    html = [html stringByReplacingOccurrencesOfString:@"</script>" withString:@">"];
+    
+    theScanner = [NSScanner scannerWithString:html];
+    
+    while ([theScanner isAtEnd] == NO) {
+        
+        [theScanner scanUpToString:@"<" intoString:NULL] ;
+        
+        [theScanner scanUpToString:@">" intoString:&text] ;
+        
+        html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>", text] withString:@""];
+    }
+    //
+    
+    html = [html stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    return html;
+}
 
 #pragma mark Content Filtering
 -(void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {

@@ -9,6 +9,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HomeModel.h"
+#import "NSString+HTML.h"
 
 @class DetailViewController;
 
