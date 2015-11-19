@@ -175,26 +175,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    NSLog(@"Loaded");
     //[self configureView];
     
     _imageDownloader = [[ImageDownloader alloc] init];
-    
     _imageDownloader.delegate = self;
     
     //[self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.6784 green:0.0588 blue:0.1137 alpha:1]];
-    [self.navigationController.navigationBar setTranslucent:NO];
-    
+    [self.navigationController.navigationBar setTranslucent:NO];  
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     
     //[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-    
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
     
 }
 
 - (void)viewDidLayoutSubviews {
-    NSLog(@"Did layout subviews");
+    // NSLog(@"Did layout subviews");
     [self configureView];
 }
 
@@ -263,7 +260,7 @@
 - (UIImage *)downloadImage
 {
     NSArray *imageArray = [self.detailItem images];
-    NSLog(@"Image Array: %@", imageArray);
+    // NSLog(@"Image Array: %@", imageArray);
     NSURL *imageURL = imageArray.firstObject;
     UIImage *image = [[UIImage alloc]initWithData:[[NSData alloc]initWithContentsOfURL:imageURL]];
     //image = [self resizeImage:image withSize:CGSizeMake(600.0f, 400.0f)];

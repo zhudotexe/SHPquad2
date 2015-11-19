@@ -58,7 +58,7 @@
      feedItem.summary = [item valueForKey:@"description"] ? [item valueForKey:@"description"] : @"No summary.";
      feedItem.enclosures = [item valueForKey:@"enclosure"];
      
-     //NSLog(@"%@", item.content);
+     //// NSLog(@"%@", item.content);
      
      
      [self.feedItems addObject:feedItem];*/
@@ -117,7 +117,7 @@
                     //add the url to the image array
                     [images addObject:[[NSURL alloc]initWithString:url]];
                     
-                    //NSLog(@"Added URL: %@",[images lastObject]);
+                    //// NSLog(@"Added URL: %@",[images lastObject]);
                     
                     url = nil;
                     
@@ -136,7 +136,7 @@
                     //add the url to the image array
                     [videos addObject:[[NSURL alloc]initWithString:url]];
                     
-                    //NSLog(@"Added URL: %@",[images lastObject]);
+                    //// NSLog(@"Added URL: %@",[images lastObject]);
                     
                     url = nil;
                     
@@ -248,7 +248,7 @@
                     //add the url to the image array
                     [images addObject:[[NSURL alloc]initWithString:url]];
                     
-                    //NSLog(@"Added URL: %@",[images lastObject]);
+                    //// NSLog(@"Added URL: %@",[images lastObject]);
                     
                     url = nil;
                     
@@ -267,7 +267,7 @@
                     //add the url to the image array
                     [videos addObject:[[NSURL alloc]initWithString:url]];
                     
-                    //NSLog(@"Added URL: %@",[images lastObject]);
+                    //// NSLog(@"Added URL: %@",[images lastObject]);
                     
                     url = nil;
                     
@@ -353,7 +353,7 @@
 }
 
 -(void) didFinishParsing:(NSArray *)items{
-    NSLog(@"Done Parsing: %@", items);
+    // NSLog(@"Done Parsing: %@", items);
     
     for (NSDictionary* item in items) {
         FeedItem *feedItem = [[FeedItem alloc] init];

@@ -51,7 +51,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
+        DetailViewController *controller = (DetailViewController *)[segue destinationViewController];
         [controller setWebItem:_selectedWebItem];
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
         controller.navigationItem.leftItemsSupplementBackButton = YES;
