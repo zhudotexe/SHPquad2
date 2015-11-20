@@ -18,7 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+    /* UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
     navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
     splitViewController.delegate = self;
@@ -34,12 +34,12 @@
     
     application.applicationIconBadgeNumber = 0;
     
-    /*if (launchOptions != nil)
+    if (launchOptions != nil)
     {
         NSDictionary *dictionary = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
         if (dictionary != nil)
         {
-            NSLog(@"Launched from push notification: %@", dictionary);
+            // NSLog(@"Launched from push notification: %@", dictionary);
             [self addPostFromRemoteNotification:dictionary updateUI:NO];
         }
     }*/
@@ -69,7 +69,7 @@
 
 /*- (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo
 {
-    NSLog(@"Received notification: %@", userInfo);
+    // NSLog(@"Received notification: %@", userInfo);
     [self addPostFromRemoteNotification:userInfo updateUI:YES];
 }*/
 
@@ -84,32 +84,32 @@
 
 #pragma mark - Split view
 
-- (BOOL)splitViewController:(UISplitViewController *)splitViewController collapseSecondaryViewController:(UIViewController *)secondaryViewController ontoPrimaryViewController:(UIViewController *)primaryViewController {
+/* - (BOOL)splitViewController:(UISplitViewController *)splitViewController collapseSecondaryViewController:(UIViewController *)secondaryViewController ontoPrimaryViewController:(UIViewController *)primaryViewController {
     if ([secondaryViewController isKindOfClass:[UINavigationController class]] && [[(UINavigationController *)secondaryViewController topViewController] isKindOfClass:[DetailViewController class]] && ([(DetailViewController *)[(UINavigationController *)secondaryViewController topViewController] detailItem] == nil)) {
         // Return YES to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
         return YES;
     } else {
         return NO;
     }
-}
+} */
 
 #pragma mark - Push notification delegate methods
 
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
     //const void *devTokenBytes = [devToken bytes];
     
-    NSLog(@"My token is: %@", devToken);
+    // NSLog(@"My token is: %@", devToken);
     
     NSString *strDeviceToken = [[NSString alloc]initWithFormat:@"%@",
                                 [[[devToken description]stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]]
                                     stringByReplacingOccurrencesOfString:@" " withString:@""]];
 
     [self sendProviderDeviceToken:strDeviceToken];
-    NSLog(@"Did Register for Remote Notifications with Device Token (%@)", devToken);
+    // NSLog(@"Did Register for Remote Notifications with Device Token (%@)", devToken);
 }
 
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
-    NSLog(@"Error in registration. Error: %@", err);
+    // NSLog(@"Error in registration. Error: %@", err);
 }
 
 #pragma mark - APNs Registration
@@ -151,9 +151,9 @@ NSString *token;
     [request setHTTPBody:postData];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     if(conn) {
-        NSLog(@"Connection Successful");
+        // NSLog(@"Connection Successful");
     } else {
-        NSLog(@"Connection could not be made");
+        // NSLog(@"Connection could not be made");
     }
 }
 
@@ -162,7 +162,7 @@ NSString *token;
 // This method is used to receive the data which we get using post method.
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data {
     NSString *conData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"%@", conData);
+    // NSLog(@"%@", conData);
 }
 
 // This method receives the error report in case of connection is not made to server.

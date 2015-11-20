@@ -56,7 +56,7 @@
     if (![_defaults boolForKey:@"notFirstTime"]) {
         [_defaults setBool:YES forKey:@"notFirstTime"];
         [_defaults setBool:NO forKey:@"SpeedMode"];
-        NSLog(@"Did first time setup");
+        //// NSLog(@"Did first time setup");
     }
     
     _refreshControl = [[UIRefreshControl alloc]init];
@@ -67,14 +67,6 @@
     [_refreshControl beginRefreshing];
     
     self.navigationController.navigationBar.translucent= NO;
-    
-    UIImage *image = [UIImage imageNamed:@"QuadLogoSlogan1_appv.png"];
-    
-    image = [UIImage imageNamed:@"loading2.png"];
-    UIImageView *tableBackgroundView = [[UIImageView alloc]initWithImage:image];
-    tableBackgroundView.contentMode = UIViewContentModeScaleAspectFit;
-    
-    self.tableView.backgroundView = tableBackgroundView;
     
 
 }
@@ -102,7 +94,7 @@
 - (void)itemsDownloaded:(NSArray *)items withTarget:(NSString *)target {
     
     if ([target isEqual:@"0"]) {
-        NSLog(@"Recieved test notification");
+        // NSLog(@"Recieved test notification");
         target = @"5639";
     }
     
@@ -126,10 +118,10 @@
     // Set selected webitem to var
     _selectedWebItem = [WebItem webItemWithTitle:_selectedFeedItem.title andURL:[NSURL URLWithString:_selectedFeedItem.link]];
     
-    // Manually call segue to detail view controller
+    /* // Manually call segue to detail view controller
     if (_selectedFeedItem) {
         [self performSegueWithIdentifier:@"showDetail" sender:self];
-    }
+    } */
 }
 
 #pragma mark - Refresh
@@ -181,16 +173,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
+        DetailViewController *controller = (DetailViewController *)[segue destinationViewController];
         
         if ([_defaults boolForKey:@"SpeedMode"]) {
             [controller setDetailItem:_selectedFeedItem];
         } else {
             [controller setWebItem:_selectedWebItem];
         }
-        
-        controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
-        controller.navigationItem.leftItemsSupplementBackButton = YES;
     }
     
     if ([[segue identifier] isEqualToString:@"showTabView"]) {
@@ -243,7 +232,6 @@
     myCell.authorLabel.text = item.author;
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-    NSLog(item.summary);
     myCell.dateLabel.text = item.date;
     // TODO: myCell.thumbnailImageView.image = item.
     
@@ -252,7 +240,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSLog(@"done");
+        //// NSLog(@"done");
     }
 }
 
@@ -266,14 +254,6 @@
     return 150;
 }
 
-/*- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- [self.objects removeObjectAtIndex:indexPath.row];
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
- }
- }*/
 
 #pragma mark HTML Flattener
 

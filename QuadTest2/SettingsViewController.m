@@ -42,7 +42,7 @@
                               handler:^(UIAlertAction *action){
                                   [_defaults setBool:YES forKey:@"SpeedMode"];
                                   [_defaults synchronize];
-                                  NSLog(@"%@", @"Speed Mode ON");
+                                  // NSLog(@"%@", @"Speed Mode ON");
                               }]];
         [betaAlert addAction:[UIAlertAction
                               actionWithTitle:@"No"
@@ -51,13 +51,13 @@
                                   [_defaults setBool:NO forKey:@"SpeedMode"];
                                   [self.speedModeSwitch setOn:NO animated:YES];
                                   [_defaults synchronize];
-                                  NSLog(@"%@", @"Speed Mode OFF");
+                                  // NSLog(@"%@", @"Speed Mode OFF");
                               }]];
         [self presentViewController:betaAlert animated:YES completion:nil];
     } else {
         [_defaults setBool:NO forKey:@"SpeedMode"];
         [_defaults synchronize];
-        NSLog(@"%@", @"Speed Mode OFF");
+        // NSLog(@"%@", @"Speed Mode OFF");
     }
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RMx-3f-FxP">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
@@ -63,23 +63,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-186" y="1036"/>
-        </scene>
-        <!--Split View Controller-->
-        <scene sceneID="Nki-YV-4Qg">
-            <objects>
-                <splitViewController id="H1p-Uh-vWS" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <connections>
-                        <segue destination="RMx-3f-FxP" kind="relationship" relationship="masterViewController" id="BlO-5A-QYV"/>
-                        <segue destination="vC3-pB-5Vb" kind="relationship" relationship="detailViewController" id="Tll-UG-LXB"/>
-                    </connections>
-                </splitViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cZU-Oi-B1e" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1432" y="-630"/>
+            <point key="canvasLocation" x="-670" y="154"/>
         </scene>
         <!--Master-->
         <scene sceneID="smW-Zh-WAh">
@@ -100,7 +84,7 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SimpleTableCell" rowHeight="136" id="WCw-Qf-5nD" customClass="SimpleTableCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SimpleTableCell" rowHeight="136" id="WCw-Qf-5nD" customClass="SimpleTableCell">
                                 <rect key="frame" x="0.0" y="130" width="600" height="136"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WCw-Qf-5nD" id="37f-cq-3Eg">
@@ -172,7 +156,6 @@
                                     <outlet property="dateLabel" destination="NgK-3V-vMm" id="5ep-ym-qOv"/>
                                     <outlet property="summaryLabel" destination="fz0-bm-YW0" id="mK9-HI-5MZ"/>
                                     <outlet property="titleLabel" destination="Hd2-T1-jwX" id="5DN-4a-DSO"/>
-                                    <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showDetail" id="GIo-R1-koI"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -198,6 +181,7 @@
                     <connections>
                         <outlet property="searchBar" destination="Yhy-et-Scm" id="olB-zM-UzK"/>
                         <outlet property="searchDisplayController" destination="RO2-hW-Sd9" id="sp6-dC-DmI"/>
+                        <segue destination="JEX-9P-axG" kind="show" identifier="showDetail" action="showDetailViewController:sender:" id="IFM-9r-dTJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
@@ -369,9 +353,6 @@
                                 </tableViewCellContentView>
                                 <animations/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showDetail" id="jAN-o3-WEn"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -385,34 +366,9 @@
             </objects>
             <point key="canvasLocation" x="1290" y="-263"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="r7l-gg-dq7">
-            <objects>
-                <navigationController id="vC3-pB-5Vb" sceneMemberID="viewController">
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="DjV-YW-jjY">
-                        <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
-                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="0.57647058819999997" green="0.0039215686269999999" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="JEX-9P-axG" kind="relationship" relationship="rootViewController" id="GKi-kA-LjT"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SLD-UC-DBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-186" y="268"/>
-        </scene>
     </scenes>
     <resources>
         <image name="menuButton" width="24" height="24"/>
         <image name="settingsButton" width="24" height="24"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="GIo-R1-koI"/>
-    </inferredMetricsTieBreakers>
 </document>

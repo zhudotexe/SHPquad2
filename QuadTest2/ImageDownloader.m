@@ -15,13 +15,13 @@
     self.images = [[NSMutableArray alloc]init];
     NSArray *imageArray = array;
     float length = [imageArray count];
-    NSLog(@"Image Array: %@", imageArray);
+    // NSLog(@"Image Array: %@", imageArray);
     for (int i = 0; i < [imageArray count]; i++) {
-        NSLog(@"Downloading Image: %d", i);
+        // NSLog(@"Downloading Image: %d", i);
         NSURL *imageURL = [imageArray objectAtIndex:i];
-        NSLog(@"URL: %@", [imageArray objectAtIndex:i]);
+        // NSLog(@"URL: %@", [imageArray objectAtIndex:i]);
         UIImage *image = [[UIImage alloc]initWithData:[[NSData alloc]initWithContentsOfURL:imageURL]];
-        NSLog(@"Downloaded Image");
+        // NSLog(@"Downloaded Image");
         if (image) {
             [self.images addObject:image];
             if(self.delegate){
@@ -36,7 +36,7 @@
         
     }
     
-    NSLog(@"Images Downloaded");
+    // NSLog(@"Images Downloaded");
     
     if(self.delegate){
         [self.delegate imagesDownloaded:self.images];
