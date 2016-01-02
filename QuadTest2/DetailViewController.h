@@ -11,7 +11,7 @@
 #import "WebItem.h"
 #import "ImageDownloader.h"
 
-@interface DetailViewController : UIViewController <UIScrollViewDelegate, ImageDownloaderProtocol>
+@interface DetailViewController : UIViewController <UIScrollViewDelegate, ImageDownloaderProtocol, UIWebViewDelegate>
 
 //@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 
@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIView *detailView; // DO NOT DELETE!!!
 @property (strong, nonatomic) UIView *containerView;
 @property (strong, nonatomic) UIProgressView *imageProgress;
+@property (strong, nonatomic) UIActivityIndicatorView *webLoadingView;
 
 @end
 

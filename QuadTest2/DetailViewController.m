@@ -21,6 +21,7 @@
 @implementation DetailViewController
 @synthesize containerView = _containerView;
 @synthesize imageProgress = _imageProgress;
+@synthesize webLoadingView = _webLoadingView;
 
 
 #pragma mark - Managing the detail item
@@ -51,6 +52,8 @@
     
     _viewRect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     
+    [self.webLoadingView startAnimating];
+    
     
     if (self.detailItem) {
         self.detailTitle.title = [self.detailItem title];
@@ -70,31 +73,12 @@
             UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _viewRect.size.width, _viewRect.size.height/2)];
             NSURLRequest *webContent = [[NSURLRequest alloc]initWithURL:[[self.detailItem videos]firstObject]];
             [webView loadRequest:webContent];
-            //[webView setUserInteractionEnabled:NO];
+            
+            webView.delegate = self;
             
             [self.view addSubview:webView];
             
-            /*// set up the scroll view
-             UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 750.0f, 400.0f)];
-             [self.view addSubview:scrollView];
-             
-             [self.view bringSubviewToFront:scrollView];
-             
-             // Set up the container view to hold your custom view hierarchy
-             CGSize containerSize = CGSizeMake(75 + [[self.detailItem videos]count] * 625, 400.0f);
-             self.containerView = [[UIView alloc] initWithFrame:(CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=containerSize}];
-             [scrollView addSubview:self.containerView];
-             
-             for (int i = 0; i < [[self.detailItem videos]count]; i++) { // set up an web view for each video at multiples of the video resolution
-             UIWebView *tempWebView = [[UIWebView alloc]initWithFrame:CGRectMake(25 + i * 625, 0.0f, 600.0f, 400.0f)];
-             NSURLRequest *content = [[NSURLRequest alloc]initWithURL:[[self.detailItem videos]objectAtIndex:i]];
-             [tempWebView loadRequest:content];
-             [self.containerView addSubview:tempWebView];
-             }
-             // set attributes of the scrollview
-             scrollView.contentSize = containerSize;
-             [scrollView setShowsHorizontalScrollIndicator:NO];
-             [scrollView setBackgroundColor:[UIColor whiteColor]];*/
+            
             
         } else if ([[self.detailItem images]count]) { // if there is an image, init with an imageview
             
@@ -131,6 +115,8 @@
             [textView setFont:[UIFont systemFontOfSize:18]];
             
             textView.text = content;
+            
+            [self.webLoadingView stopAnimating];
         }
         
     } else if (self.webItem) { // load webview for selected item
@@ -140,8 +126,11 @@
             UIWebView *webView = [[UIWebView alloc]initWithFrame:_viewRect];
             NSURLRequest *content = [[NSURLRequest alloc]initWithURL:[self.webItem contentURL]];
             [webView loadRequest:content];
+            webView.delegate = self;
             [self.view addSubview:webView];
         }
+    } else {
+        [self.webLoadingView stopAnimating];
     }
     _hasConfigured = YES;
 }
@@ -171,6 +160,8 @@
             scrollView.contentSize = containerSize;
             [scrollView setShowsHorizontalScrollIndicator:NO];
             [scrollView setBackgroundColor:[UIColor whiteColor]];
+            
+            [self.webLoadingView stopAnimating];
         }
     });
 }
@@ -188,6 +179,12 @@
     [self.navigationController.navigationBar setTranslucent:NO];
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
+    
+    self.webLoadingView = [[UIActivityIndicatorView alloc]init];
+    
+    UIBarButtonItem *loadingView = [[UIBarButtonItem alloc]initWithCustomView:self.webLoadingView];
+    
+    self.navigationItem.rightBarButtonItem = loadingView;
     
     _hasConfigured = NO;
     
@@ -212,6 +209,10 @@
 - (void)deviceOrientationChanged:(NSNotification *)notification
 {
     _hasConfigured = NO;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [self.webLoadingView stopAnimating];
 }
 
 #pragma mark Progress Handlers
