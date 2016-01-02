@@ -224,6 +224,15 @@
 			path = DateTools;
 			sourceTree = "<group>";
 		};
+		4919ECD11C376293007FA854 /* 3rd Party Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4919ECB81C3758EB007FA854 /* DateTools */,
+				49225F1C1B9A51F50029E8D0 /* HTML */,
+			);
+			name = "3rd Party Tools";
+			sourceTree = "<group>";
+		};
 		49225F1C1B9A51F50029E8D0 /* HTML */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,8 +270,7 @@
 				4915A7C11BF29CD6002FBE0B /* View Controllers */,
 				4915A7C21BF29D07002FBE0B /* Downloaders/Parsers */,
 				4915A7C31BF29D4F002FBE0B /* Custom Objects */,
-				49225F1C1B9A51F50029E8D0 /* HTML */,
-				4919ECB81C3758EB007FA854 /* DateTools */,
+				4919ECD11C376293007FA854 /* 3rd Party Tools */,
 				4971E4941B440DC400482419 /* Icons/Images */,
 				495182711B4238EA00B1509C /* AppDelegate.h */,
 				495182721B4238EA00B1509C /* AppDelegate.m */,
