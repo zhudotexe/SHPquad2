@@ -13,6 +13,7 @@
     ImageDownloader *_imageDownloader;
     NSArray *_images;
     CGRect _viewRect;
+    BOOL _hasConfigured;
 }
 
 @end
@@ -142,6 +143,7 @@
             [self.view addSubview:webView];
         }
     }
+    _hasConfigured = YES;
 }
 
 - (void)imagesDownloaded:(NSArray *)images
@@ -187,15 +189,19 @@
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     
-    //[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    _hasConfigured = NO;
     
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
     
 }
 
 - (void)viewDidLayoutSubviews {
     NSLog(@"Did layout subviews");
-    [self configureView];
+    if (!_hasConfigured) {
+        [self configureView];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -205,7 +211,7 @@
 
 - (void)deviceOrientationChanged:(NSNotification *)notification
 {
-    
+    _hasConfigured = NO;
 }
 
 #pragma mark Progress Handlers
