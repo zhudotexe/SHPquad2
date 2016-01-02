@@ -357,15 +357,28 @@
     
     for (NSDictionary* item in items) {
         FeedItem *feedItem = [[FeedItem alloc] init];
+        
         feedItem.title = [item valueForKey:@"title"] ? [item valueForKey:@"title"] : @"Untitled";
+        
         feedItem.author = [item valueForKey:@"dc:creator"] ? [item valueForKey:@"dc:creator"] : @"Unknown Author";
+        
         feedItem.images = [self parseImages:[item valueForKey:@"content:encoded"]];
+        
         feedItem.videos = [self parseVideos:[item valueForKey:@"content:encoded"]];
+        
         feedItem.content = [item valueForKey:@"content:encoded"] ? [item valueForKey:@"content:encoded"] : [NSString stringWithFormat:@"This article may not display correctly on the Quad App. Please view this article at %@", [item valueForKey:@"link"]];
-        feedItem.date = [item valueForKey:@"pubDate"];
+        
+        // Convert string to date object
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"EE, d LLLL yyyy HH:mm:ss Z"];
+        feedItem.date = [dateFormat dateFromString:[item valueForKey:@"pubDate"]];
+        
         feedItem.link = [item valueForKey:@"link"] ? [item valueForKey:@"link"] : @"http://shpquad.org/404";
+        
         feedItem.summary = [item valueForKey:@"description"] ? [item valueForKey:@"description"] : @"No summary.";
+        
         feedItem.enclosures = [item valueForKey:@"enclosure"];
+        
         [self.feedItems addObject:feedItem];
     }
     

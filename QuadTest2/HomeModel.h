@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FeedParser.h"
 #import "FeedItem.h"
+#import "NSDate+DateTools.h"
 
 @protocol HomeModelProtocol <NSObject>
 
